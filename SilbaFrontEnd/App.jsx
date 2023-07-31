@@ -23,8 +23,8 @@ import { TopNav } from "./nav bars/TopNav";
 export default function App() {
   return (
     <NativeBaseProvider>
-   <TopNav /> 
- <BottomNav/> 
+   {/* <TopNav />  */}
+  <BottomNav/> 
     </NativeBaseProvider>
   );
 }
