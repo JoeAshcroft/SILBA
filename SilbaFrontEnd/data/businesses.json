@@ -1,0 +1,109 @@
+
+{
+  "restaurants and bars": [
+    {
+      "business_name": "Where The Light Gets In",
+      "location": { "latitude": 53.411, "longitude": -2.1565 },
+      "address": "7 Rostron Brow, Stockport SK1 1JY, UK",
+      "website": "https://www.wtlgi.co/",
+      "images": ["restaurant1.jpg", "restaurant2.jpg"],
+      "description": "Warm, airy open-kitchen serving elevated small meat-focussed plates & snacks plus paired wines.",
+      "long_description": "We work directly with farmers and fishermen from all over the isles to create a menu regulated by the seasons and our own creative touch. Our food and drink is conveyed to our guests by the chefs, in our open plan restaurant and kitchen. The stories sewn into the dining experience are passed from those who work tirelessly, from soil to shore, to provide us with the harvest of natural ingredients that we share. Produce from our own farm lays the roots of the harvest on our tables and the understanding of what it means to work with the land. We can cater to almost any dietary requirements, just let us know when you book and we will happily accommodate. We can be found on the first floor of an old coffee warehouse in Stockport Old Town. Our dining room accommodates a maximum of 40 guests, achieving an intimate and personal experience. We function in an open space that combines both kitchen and dining room. The team moves between tables with stories of our farm and the people we work with - each story part of a greater narrative of the meal that makes up an evenings experience.",
+      "category": "restaurant",
+      "business_id": "rest001",
+      "business_rating": 4.7,
+      "review_count": 120
+    },
+    {
+      "business_name": "The Sparrows",
+      "location": { "latitude": 53.4898, "longitude": -2.2383 },
+      "address": "16 Red Bank, Cheetham Hill, Manchester M4 4HF, United Kingdom",
+      "images": ["restaurant3.jpg", "restaurant4.jpg"],
+      "description": "Casual choice serving international drinks & pasta dishes in a Zen-like setting with a brick patio.",
+      "long_description": "The Spärrows is a modern continental restaurant offering a great variety of hand made dumplings & pasta of European origin. Specialty of the house are Spätzle; fresh egg pasta representing a vast geographical region of South Germany,Switzerland, Alsace, Austria & Sud Tyrol - Trentino & Alto Adige  of Northern Italy. The Dumplings menu expands further to European classics, such as Franco's personal take on Russian Pelmeni, Polish Pierogi, Italian Ravioli and fresh rolled Pasta. All complimented by a choice of traditional/regional sauces & daily baked bread. A cup of Italian coffee or Japanese green tea should not be a miss inthe day, while Swiss craft beer, a glass of organic Austrian wine or fine Japanese Sake will make a perfect pairing with Goulash Tyrolese in the evening.",
+      "category": "restaurant",
+      "business_id": "rest002",
+      "business_rating": 4.8,
+      "review_count": 90
+    },
+
+    {
+      "business_name": "Erst",
+      "location": { "latitude": 53.477867, "longitude": -2.239147 },
+      "address": "9 Murray St, Ancoats, Manchester M4 6HS, United Kingdom",
+      "images": ["restaurant3.jpg", "restaurant4.jpg"],
+      "description": "Seasonal small plates & natural wine offered in a contemporary restaurant & bar.",
+      "long_description": "Erst in Manchester is a hidden gem that embraces the essence of modern dining with a touch of rustic charm. Located in the heart of the city, this contemporary restaurant delights food enthusiasts with an eclectic menu that showcases the best of locally sourced ingredients. Step into the warm and inviting ambiance of Erst, where exposed brick walls and soft lighting create an intimate setting for an unforgettable culinary experience. The restaurant's dedication to sustainability and ethical practices shines through in every dish they serve. At Erst, the culinary team takes pride in crafting dishes that celebrate seasonal flavors and innovative cooking techniques. From delightful small plates to hearty mains, each creation tells a story of dedication to culinary craftsmanship and a passion for unique flavors.",
+      "category": "restaurant",
+      "business_id": "rest002",
+      "business_rating": 4.8,
+      "review_count": 90
+    }
+  ],
+
+  "shops": [
+    {
+      "business_name": "Unitom",
+      "location": { "latitude": 53.4829, "longitude": -2.2339 },
+      "address": "1a Stevenson Square, Manchester M1 1DN, United Kingdom",
+      "images": ["shop1.jpg", "shop2.jpg"],
+      "description": "Visual arts orientated bookshop and print/editions gallery offering a hand-picked selection of cultural inspiration",
+      "long_description": "UNITOM is a visual arts orientated bookshop and print/editions gallery offering a hand-picked selection of cultural inspiration, located in the heart of Manchester’s Northern Quarter on Stevenson Square. We offer a wide array of publications on contemporary art, design, fashion, photography and counterculture alongside an extensive range of independent magazines, self-published and small press titles sourced from artists and publishers around the globe. The store will also offer a range of exclusive prints and artists editions, including works by Iain.H.Williams, Alex Giles and Skateroom and well as a carefully curated selection of lifestyle objects from Kinto and Freitag, to Penco and London Undercover. Our vision is to create shared experiences and conversations in store and online and to offer a unique retail voice within Manchester and provide an international destination for people who love and collect art.",
+      "category": "shop",
+      "business_id": "shop001",
+      "business_rating": 5.0,
+      "review_count": 80
+    },
+    {
+      "business_name": "Deadstock General Store",
+      "location": { "latitude": 53.4843, "longitude": -2.2366 },
+      "address": "48 Edge St, Manchester M4 1HN, United Kingdom",
+      "images": ["shop3.jpg", "shop4.jpg"],
+      "description": "A curated selection of homewares, accessories and gifts based in Manchester",
+      "long_description": "Deadstock General Store is a lifestyle and homewares store in Manchester's Northern Quarter, offering varied gifts, accessories, and objects for the home from around the world. We've been running our Northern Quarter store since 2015, originally offering a few products alongside clothing alterations and denim repair before moving focus to retail. Since the start, the ethos has been to offer things we'd like to own ourselves. We're often asked what the theme of the shop is, and it's hard to define in any other terms. With homewares, accessories, kitchen items, and beauty and grooming supplies, we're aiming to offer a rounded, personally curated selection of lifestyle products.",
+      "category": "shop",
+      "business_id": "shop002",
+      "business_rating": 4.9,
+      "review_count": 65
+    },
+    {
+      "business_name": "The Vintage Emporium Stockport",
+      "location": { "latitude": 53.423581, "longitude": -2.113764 },
+      "address": "Unit B1, Pear Mill Industrial Estate, Stockport Rd W, Bredbury, Stockport SK6 2BP, United Kingdom",
+      "images": ["shop3.jpg", "shop4.jpg"],
+      "description": "Antique and vintage market",
+      "long_description": "The Vintage Emporium offers a treasure trove of all things vintage. Explore over 50 independent traders offering an eclectic mixture of vintage furniture, lighting, home ware, collectables, fashion and more. We’ve even got a vintage sewing seamstress available for tailoring needs!",
+      "category": "shop",
+      "business_id": "shop002",
+      "business_rating": 4.6,
+      "review_count": 65
+    }
+  ],
+  "experiences": [
+    {
+      "business_name": "Clay Studio",
+      "location": { "latitude": 53.4655, "longitude": -2.2483 },
+      "address": "61 Old Birley St, Hulme, Manchester M15 5RF, United Kingdom",
+      "images": ["experience1.jpg", "experience2.jpg"],
+      "description": "Clay Studio is an open and welcoming space for ceramicists, hobbyists and those curious and keen to explore pottery. ",
+      "long_description": "The studio is based within the Work for Change cooperative in Hulme, just outside of the city centre, the large windows and angular interior make for the perfect space to get creative in. Started by three potters and teachers with a varied range of skills, Clay Studio has a team of technicians on hand to help with glazing, teaching and maintaining the materials. The weekly beginner classes are a great way to get your first taste of ceramics. You’ll learn to hand build and throw on a wheel as well as being given the technical skills to complete your own projects. With class sizes fairly small, just ten people per session, you’ll get to know the other people around you and develop a sense of community within the class. Clay work requires you to focus your mind on a task fully, perfect for clearing your head and improving concentration.",
+      "category": "experience",
+      "business_id": "exp001",
+      "business_rating": 4.9,
+      "review_count": 45
+    },
+    {
+      "business_name": "Pendant Carving Workshop at Where The Light Gets In",
+      "location": { "latitude": 53.411, "longitude": -2.1565 },
+      "address": "7 Rostron Brow, Stockport SK1 1JY, UK",
+      "website": "https://www.wtlgi.co/",
+      "images": ["experience3.jpg", "experience4.jpg"],
+      "description": "A ritual focussed, amulet pendant workshop led by Lauren of Ara the altar.",
+      "long_description": "In our bright and airy restaurant , we will each design and carve an amulet pendant in jewellers wax, specifically for sand casting. We’ll then get our hands in the sand to create a mould for our amulet, to be later cast by Lauren in recycled solid 925 sterling silver. Like every Ara the altar project, this workshop has been designed with minimal environmental impact in mind. Focussing on responsible sourcing, reclaimed tools and minimal waste production. ",
+      "category": "experience",
+      "business_id": "exp002",
+      "business_rating": 5.0,
+      "review_count": 10
+    }
+  ]
+}
