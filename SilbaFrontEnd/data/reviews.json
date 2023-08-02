@@ -1,0 +1,323 @@
+{
+    "restaurants_reviews": [
+      {
+        "business_id": "rest001",
+        "review_id": "rest001_rev001",
+        "username": "foodlover123",
+        "review": "I had an unforgettable dining experience at Where The Light Gets In. The open kitchen concept was fascinating, and the chefs' stories about the farm-to-table ingredients added a personal touch. The food was exceptional, and the wine pairings were spot-on.",
+        "review_votes": 15
+      },
+      {
+        "business_id": "rest001",
+        "review_id": "rest001_rev002",
+        "username": "adventurous_eater",
+        "review": "Where The Light Gets In is a true gem! The ever-changing menu based on seasonal produce is impressive. The staff was knowledgeable and accommodating, making the dining experience feel special. I highly recommend trying the small meat plates!",
+        "review_votes": 12
+      },
+      {
+        "business_id": "rest001",
+        "review_id": "rest001_rev003",
+        "username": "wineconnoisseur",
+        "review": "If you're a wine lover, Where The Light Gets In is a must-visit! Their wine selection complements the food perfectly. The ambiance and open-kitchen setup add to the overall experience. It's a bit pricey, but worth every penny.",
+        "review_votes": 10
+      },
+      {
+        "business_id": "rest001",
+        "review_id": "rest001_rev004",
+        "username": "localfoodie",
+        "review": "I absolutely loved the warm and inviting atmosphere at Where The Light Gets In. The creativity and attention to detail in each dish were impressive. The long dining table setup allowed for interesting conversations with other guests.",
+        "review_votes": 8
+      },
+      {
+        "business_id": "rest001",
+        "review_id": "rest001_rev005",
+        "username": "culinaryexplorer",
+        "review": "Where The Light Gets In is a culinary journey you don't want to miss! The chef's stories about the farm-to-table ingredients were enlightening. The whole experience was like a work of art, both in presentation and taste.",
+        "review_votes": 9
+      },
+      {
+        "business_id": "rest002",
+        "review_id": "rest002_rev001",
+        "username": "pastaenthusiast",
+        "review": "The Sparrows exceeded my expectations! The pasta dishes were delicious, and the Zen-like setting was calming. The staff was friendly, and the variety of international drinks was impressive.",
+        "review_votes": 14
+      },
+      {
+        "business_id": "rest002",
+        "review_id": "rest002_rev002",
+        "username": "globetrotter",
+        "review": "A hidden gem in Manchester! The selection of hand-made dumplings and pasta from various European regions was unique and delightful. I loved the Polish Pierogi and Italian Ravioli. The brick patio added to the ambiance.",
+        "review_votes": 11
+      },
+      {
+        "business_id": "rest002",
+        "review_id": "rest002_rev003",
+        "username": "foodiesensei",
+        "review": "The food at The Sparrows was excellent, and the variety of traditional/regional sauces was a nice touch. The atmosphere was laid-back and perfect for a casual dining experience. I can't wait to go back!",
+        "review_votes": 9
+      },
+      {
+        "business_id": "rest002",
+        "review_id": "rest002_rev004",
+        "username": "culinarywanderer",
+        "review": "The Spätzle was a revelation! I loved the fresh egg pasta and the range of European classics offered. The friendly staff made the experience even better. Don't miss out on their Italian coffee!",
+        "review_votes": 10
+      },
+      {
+        "business_id": "rest002",
+        "review_id": "rest002_rev005",
+        "username": "foodexplorer",
+        "review": "The Sparrows is a pasta lover's paradise! The unique selection of dumplings and pasta was a delightful surprise. I enjoyed trying different combinations of sauces with the dishes. Definitely recommend it!",
+        "review_votes": 12
+      },
+      {
+        "business_id": "rest003",
+        "review_id": "rest003_rev001",
+        "username": "culinarypassion",
+        "review": "Erst offers an exceptional dining experience with a touch of rustic charm. The locally sourced ingredients and innovative cooking techniques made each dish stand out. The ambiance was warm and inviting.",
+        "review_votes": 13
+      },
+      {
+        "business_id": "rest003",
+        "review_id": "rest003_rev002",
+        "username": "gastronomics",
+        "review": "I had a wonderful time at Erst! The contemporary restaurant and bar setup added a modern twist to the dining experience. The dedication to sustainability and ethical practices was commendable.",
+        "review_votes": 11
+      },
+      {
+        "business_id": "rest003",
+        "review_id": "rest003_rev003",
+        "username": "foodlover456",
+        "review": "Erst's seasonal small plates were a gastronomic delight! The dishes were beautifully presented, and the flavors were well-balanced. The attentive staff made sure we had a memorable time.",
+        "review_votes": 10
+      },
+      {
+        "business_id": "rest003",
+        "review_id": "rest003_rev004",
+        "username": "artisticgourmand",
+        "review": "Erst's culinary craftsmanship shines through in every dish they serve. The creative menu was a pleasure to explore, and the dedication to locally sourced ingredients was evident in every bite.",
+        "review_votes": 9
+      },
+      {
+        "business_id": "rest003",
+        "review_id": "rest003_rev005",
+        "username": "foodcritique",
+        "review": "I was impressed by Erst's attention to detail and their passion for unique flavors. The small plates allowed us to try a variety of dishes, and the natural wine pairing was a highlight.",
+        "review_votes": 8
+      }
+    ],
+    "shops_reviews": [
+      {
+        "business_id": "shop001",
+        "review_id": "shop001_rev001",
+        "username": "artsycollector",
+        "review": "Unitom is a treasure trove for art and design enthusiasts. The hand-picked selection of cultural inspiration, including independent magazines and small press titles, is commendable. The exclusive prints and artists editions were a delightful find!",
+        "review_votes": 12
+      },
+      {
+        "business_id": "shop001",
+        "review_id": "shop001_rev002",
+        "username": "shopaholic",
+        "review": "Unitom is a haven for art and design lovers. I spent hours browsing through the wide array of publications on contemporary art, fashion, and photography. The lifestyle objects and accessories were unique and appealing.",
+        "review_votes": 10
+      },
+      {
+        "business_id": "shop001",
+        "review_id": "shop001_rev003",
+        "username": "bookworm",
+        "review": "As a book lover, Unitom was a dream come true! The diverse collection of books on contemporary art, design, and counterculture kept me captivated. I also found some amazing self-published titles.",
+        "review_votes": 8
+      },
+      {
+        "business_id": "shop001",
+        "review_id": "shop001_rev004",
+        "username": "designenthusiast",
+        "review": "Unitom's curated selection of lifestyle products was impressive. I loved the range of homewares, accessories, and beauty supplies. It's a perfect place to find unique gifts and additions for your home.",
+        "review_votes": 9
+      },
+      {
+        "business_id": "shop001",
+        "review_id": "shop001_rev005",
+        "username": "globeshopper",
+        "review": "Unitom is a must-visit destination for art and design enthusiasts. The selection of publications and lifestyle objects from around the world was diverse and captivating. I found some exquisite pieces for my collection.",
+        "review_votes": 11
+      },
+      {
+        "business_id": "shop002",
+        "review_id": "shop002_rev001",
+        "username": "homeenthusiast",
+        "review": "Deadstock General Store has a curated selection of homewares and accessories that I absolutely loved. The unique products from around the world added character to my home. A must-visit store for home decor lovers!",
+        "review_votes": 13
+      },
+      {
+        "business_id": "shop002",
+        "review_id": "shop002_rev002",
+        "username": "fashionista",
+        "review": "Deadstock General Store offers a diverse range of accessories and fashion items. The collection is thoughtfully curated and appeals to various styles. I found some one-of-a-kind pieces that became my favorite accessories.",
+        "review_votes": 10
+      },
+      {
+        "business_id": "shop002",
+        "review_id": "shop002_rev003",
+        "username": "accessorylover",
+        "review": "Deadstock General Store is a haven for accessories! The selection of bags, jewelry, and grooming supplies was impressive. The staff was helpful and friendly, making the shopping experience enjoyable.",
+        "review_votes": 9
+      },
+      {
+        "business_id": "shop002",
+        "review_id": "shop002_rev004",
+        "username": "interiordesigner",
+        "review": "I loved exploring Deadstock General Store's collection of lifestyle products. The unique items for the home and kitchen were inspiring. It's a great store to find gifts and unique additions for your living space.",
+        "review_votes": 8
+      },
+      {
+        "business_id": "shop002",
+        "review_id": "shop002_rev005",
+        "username": "shopper",
+        "review": "Deadstock General Store has an impressive collection of lifestyle products and gifts. The carefully curated selection makes it easy to find something special for yourself or loved ones. Highly recommend it!",
+        "review_votes": 11
+      },
+      {
+        "business_id": "shop003",
+        "review_id": "shop003_rev001",
+        "username": "vintagelover",
+        "review": "The Vintage Emporium is a treasure trove of vintage items. I enjoyed exploring the eclectic mixture of furniture, home ware, and collectibles. It's a must-visit for antique and vintage enthusiasts!",
+        "review_votes": 10
+      },
+      {
+        "business_id": "shop003",
+        "review_id": "shop003_rev002",
+        "username": "collector",
+        "review": "The Vintage Emporium is a vintage lover's paradise! I found some unique and rare collectibles that are now cherished additions to my collection. The vintage sewing seamstress service was a bonus!",
+        "review_votes": 11
+      },
+      {
+        "business_id": "shop003",
+        "review_id": "shop003_rev003",
+        "username": "antiquescollector",
+        "review": "The Vintage Emporium is a fantastic market for antique and vintage finds. The variety of items from different eras was fascinating. I'll definitely be back to hunt for more hidden gems!",
+        "review_votes": 9
+      },
+      {
+        "business_id": "shop003",
+        "review_id": "shop003_rev004",
+        "username": "retroenthusiast",
+        "review": "The Vintage Emporium has an impressive collection of vintage furniture and home decor. I loved the nostalgic feeling while browsing through the items. The market is a haven for retro enthusiasts.",
+        "review_votes": 8
+      },
+      {
+        "business_id": "shop003",
+        "review_id": "shop003_rev005",
+        "username": "treasurehunter",
+        "review": "The Vintage Emporium is a delightful place to hunt for treasures. I spent hours exploring the market and found some unique pieces that now have a special place in my home. A must-visit for vintage lovers!",
+        "review_votes": 12
+      }
+    ],
+    "experiences_reviews": [
+      {
+        "business_id": "exp001",
+        "review_id": "exp001_rev001",
+        "username": "creativepotter",
+        "review": "Clay Studio is a welcoming space for pottery enthusiasts. The beginner class was a fantastic experience, and the small class size allowed for personalized attention. The instructors were helpful and patient.",
+        "review_votes": 12
+      },
+      {
+        "business_id": "exp001",
+        "review_id": "exp001_rev002",
+        "username": "mindfulartist",
+        "review": "Clay Studio's pottery class was a meditative experience. Working with clay allowed me to clear my mind and focus on the task at hand. The studio's setup and large windows added to the calming ambiance.",
+        "review_votes": 10
+      },
+      {
+        "business_id": "exp001",
+        "review_id": "exp001_rev003",
+        "username": "potterylover",
+        "review": "Clay Studio provided an enjoyable and informative pottery class. The instructors were knowledgeable and made the experience fun. I'm excited to see my finished piece!",
+        "review_votes": 8
+      },
+      {
+        "business_id": "exp001",
+        "review_id": "exp001_rev004",
+        "username": "potteryenthusiast",
+        "review": "I had a great time at Clay Studio's beginner pottery class. It was my first time working with clay, and the instructors made it easy to follow along. The studio's location and ambiance were perfect.",
+        "review_votes": 9
+      },
+      {
+        "business_id": "exp001",
+        "review_id": "exp001_rev005",
+        "username": "mindfulcreator",
+        "review": "Clay Studio's pottery class was a therapeutic experience. The process of creating something with my hands allowed me to disconnect from daily stresses. The staff was friendly and encouraging.",
+        "review_votes": 11
+      },
+      {
+        "business_id": "exp002",
+        "review_id": "exp002_rev001",
+        "username": "artenthusiast",
+        "review": "The pendant carving workshop at Where The Light Gets In was a unique experience. Lauren's guidance and the sand casting process were fascinating. I'm thrilled with the pendant I created!",
+        "review_votes": 15
+      },
+      {
+        "business_id": "exp002",
+        "review_id": "exp002_rev002",
+        "username": "artlover",
+        "review": "The pendant carving workshop was a highlight of my trip to Manchester. Lauren's expertise and passion for her craft were evident throughout the session. I highly recommend this creative experience.",
+        "review_votes": 13
+      },
+      {
+        "business_id": "exp002",
+        "review_id": "exp002_rev003",
+        "username": "artisan",
+        "review": "The pendant carving workshop at Where The Light Gets In was a memorable experience. Lauren's attention to detail and use of recycled materials made the process even more special. The resulting pendant is a treasured keepsake.",
+        "review_votes": 12
+      },
+      {
+        "business_id": "exp002",
+        "review_id": "exp002_rev004",
+        "username": "creativeatheart",
+        "review": "The pendant carving workshop was an inspiring experience. Lauren's passion and creativity were contagious, and it was a joy to learn from her. The workshop was a perfect blend of art and craftsmanship.",
+        "review_votes": 11
+      },
+      {
+        "business_id": "exp002",
+        "review_id": "exp002_rev005",
+        "username": "jewelryenthusiast",
+        "review": "The pendant carving workshop at Where The Light Gets In exceeded my expectations. Lauren's expertise and the eco-friendly approach made the experience even more meaningful. I'm proud of the pendant I created!",
+        "review_votes": 10
+      },
+      {
+        "business_id": "exp003",
+        "review_id": "exp003_rev001",
+        "username": "tealover",
+        "review": "CHA-OLOGY provided a wonderful experience of Japanese tea. The peaceful atmosphere and aroma of Japanese tea made it a relaxing retreat. The traditional tea ceremony was a unique cultural experience.",
+        "review_votes": 14
+      },
+      {
+        "business_id": "exp003",
+        "review_id": "exp003_rev002",
+        "username": "teaenthusiast",
+        "review": "CHA-OLOGY is a must-visit for tea lovers. The five senses experience was delightful, and the Japanese tea ceremony added to the authenticity. I enjoyed every moment of this immersive experience.",
+        "review_votes": 12
+      },
+      {
+        "business_id": "exp003",
+        "review_id": "exp003_rev003",
+        "username": "teaceremonyfan",
+        "review": "CHA-OLOGY provided an unforgettable tea ceremony experience. The simplicity of the teahouse and the beauty of Japanese tea made it a unique cultural immersion. I'll definitely be back for more.",
+        "review_votes": 10
+      },
+      {
+        "business_id": "exp003",
+        "review_id": "exp003_rev004",
+        "username": "culturalexplorer",
+        "review": "CHA-OLOGY's tea experience was a treat for the senses. The soft sounds, aroma of Japanese tea, and peaceful atmosphere created a meditative experience. I highly recommend this unique teahouse.",
+        "review_votes": 9
+      },
+      {
+        "business_id": "exp003",
+        "review_id": "exp003_rev005",
+        "username": "teacultureenthusiast",
+        "review": "CHA-OLOGY is a gem in Manchester! The teahouse's dedication to providing a special and authentic tea experience was evident in every detail. It's a must-visit for tea enthusiasts.",
+        "review_votes": 11
+      }
+    ]
+  }

@@ -12,7 +12,7 @@
       "category": "restaurant",
       "business_id": "rest001",
       "business_rating": 4.7,
-      "review_count": 120
+      "review_count": 5
     },
     {
       "business_name": "The Sparrows",
@@ -24,7 +24,7 @@
       "category": "restaurant",
       "business_id": "rest002",
       "business_rating": 4.8,
-      "review_count": 90
+      "review_count": 5
     },
 
     {
@@ -37,7 +37,7 @@
       "category": "restaurant",
       "business_id": "rest003",
       "business_rating": 4.8,
-      "review_count": 90
+      "review_count": 5
     }
   ],
 
@@ -52,7 +52,7 @@
       "category": "shop",
       "business_id": "shop001",
       "business_rating": 5.0,
-      "review_count": 80
+      "review_count": 5
     },
     {
       "business_name": "Deadstock General Store",
@@ -64,7 +64,7 @@
       "category": "shop",
       "business_id": "shop002",
       "business_rating": 4.9,
-      "review_count": 65
+      "review_count": 5
     },
     {
       "business_name": "The Vintage Emporium Stockport",
@@ -76,7 +76,7 @@
       "category": "shop",
       "business_id": "shop003",
       "business_rating": 4.6,
-      "review_count": 65
+      "review_count": 5
     }
   ],
   "experiences": [
@@ -90,7 +90,7 @@
       "category": "experience",
       "business_id": "exp001",
       "business_rating": 4.9,
-      "review_count": 45
+      "review_count": 5
     },
     {
       "business_name": "Pendant Carving Workshop at Where The Light Gets In",
@@ -103,7 +103,7 @@
       "category": "experience",
       "business_id": "exp002",
       "business_rating": 5.0,
-      "review_count": 10
+      "review_count": 5
     },
     {
       "business_name": "CHA-OLOGY",
@@ -116,7 +116,7 @@
       "category": "experience",
       "business_id": "exp003",
       "business_rating": 5.0,
-      "review_count": 30
+      "review_count": 5
     }
   ],
   "marketplaceitems" : [
