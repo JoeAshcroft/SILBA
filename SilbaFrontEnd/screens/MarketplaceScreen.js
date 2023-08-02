@@ -1,11 +1,13 @@
-import { View, Text} from 'react-native'
+import { View, Text, ScrollView} from 'react-native'
 import React from 'react'
+import MarketCard from '../marketplace-card/MarketCard'
 
 
 export default function MarketplaceScreen() {
     return (
-        <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
+        <ScrollView style={{flex:1}}>
           <Text>Marketplace Screen</Text>
-        </View>
+          <MarketCard/>
+        </ScrollView>
     )
 }
