@@ -6,7 +6,6 @@ index 43b4bd1..9bffc90 100644
    Metrics,
    initialWindowMetrics as defaultInitialWindowMetrics,
  } from 'react-native-safe-area-context';
--import { SSRProvider } from '@react-native-aria/utils';
 +
  import { theme as defaultTheme, ITheme } from './../theme';
  import type { IColorModeProviderProps } from './color-mode';
@@ -15,7 +14,7 @@ index 43b4bd1..9bffc90 100644
              <OverlayProvider isSSR>
                <ToastProvider>
                  <InitializeToastRef />
--                <SSRProvider>{children}</SSRProvider>
+-                {children}
 +                {children}
                </ToastProvider>
              </OverlayProvider>
