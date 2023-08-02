@@ -1,10 +1,74 @@
-import { View, Text} from 'react-native'
-import React from 'react'
+import React from 'react';
+import { SafeAreaView, View, FlatList, StyleSheet, Text, ScrollView } from 'react-native';
+import BusinessCard from '../components/BusinessCard';
+import data from '../data/businesses.json'
+import { Center, Input } from 'native-base';
 
-export default function ShopScreen() {
+
+export default function ShopsScreen() {
     return (
-        <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
-          <Text>Shop Screen</Text>
+        <SafeAreaView style={styles.container}>
+        
+          <ScrollView>
+          
+    
+         <View style={styles.inputContainer}>
+         <Text style={styles.topTitle}>Shops Near You</Text>
+          <Input variant="rounded" w="80%" 
+            placeholder="enter your location"
+            textAlign="center"
+            marginBottom={4}
+    
+            onChangeText={(text) => {
+             
+            }}
+          />
         </View>
-    )
-}
+            {renderScrollableList(data.shops, 'Shops')}
+          </ScrollView>
+        </SafeAreaView>
+      );
+
+      
+    };
+
+    const renderScrollableList = (businessList, title) => (
+      <View>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>{title}</Text>
+        </View>
+        <ScrollView vertical showsVerticalScrollIndicator={false}>
+          {businessList.map((business) => (
+            <BusinessCard key={business.business_id} business={business} />
+          ))}
+        </ScrollView>
+      </View>
+    );
+    
+    const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        paddingVertical: 10,
+      },
+      titleContainer: {
+        paddingHorizontal: 10,
+        marginTop: 0,
+      },
+      title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+      },
+      topTitle: {
+        fontSize: 20,
+        fontWeight: 'regular',
+        textAlign: 'center',
+        margin: 10,
+      },
+      inputContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    
+    
+      },
+     
+    });
