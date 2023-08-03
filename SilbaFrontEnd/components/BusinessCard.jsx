@@ -47,3 +47,4 @@ const BusinessCard = ({ business }) => {
   });
   
   export default BusinessCard;
+
