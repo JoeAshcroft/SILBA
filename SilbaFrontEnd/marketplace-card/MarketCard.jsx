@@ -2,158 +2,158 @@ import { View, Text, Image, StyleSheet, Dimensions, ScrollView } from "react-nat
 import React from "react";
 
 // test data
-// const market = [
-//   {
-//     itemName: "Sweet & Tangy BBQ Sauce",
-//     image:
-//       "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-//     businessName: "Smokin' Grillers",
-//     description:
-//       "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-//     price: 7.99,
-//     rating: 4.6,
-//   },
-//   {
-//     itemName: "Sweet & Tangy BBQ Sauce",
-//     image:
-//       "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-//     businessName: "Smokin' Grillers",
-//     description:
-//       "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-//     price: 7.99,
-//     rating: 4.6,
-//   },
-//   {
-//     itemName: "Sweet & Tangy BBQ Sauce",
-//     image:
-//       "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-//     businessName: "Smokin' Grillers",
-//     description:
-//       "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-//     price: 7.99,
-//     rating: 4.6,
-//   },
-//   {
-//     itemName: "Sweet & Tangy BBQ Sauce",
-//     image:
-//       "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-//     businessName: "Smokin' Grillers",
-//     description:
-//       "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-//     price: 7.99,
-//     rating: 4.6,
-//   },
-//   {
-//     itemName: "Sweet & Tangy BBQ Sauce",
-//     image:
-//       "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-//     businessName: "Smokin' Grillers",
-//     description:
-//       "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-//     price: 7.99,
-//     rating: 4.6,
-//   },
-//   {
-//     itemName: "Sweet & Tangy BBQ Sauce",
-//     image:
-//       "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-//     businessName: "Smokin' Grillers",
-//     description:
-//       "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-//     price: 7.99,
-//     rating: 4.6,
-//   },
-//   {
-//     itemName: "Sweet & Tangy BBQ Sauce",
-//     image:
-//       "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-//     businessName: "Smokin' Grillers",
-//     description:
-//       "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-//     price: 7.99,
-//     rating: 4.6,
-//   },
-//   {
-//     itemName: "Sweet & Tangy BBQ Sauce",
-//     image:
-//       "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-//     businessName: "Smokin' Grillers",
-//     description:
-//       "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-//     price: 7.99,
-//     rating: 4.6,
-//   },
-//   {
-//     itemName: "Sweet & Tangy BBQ Sauce",
-//     image:
-//       "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-//     businessName: "Smokin' Grillers",
-//     description:
-//       "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-//     price: 7.99,
-//     rating: 4.6,
-//   },
-//   {
-//     itemName: "Sweet & Tangy BBQ Sauce",
-//     image:
-//       "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-//     businessName: "Smokin' Grillers",
-//     description:
-//       "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-//     price: 7.99,
-//     rating: 4.6,
-//   },
-//   {
-//     itemName: "Sweet & Tangy BBQ Sauce",
-//     image:
-//       "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-//     businessName: "Smokin' Grillers",
-//     description:
-//       "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-//     price: 7.99,
-//     rating: 4.6,
-//   },
-//   {
-//     itemName: "Sweet & Tangy BBQ Sauce",
-//     image:
-//       "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-//     businessName: "Smokin' Grillers",
-//     description:
-//       "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-//     price: 7.99,
-//     rating: 4.6,
-//   },
-//   {
-//     itemName: "Sweet & Tangy BBQ Sauce",
-//     image:
-//       "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-//     businessName: "Smokin' Grillers",
-//     description:
-//       "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-//     price: 7.99,
-//     rating: 4.6,
-//   },
-//   {
-//     itemName: "Sweet & Tangy BBQ Sauce",
-//     image:
-//       "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-//     businessName: "Smokin' Grillers",
-//     description:
-//       "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-//     price: 7.99,
-//     rating: 4.6,
-//   },
-//   {
-//     itemName: "Sweet & Tangy BBQ Sauce",
-//     image:
-//       "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-//     businessName: "Smokin' Grillers",
-//     description:
-//       "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-//     price: 7.99,
-//     rating: 4.6,
-//   },
-// ];
+const market = [
+  {
+    itemName: "Sweet & Tangy BBQ Sauce",
+    image:
+      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
+    businessName: "Smokin' Grillers",
+    description:
+      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
+    price: 7.99,
+    rating: 4.6,
+  },
+  {
+    itemName: "Sweet & Tangy BBQ Sauce",
+    image:
+      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
+    businessName: "Smokin' Grillers",
+    description:
+      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
+    price: 7.99,
+    rating: 4.6,
+  },
+  {
+    itemName: "Sweet & Tangy BBQ Sauce",
+    image:
+      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
+    businessName: "Smokin' Grillers",
+    description:
+      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
+    price: 7.99,
+    rating: 4.6,
+  },
+  {
+    itemName: "Sweet & Tangy BBQ Sauce",
+    image:
+      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
+    businessName: "Smokin' Grillers",
+    description:
+      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
+    price: 7.99,
+    rating: 4.6,
+  },
+  {
+    itemName: "Sweet & Tangy BBQ Sauce",
+    image:
+      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
+    businessName: "Smokin' Grillers",
+    description:
+      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
+    price: 7.99,
+    rating: 4.6,
+  },
+  {
+    itemName: "Sweet & Tangy BBQ Sauce",
+    image:
+      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
+    businessName: "Smokin' Grillers",
+    description:
+      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
+    price: 7.99,
+    rating: 4.6,
+  },
+  {
+    itemName: "Sweet & Tangy BBQ Sauce",
+    image:
+      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
+    businessName: "Smokin' Grillers",
+    description:
+      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
+    price: 7.99,
+    rating: 4.6,
+  },
+  {
+    itemName: "Sweet & Tangy BBQ Sauce",
+    image:
+      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
+    businessName: "Smokin' Grillers",
+    description:
+      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
+    price: 7.99,
+    rating: 4.6,
+  },
+  {
+    itemName: "Sweet & Tangy BBQ Sauce",
+    image:
+      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
+    businessName: "Smokin' Grillers",
+    description:
+      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
+    price: 7.99,
+    rating: 4.6,
+  },
+  {
+    itemName: "Sweet & Tangy BBQ Sauce",
+    image:
+      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
+    businessName: "Smokin' Grillers",
+    description:
+      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
+    price: 7.99,
+    rating: 4.6,
+  },
+  {
+    itemName: "Sweet & Tangy BBQ Sauce",
+    image:
+      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
+    businessName: "Smokin' Grillers",
+    description:
+      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
+    price: 7.99,
+    rating: 4.6,
+  },
+  {
+    itemName: "Sweet & Tangy BBQ Sauce",
+    image:
+      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
+    businessName: "Smokin' Grillers",
+    description:
+      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
+    price: 7.99,
+    rating: 4.6,
+  },
+  {
+    itemName: "Sweet & Tangy BBQ Sauce",
+    image:
+      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
+    businessName: "Smokin' Grillers",
+    description:
+      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
+    price: 7.99,
+    rating: 4.6,
+  },
+  {
+    itemName: "Sweet & Tangy BBQ Sauce",
+    image:
+      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
+    businessName: "Smokin' Grillers",
+    description:
+      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
+    price: 7.99,
+    rating: 4.6,
+  },
+  {
+    itemName: "Sweet & Tangy BBQ Sauce",
+    image:
+      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
+    businessName: "Smokin' Grillers",
+    description:
+      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
+    price: 7.99,
+    rating: 4.6,
+  },
+];
 
 const Card = () => ({});
 
