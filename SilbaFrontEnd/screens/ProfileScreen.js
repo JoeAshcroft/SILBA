@@ -1,5 +1,14 @@
-import { Text, SafeAreaView, StyleSheet, Dimensions } from "react-native";
-import { Avatar, Center, View, Heading, VStack } from "native-base";
+import { Text, SafeAreaView, StyleSheet } from "react-native";
+import {
+  Avatar,
+  Center,
+  View,
+  Heading,
+  Button,
+  VStack,
+  Icon,
+} from "native-base";
+import { Ionicons } from "@expo/vector-icons";
 
 const userData = [
   {
@@ -19,16 +28,43 @@ export default function ProfileScreen() {
         {userData.map((user) => {
           return (
             <View key={user.user_id}>
-              <Center>
-                <Heading size="xl">{user.username}</Heading>
-                <Avatar
-                  bg="green.500"
-                  size="2xl"
-                  source={{ uri: user.avatar_url }}
-                ></Avatar>
-                <Text style={styles.profileText}>{user.fullName}</Text>
-                <Text style={styles.profileText}>{user.email}</Text>
-              </Center>
+              <VStack space={5}>
+                <Center>
+                  <Heading size="xl">{user.username}</Heading>
+                  <Avatar
+                    bg="green.500"
+                    size="2xl"
+                    source={{ uri: user.avatar_url }}
+                  ></Avatar>
+                  <Text style={styles.profileText}>{user.fullName}</Text>
+                  <Text style={styles.profileText}>{user.email}</Text>
+
+                  <VStack space={3}>
+                    <Button
+                      leftIcon={<Icon as={Ionicons} name="create" size="sm" />}
+                    >
+                      Edit Details
+                    </Button>
+                    <Button
+                      leftIcon={<Icon as={Ionicons} name="star" size="sm" />}
+                    >
+                      My Reviews
+                    </Button>
+                    <Button
+                      leftIcon={<Icon as={Ionicons} name="basket" size="sm" />}
+                    >
+                      My Orders
+                    </Button>
+                    <Button
+                      leftIcon={
+                        <Icon as={Ionicons} name="log-out-outline" size="sm" />
+                      }
+                    >
+                      Log Out
+                    </Button>
+                  </VStack>
+                </Center>
+              </VStack>
             </View>
           );
         })}
