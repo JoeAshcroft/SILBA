@@ -7,8 +7,6 @@ import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CheckoutScreen from './CheckoutScreen';
 
-
-// Create the nested stack for the Checkout screen within BasketScreen
 const BasketStack = createNativeStackNavigator();
 
 export default BasketScreen = () => {

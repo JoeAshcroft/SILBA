@@ -62,6 +62,12 @@ const HomeStackGroup = () => {
         options={{ presentation: "modal" , headerShown: false}}
 
       />
+      <HomeStack.Screen
+        name="BasketScreen"
+        component={BasketScreen}
+        options={{ presentation: "modal" , headerShown: false}}
+
+      />
 
     </HomeStack.Navigator>
   );
@@ -104,7 +110,7 @@ const BottomNav = () => {
       <Tab.Screen
         name="Marketplace"
         component={MarketplaceScreen}
-        options={{ headerShown: false }}
+        options={{ headerShown: true }}
       />
     </Tab.Navigator>
   );

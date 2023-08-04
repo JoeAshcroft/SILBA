@@ -11,7 +11,6 @@ export default function App() {
     <PaperProvider>
     <NativeBaseProvider>
     <Navigation/> 
-    
     </NativeBaseProvider>
     </PaperProvider>
   );
