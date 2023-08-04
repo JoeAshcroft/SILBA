@@ -1,5 +1,5 @@
 {
-    "restaurants_reviews": [
+    "reviews": [
       {
         "business_id": "rest001",
         "review_id": "rest001_rev001",

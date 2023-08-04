@@ -15,8 +15,10 @@ import RestaurantsScreen from "../screens/RestaurantsScreen";
 import ShopsScreen from "../screens/ShopsScreen";
 import ExperiencesScreen from "../screens/ExperiencesScreen";
 import BasketScreen from "../screens/BasketScreen";
+import LoginScreen from "../screens/LoginScreen";
 
 // top tabs
+
 const TopTabs = createMaterialTopTabNavigator();
 
 function TopTabsGroup() {
@@ -34,7 +36,8 @@ function TopTabsGroup() {
     </TopTabs.Navigator>
   );
 }
-// stack
+
+// stack 
 
 const HomeStack = createNativeStackNavigator();
 
@@ -113,6 +116,7 @@ const DrawerNav = () => {
       <Drawer.Screen name="Restaurants" component={RestaurantsScreen} />
       <Drawer.Screen name="Shops" component={ShopsScreen} />
       <Drawer.Screen name="Experiences" component={ExperiencesScreen} />
+      <Drawer.Screen name="Login" component={LoginScreen}/>
     </Drawer.Navigator>
   );
 };
