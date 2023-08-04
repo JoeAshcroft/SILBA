@@ -2,14 +2,12 @@ import React from "react";
 import {
   SafeAreaView,
   View,
-  FlatList,
   StyleSheet,
   Text,
   ScrollView,
 } from "react-native";
 import BusinessCard from "../components/BusinessCard";
 import data from "../data/businesses.json";
-import { Center, Input } from "native-base";
 import { Searchbar } from "react-native-paper";
 import { useState } from "react";
 
