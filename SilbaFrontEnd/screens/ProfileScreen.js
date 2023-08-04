@@ -41,6 +41,7 @@ export default function ProfileScreen() {
 
                   <VStack space={3}>
                     <Button
+                      style={styles.button}
                       leftIcon={<Icon as={Ionicons} name="create" size="sm" />}
                     >
                       Edit Details
@@ -56,6 +57,7 @@ export default function ProfileScreen() {
                       My Orders
                     </Button>
                     <Button
+                      style={styles.bottom_button}
                       leftIcon={
                         <Icon as={Ionicons} name="log-out-outline" size="sm" />
                       }
@@ -76,5 +78,11 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   profileText: {
     fontSize: 30,
+  },
+  button: {
+    width: 330,
+  },
+  bottom_button: {
+    width: 330,
   },
 });
