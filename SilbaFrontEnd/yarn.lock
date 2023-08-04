@@ -7623,6 +7623,11 @@ react-native-elements@^3.4.3:
     lodash "^4.17.21"
     prop-types "^15.7.2"
 
+react-native-leaflet-view@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.npmjs.org/react-native-leaflet-view/-/react-native-leaflet-view-0.1.2.tgz"
+  integrity sha512-jtmCSSwGCyBGna9ST/l72IwplYCAlfoTjxQdEw+ixts9HMzXDB6HLNVPZJMtj9dk8QMbwqvgsVfI1DraXW/fsQ==
+
 react-native-maps@^1.7.1:
   version "1.7.1"
   resolved "https://registry.npmjs.org/react-native-maps/-/react-native-maps-1.7.1.tgz"
