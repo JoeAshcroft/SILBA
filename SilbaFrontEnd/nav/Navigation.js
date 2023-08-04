@@ -16,6 +16,7 @@ import ShopsScreen from "../screens/ShopsScreen";
 import ExperiencesScreen from "../screens/ExperiencesScreen";
 import BasketScreen from "../screens/BasketScreen";
 import LoginScreen from "../screens/LoginScreen";
+import ItemDetailsScreen from "../screens/itemStack/ItemDetailsScreen";
 
 // top tabs
 
@@ -24,11 +25,12 @@ const TopTabs = createMaterialTopTabNavigator();
 function TopTabsGroup() {
   return (
     <TopTabs.Navigator
-    screenOptions={{
-      tabBarLabelStyle: {
-        textTransform:'capitalize'
-      }
-    }}>
+      screenOptions={{
+        tabBarLabelStyle: {
+          textTransform: "capitalize",
+        },
+      }}
+    >
       <TopTabs.Screen name="browse all" component={HomeScreen} />
       <TopTabs.Screen name="restaurants" component={RestaurantsScreen} />
       <TopTabs.Screen name="shops" component={ShopsScreen} />
@@ -37,7 +39,7 @@ function TopTabsGroup() {
   );
 }
 
-// stack 
+// stack
 
 const HomeStack = createNativeStackNavigator();
 
@@ -52,7 +54,13 @@ const HomeStackGroup = () => {
       <HomeStack.Screen
         name="BusinessDetailsScreen"
         component={BusinessDetailsScreen}
-        options={{ presentation: "modal" }}
+        options={{ presentation: "modal"  , headerShown: false}}
+      />
+      <HomeStack.Screen
+        name="ItemDetailsScreen"
+        component={ItemDetailsScreen}
+        options={{ presentation: "modal" , headerShown: false}}
+
       />
     </HomeStack.Navigator>
   );
@@ -86,8 +94,6 @@ const BottomNav = () => {
         name="Home"
         component={TopTabsGroup}
         options={{ headerShown: false }}
-
-       
       />
       <Tab.Screen
         name="Map"
@@ -116,7 +122,7 @@ const DrawerNav = () => {
       <Drawer.Screen name="Restaurants" component={RestaurantsScreen} />
       <Drawer.Screen name="Shops" component={ShopsScreen} />
       <Drawer.Screen name="Experiences" component={ExperiencesScreen} />
-      <Drawer.Screen name="Login" component={LoginScreen}/>
+      <Drawer.Screen name="Login" component={LoginScreen} />
     </Drawer.Navigator>
   );
 };

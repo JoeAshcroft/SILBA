@@ -105,8 +105,7 @@
         "review": "I was impressed by Erst's attention to detail and their passion for unique flavors. The small plates allowed us to try a variety of dishes, and the natural wine pairing was a highlight.",
         "review_votes": 8
       }
-    ],
-    "shops_reviews": [
+    ,
       {
         "business_id": "shop001",
         "review_id": "shop001_rev001",
@@ -115,7 +114,7 @@
         "review_votes": 12
       },
       {
-        "business_id": "shop001",
+        "business_id": "shop00",
         "review_id": "shop001_rev002",
         "username": "shopaholic",
         "review": "Unitom is a haven for art and design lovers. I spent hours browsing through the wide array of publications on contemporary art, fashion, and photography. The lifestyle objects and accessories were unique and appealing.",
@@ -212,8 +211,7 @@
         "review": "The Vintage Emporium is a delightful place to hunt for treasures. I spent hours exploring the market and found some unique pieces that now have a special place in my home. A must-visit for vintage lovers!",
         "review_votes": 12
       }
-    ],
-    "experiences_reviews": [
+    ,
       {
         "business_id": "exp001",
         "review_id": "exp001_rev001",
