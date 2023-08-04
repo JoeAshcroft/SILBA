@@ -6,7 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 const market = marketplaceitems
 
-export default function MarketCard() {
+export default MarketCard = () => {
 
   const { navigate } = useNavigation()
 
@@ -47,6 +47,7 @@ export default function MarketCard() {
 
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
