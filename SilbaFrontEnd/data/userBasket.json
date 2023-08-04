@@ -1,0 +1,60 @@
+{
+    "items": [
+      {
+        "itemId": "1",
+        "itemName": "Artisanal Sourdough Starter",
+        "itemDescription": "Premium sourdough starter for making delicious bread at home.",
+        "itemImage": "https://www.southernliving.com/thmb/EWfh_3rSHOlgINep4hcUzMOA2Qk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1219917699-2000-cbfb820b117c40bebd36d1497e01e54a.jpg",
+        "sellerUsername": "sourdoughlover",
+        "sellerBusinessName": "The Bread House",
+        "itemLocation": "Manchester",
+        "itemPrice": 12.50,
+        "deliveryOrCollection": "Collection",
+        "addressForCollection": "7 Rostron Brow, Stockport SK1 1JY, UK",
+        "itemRating": 4.9,
+        "stockCount": 15
+      },
+      {
+        "itemId": "2",
+        "itemName": "Classic Sourdough Bread",
+        "itemDescription": "Traditional sourdough bread, freshly baked.",
+        "itemImage": "https://i.imgur.com/TYuhKkT.jpg",
+        "sellerUsername": "sourdoughlover",
+        "sellerBusinessName": "The Bread House",
+        "itemLocation": "Manchester",
+        "itemPrice": 6.99,
+        "deliveryOrCollection": "Collection",
+        "addressForCollection": "7 Rostron Brow, Stockport SK1 1JY, UK",
+        "itemRating": 4.5,
+        "stockCount": 20
+      },
+      {
+        "itemId": "2",
+        "itemName": "Classic Sourdough Bread",
+        "itemDescription": "Traditional sourdough bread, freshly baked.",
+        "itemImage": "https://i.imgur.com/TYuhKkT.jpg",
+        "sellerUsername": "sourdoughlover",
+        "sellerBusinessName": "The Bread House",
+        "itemLocation": "Manchester",
+        "itemPrice": 6.99,
+        "deliveryOrCollection": "Collection",
+        "addressForCollection": "7 Rostron Brow, Stockport SK1 1JY, UK",
+        "itemRating": 4.5,
+        "stockCount": 20
+      },
+      {
+        "itemId": "9",
+        "itemName": "Oolong Tea Sampler Pack",
+        "itemDescription": "Explore the diverse world of oolong tea with this sampler pack.",
+        "itemImage": "https://cdn.shopify.com/s/files/1/0927/4248/products/Tea_Sampler_Oolong-12_2000x.jpg?v=1601596521",
+        "sellerUsername": "greentealover",
+        "sellerBusinessName": "Zen Garden Teas",
+        "itemLocation": "Manchester",
+        "itemPrice": 14.99,
+        "deliveryOrCollection": "Delivery",
+        "itemRating": 4.6,
+        "stockCount": 14
+      }
+
+    ]
+  }

@@ -7,16 +7,10 @@ import { Ionicons } from "@expo/vector-icons";
 import ReviewsList from '../../components/ReviewsList';
 
 
-export default function BusinessDetailsScreen() {
+export default BusinessDetailsScreen = () => {
   const route = useRoute();
   const { business } = route.params;
-  const navigation = useNavigation()
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: "Details"
-    })
-  }, [])
+ 
 
   const handleOpenMaps = () => {
     const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(business.business_name+business.address)}`;

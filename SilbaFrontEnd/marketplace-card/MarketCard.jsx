@@ -1,180 +1,50 @@
-import { View, Text, Image, StyleSheet, Dimensions, ScrollView } from "react-native";
+import { View, Text, Image, StyleSheet, Dimensions, ScrollView, Pressable } from "react-native";
 import React from "react";
+import { useNavigation } from '@react-navigation/native'
+import {marketplaceitems} from "../data/marketplaceitems.json"
+import { Ionicons } from "@expo/vector-icons";
 
-// test data
-const market = [
-  {
-    itemName: "Sweet & Tangy BBQ Sauce",
-    image:
-      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-    businessName: "Smokin' Grillers",
-    description:
-      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-    price: 7.99,
-    rating: 4.6,
-  },
-  {
-    itemName: "Sweet & Tangy BBQ Sauce",
-    image:
-      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-    businessName: "Smokin' Grillers",
-    description:
-      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-    price: 7.99,
-    rating: 4.6,
-  },
-  {
-    itemName: "Sweet & Tangy BBQ Sauce",
-    image:
-      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-    businessName: "Smokin' Grillers",
-    description:
-      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-    price: 7.99,
-    rating: 4.6,
-  },
-  {
-    itemName: "Sweet & Tangy BBQ Sauce",
-    image:
-      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-    businessName: "Smokin' Grillers",
-    description:
-      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-    price: 7.99,
-    rating: 4.6,
-  },
-  {
-    itemName: "Sweet & Tangy BBQ Sauce",
-    image:
-      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-    businessName: "Smokin' Grillers",
-    description:
-      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-    price: 7.99,
-    rating: 4.6,
-  },
-  {
-    itemName: "Sweet & Tangy BBQ Sauce",
-    image:
-      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-    businessName: "Smokin' Grillers",
-    description:
-      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-    price: 7.99,
-    rating: 4.6,
-  },
-  {
-    itemName: "Sweet & Tangy BBQ Sauce",
-    image:
-      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-    businessName: "Smokin' Grillers",
-    description:
-      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-    price: 7.99,
-    rating: 4.6,
-  },
-  {
-    itemName: "Sweet & Tangy BBQ Sauce",
-    image:
-      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-    businessName: "Smokin' Grillers",
-    description:
-      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-    price: 7.99,
-    rating: 4.6,
-  },
-  {
-    itemName: "Sweet & Tangy BBQ Sauce",
-    image:
-      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-    businessName: "Smokin' Grillers",
-    description:
-      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-    price: 7.99,
-    rating: 4.6,
-  },
-  {
-    itemName: "Sweet & Tangy BBQ Sauce",
-    image:
-      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-    businessName: "Smokin' Grillers",
-    description:
-      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-    price: 7.99,
-    rating: 4.6,
-  },
-  {
-    itemName: "Sweet & Tangy BBQ Sauce",
-    image:
-      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-    businessName: "Smokin' Grillers",
-    description:
-      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-    price: 7.99,
-    rating: 4.6,
-  },
-  {
-    itemName: "Sweet & Tangy BBQ Sauce",
-    image:
-      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-    businessName: "Smokin' Grillers",
-    description:
-      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-    price: 7.99,
-    rating: 4.6,
-  },
-  {
-    itemName: "Sweet & Tangy BBQ Sauce",
-    image:
-      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-    businessName: "Smokin' Grillers",
-    description:
-      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-    price: 7.99,
-    rating: 4.6,
-  },
-  {
-    itemName: "Sweet & Tangy BBQ Sauce",
-    image:
-      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-    businessName: "Smokin' Grillers",
-    description:
-      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-    price: 7.99,
-    rating: 4.6,
-  },
-  {
-    itemName: "Sweet & Tangy BBQ Sauce",
-    image:
-      "https://www.cookingclassy.com/wp-content/uploads/2020/05/bbq-sauce-01-600x900.jpg",
-    businessName: "Smokin' Grillers",
-    description:
-      "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-    price: 7.99,
-    rating: 4.6,
-  },
-];
-
-const Card = () => ({});
+const market = marketplaceitems
 
 export default function MarketCard() {
+
+  const { navigate } = useNavigation()
+
   return (
     <View style={styles.container}>
       {market.map((item, index) => {
         return (
+          <Pressable key={item.itemId} 
+          onPress={() => {
+      navigate("ItemDetailsScreen", {item})
+    }} >
           <View style={styles.card} key={index}>
-            <Text>{item.itemName}</Text>
+          
             <View style={styles.imageContainer}>
-                <Image style={styles.image} source={{ uri: item.image }} />
+                <Image style={styles.image} source={{ uri: item.itemImage }} />
             </View>
-            <Text style={styles.businessName}>{item.businessName}</Text>
-            <Text style={styles.description}>{item.description}</Text>
-            <Text style={styles.businessName}>£{item.price}</Text>
-            <Text style={styles.businessName}>Rating: {item.rating}</Text>
+            <View style={styles.itemNameContainer}>
+            <Text style={styles.itemName}>{item.itemName}</Text>
+            
           </View>
+            <View style={styles.nameDescriptionContainer}>
+            <Text style={styles.businessName}>{item.sellerBusinessName}</Text>
+            <Text style={styles.description}>{item.itemDescription}</Text>
+           </View>
+            
+            <View style={styles.priceRatingContainer}>
+            <Text style={styles.itemPrice}>£{item.itemPrice}</Text>
+            <Text style={styles.itemRating}>{item.itemRating}/5</Text>
+            </View>
+
+           
+          </View>
+
+          </Pressable>
         );
       })}
     </View>
+
   );
 }
 
@@ -185,30 +55,65 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   card: {
-    width: "46%",
+    height: 300,
     backgroundColor: "#fff",
     margin: "2%",
-    borderRadius: 0,
+    borderRadius: 10,
     elevation: 5,
     alignItems: "center",
-    padding: 10,
+    padding: 3,
   },
   imageContainer: {
-    height: 200,
-    width: "100%",
+    height: 160,
+    width: 160,
+    paddingBottom: 10,
+    paddingTop: 3,
   },
   image: {
     flex: 1,
-    width: "100%",
-    resizeMode: "contain",
-    borderRadius: 0,
+    width: 160,
+    resizeMode: "cover",
+    borderRadius: 10,
   },
   businessName: {
-    fontSize: 18,
+    fontSize: 10,
     fontWeight: "bold",
-    marginBottom: 5,
+    marginBottom: 0,
+    marginTop: 5,
+    color: 'gray',
+  
   },
   description: {
-    fontSize: 14,
+    fontSize: 12,
+ 
   },
+  itemNameContainer: {
+    height: 42,
+    width: 160,
+  },
+  itemName: {
+    fontSize: 17, 
+  
+  },
+  nameDescriptionContainer: {
+  width: 160,  
+  height: 70,
+  },
+
+  itemPrice: {
+  paddingRight: 80,
+  fontStyle: "bold",
+  color: "grey"
+  },
+  itemRating: {
+    fontStyle: "bold",
+    color: "grey"
+  },
+  priceRatingContainer: {
+    width: 160,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: "space-evenly",
+  }
+
 });

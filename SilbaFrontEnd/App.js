@@ -9,6 +9,7 @@ export default function App() {
   return (
     <NativeBaseProvider>
     <Navigation/> 
+    
     </NativeBaseProvider>
   );
 }
