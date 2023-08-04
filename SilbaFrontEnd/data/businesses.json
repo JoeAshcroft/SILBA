@@ -3,7 +3,7 @@
   "restaurants": [
     {
       "business_name": "Where The Light Gets In",
-      "location": { "latitude": 53.411, "longitude": -2.1565 },
+      "location": { "latitude": 53.411006, "longitude": -2.1561017 },
       "address": "7 Rostron Brow, Stockport SK1 1JY, UK",
       "website": "https://www.wtlgi.co/",
       "images": ["https://offloadmedia.feverup.com/secretmanchester.com/wp-content/uploads/2021/01/27043957/where-the-light-gets-in.png", "https://i.guim.co.uk/img/media/e942e99a9a3a2e719651176f228836f3370313be/0_69_5328_3197/master/5328.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=95da05f0f4cba2bfa0c9593fe934a401"],
@@ -26,7 +26,6 @@
       "business_rating": 4.8,
       "review_count": 5
     },
-
     {
       "business_name": "Erst",
       "location": { "latitude": 53.477867, "longitude": -2.239147 },
@@ -40,7 +39,6 @@
       "review_count": 5
     }
   ],
-
   "shops": [
     {
       "business_name": "Unitom",
@@ -94,7 +92,7 @@
     },
     {
       "business_name": "Pendant Carving Workshop at Where The Light Gets In",
-      "location": { "latitude": 53.411, "longitude": -2.1565 },
+      "location": { "latitude": 53.4109297, "longitude": -2.1559864 },
       "address": "7 Rostron Brow, Stockport SK1 1JY, UK",
       "website": "https://www.wtlgi.co/",
       "images": ["https://images.squarespace-cdn.com/content/v1/5c61dbfd51f4d43e0bc49587/1688464927264-AJEXUCBBJ5YZOISJ79OM/Ara+the+altar+workshop+-+student+examples.jpg?format=500w", "https://images.squarespace-cdn.com/content/v1/5c61dbfd51f4d43e0bc49587/1681973658748-A7PYTF6NAYGF0TOW6566/Ara+the+altar+-+workshop+-+2+-+create+i+-+with+text.png?format=500w"],
@@ -118,126 +116,5 @@
       "business_rating": 5.0,
       "review_count": 5
     }
-  ],
-  "marketplaceitems" : [
-      {
-        "itemId": "1",
-        "itemName": "Spicy Habanero Hot Sauce",
-        "itemDescription": "Handcrafted hot sauce made from fresh habanero peppers.",
-        "itemImage": "hot_sauce.jpg",
-        "sellerUsername": "spicyhotsauce",
-        "sellerBusinessName": "Saucy Delights",
-        "itemLocation": "Manchester",
-        "itemPrice": 9.99,
-        "deliveryOrPickup": "Delivery",
-        "itemRating": 4.8
-      },
-      {
-        "itemId": "2",
-        "itemName": "Artisanal Sourdough Starter",
-        "itemDescription": "Premium sourdough starter for making delicious bread at home.",
-        "itemImage": "sourdough_starter.jpg",
-        "sellerUsername": "breadmaster",
-        "sellerBusinessName": "Baker's Haven",
-        "itemLocation": "Manchester",
-        "itemPrice": 12.50,
-        "deliveryOrPickup": "Pickup",
-        "itemRating": 4.9
-      },
-      {
-        "itemId": "3",
-        "itemName": "Organic Natural Wine",
-        "itemDescription": "A bottle of exquisite natural wine from organic vineyards.",
-        "itemImage": "natural_wine.jpg",
-        "sellerUsername": "winelover",
-        "sellerBusinessName": "Vino Veritas",
-        "itemLocation": "Manchester",
-        "itemPrice": 29.99,
-        "deliveryOrPickup": "Delivery",
-        "itemRating": 4.7
-      },
-      {
-        "itemId": "4",
-        "itemName": "Classic Sourdough Bread",
-        "itemDescription": "Traditional sourdough bread, freshly baked.",
-        "itemImage": "sourdough_bread.jpg",
-        "sellerUsername": "artisanbaker",
-        "sellerBusinessName": "Bread and Beyond",
-        "itemLocation": "Manchester",
-        "itemPrice": 6.99,
-        "deliveryOrPickup": "Pickup",
-        "itemRating": 4.5
-      },
-      {
-        "itemId": "5",
-        "itemName": "Mango Habanero Hot Sauce",
-        "itemDescription": "A tropical twist on hot sauce with mango and habanero.",
-        "itemImage": "mango_hot_sauce.jpg",
-        "sellerUsername": "spicymango",
-        "sellerBusinessName": "Flavor Fusion",
-        "itemLocation": "Manchester",
-        "itemPrice": 11.99,
-        "deliveryOrPickup": "Delivery",
-        "itemRating": 4.6
-      },
-      {
-        "itemId": "6",
-        "itemName": "Rustic Sourdough Loaf",
-        "itemDescription": "Rustic-style sourdough loaf, perfect for sandwiches.",
-        "itemImage": "rustic_sourdough.jpg",
-        "sellerUsername": "sourdoughcraft",
-        "sellerBusinessName": "The Bread House",
-        "itemLocation": "Manchester",
-        "itemPrice": 8.50,
-        "deliveryOrPickup": "Pickup",
-        "itemRating": 4.8
-      },
-      {
-        "itemId": "7",
-        "itemName": "Fresh Farm Eggs",
-        "itemDescription": "Farm-fresh eggs from pasture-raised chickens.",
-        "itemImage": "farm_eggs.jpg",
-        "sellerUsername": "freerangeeggs",
-        "sellerBusinessName": "Happy Hens Farm",
-        "itemLocation": "Manchester",
-        "itemPrice": 3.99,
-        "deliveryOrPickup": "Delivery",
-        "itemRating": 4.9
-      },
-      {
-        "itemId": "8",
-        "itemName": "Carolina Reaper Hot Sauce",
-        "itemDescription": "Extremely hot sauce made from Carolina Reaper peppers.",
-        "itemImage": "carolina_reaper_sauce.jpg",
-        "sellerUsername": "heatseeker",
-        "sellerBusinessName": "Fire & Spice",
-        "itemLocation": "Manchester",
-        "itemPrice": 14.99,
-        "deliveryOrPickup": "Delivery",
-        "itemRating": 4.7
-      },
-      {
-        "itemId": "9",
-        "itemName": "Whole Wheat Sourdough",
-        "itemDescription": "Whole wheat sourdough bread, perfect for health-conscious.",
-        "itemImage": "whole_wheat_sourdough.jpg",
-        "sellerUsername": "healthysourdough",
-        "sellerBusinessName": "Nutrition Bakery",
-        "itemLocation": "Manchester",
-        "itemPrice": 9.50,
-        "deliveryOrPickup": "Pickup",
-        "itemRating": 4.5
-      },
-      {
-        "itemId": "10",
-        "itemName": "Sweet & Tangy BBQ Sauce",
-        "itemDescription": "Homemade BBQ sauce with a perfect balance of sweet and tangy.",
-        "itemImage": "bbq_sauce.jpg",
-        "sellerUsername": "bbqmaster",
-        "sellerBusinessName": "Smokin' Grillers",
-        "itemLocation": "Manchester",
-        "itemPrice": 7.99,
-        "deliveryOrPickup": "Delivery",
-        "itemRating": 4.6
-      }]
+  ]
 }
