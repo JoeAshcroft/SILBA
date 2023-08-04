@@ -10,11 +10,11 @@ export default ReviewsCard = ({ review }) => {
       <View style={styles.voteContainer}>
         
         <TouchableOpacity>
-          <Ionicons style={styles.thumbButton} name="thumbs-up" size="20%"></Ionicons>
+          <Ionicons style={styles.thumbButton} name="thumbs-up" size={20}></Ionicons>
         </TouchableOpacity>
         <Text style={styles.reviewVotes}> {review.review_votes}</Text>
         <TouchableOpacity>
-          <Ionicons style={styles.thumbButton} name="thumbs-down" size="20%"></Ionicons>
+          <Ionicons style={styles.thumbButton} name="thumbs-down" size={20}></Ionicons>
         </TouchableOpacity>
       </View>
     </View>
