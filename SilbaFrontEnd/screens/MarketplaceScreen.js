@@ -1,6 +1,7 @@
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import React from 'react'
-import MarketCard from '../marketplace-card/MarketCard'
+import MarketCard from '../components/MarketCard'
+
 
 export default function MarketplaceScreen() {
   return (

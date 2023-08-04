@@ -14,9 +14,9 @@ import BusinessDetailsScreen from "../screens/homeStack/BusinessDetailsScree";
 import RestaurantsScreen from "../screens/RestaurantsScreen";
 import ShopsScreen from "../screens/ShopsScreen";
 import ExperiencesScreen from "../screens/ExperiencesScreen";
-import BasketScreen from "../screens/BasketScreen";
 import LoginScreen from "../screens/LoginScreen";
 import ItemDetailsScreen from "../screens/itemStack/ItemDetailsScreen";
+import BasketScreen from "../screens/BasketScreen";
 
 // top tabs
 
@@ -62,6 +62,7 @@ const HomeStackGroup = () => {
         options={{ presentation: "modal" , headerShown: false}}
 
       />
+
     </HomeStack.Navigator>
   );
 };
@@ -126,6 +127,7 @@ const DrawerNav = () => {
     </Drawer.Navigator>
   );
 };
+
 
 export default function Navigation() {
   return (

@@ -102,11 +102,11 @@ const styles = StyleSheet.create({
 
   itemPrice: {
   paddingRight: 80,
-  fontStyle: "bold",
+  fontStyle: "normal",
   color: "grey"
   },
   itemRating: {
-    fontStyle: "bold",
+    fontStyle: "normal",
     color: "grey"
   },
   priceRatingContainer: {
