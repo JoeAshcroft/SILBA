@@ -1,31 +1,61 @@
-import React from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, ScrollView } from 'react-native';
-import BusinessCard from '../components/BusinessCard';
-import data from '../data/businesses.json'
-import { Center, Input } from 'native-base';
+import React from "react";
+import {
+  SafeAreaView,
+  View,
+  FlatList,
+  StyleSheet,
+  Text,
+  ScrollView,
+} from "react-native";
+import BusinessCard from "../components/BusinessCard";
+import data from "../data/businesses.json";
+import { Center, Input } from "native-base";
+import { Searchbar } from "react-native-paper";
+import { useState } from "react";
 
 const HomeScreen = () => {
+  const restaurants = data.restaurants;
+  const shops = data.shops;
+  const experiences = data.experiences;
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredRestaurants, setFilteredRestaurants] = useState(restaurants);
+  const [filteredShops, setFilteredShops] = useState(shops);
+  const [filteredExperiences, setFilteredExperiences] = useState(experiences);
+
+  const searchFilterFunction = (search) => {
+    setSearchQuery(search);
+
+    const filteredRestaurants = restaurants.filter((item) =>
+      item.address.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredRestaurants(filteredRestaurants);
+
+    const filteredShops = shops.filter((item) =>
+      item.address.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredShops(filteredShops);
+
+    const filteredExperiences = experiences.filter((item) =>
+      item.address.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredExperiences(filteredExperiences);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-    
       <ScrollView>
-      
-
-     <View style={styles.inputContainer}>
-     <Text style={styles.topTitle}>Featured Businesses Near You</Text>
-      <Input variant="rounded" w="80%" 
-        placeholder="enter your location"
-        textAlign="center"
-        marginBottom={4}
-
-        onChangeText={(text) => {
-         
-        }}
-      />
-    </View>
-        {renderScrollableList(data.restaurants, 'Restaurants')}
-        {renderScrollableList(data.shops, 'Shops')}
-        {renderScrollableList(data.experiences, 'Experiences')}
+        <View style={styles.inputContainer}>
+          <Text style={styles.topTitle}>Featured Businesses Near You</Text>
+          <Searchbar
+            placeholder="enter your location"
+            onChangeText={searchFilterFunction}
+            value={searchQuery}
+          />
+        </View>
+        {renderScrollableList(filteredRestaurants, "Restaurants")}
+        {renderScrollableList(filteredShops, "Shops")}
+        {renderScrollableList(filteredExperiences, "Experiences")}
       </ScrollView>
     </SafeAreaView>
   );
@@ -55,20 +85,17 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   topTitle: {
     fontSize: 20,
-    fontWeight: 'regular',
-    textAlign: 'center',
+    fontWeight: "regular",
+    textAlign: "center",
     margin: 10,
   },
   inputContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-
-
+    justifyContent: "center",
+    alignItems: "center",
   },
- 
 });
 export default HomeScreen;
