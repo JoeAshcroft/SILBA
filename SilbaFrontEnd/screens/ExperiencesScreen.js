@@ -2,8 +2,9 @@ import React from "react";
 import { SafeAreaView, View, StyleSheet, Text, ScrollView } from "react-native";
 import BusinessCard from "../components/BusinessCard";
 import data from "../data/businesses.json";
-import { Input } from "native-base";
+import { Input, Icon } from "native-base";
 import { useState } from "react";
+import { FontAwesome5 } from '@expo/vector-icons';
 
 export default function ExperiencesScreen() {
   const experiences = data.experiences;
@@ -31,6 +32,15 @@ export default function ExperiencesScreen() {
             marginBottom={4}
             onChangeText={searchFilterFunction}
             value={searchQuery}
+            InputLeftElement={
+              <Icon
+                m="2"
+                ml="3"
+                size="6"
+                color="gray.400"
+                as={<FontAwesome5 name="map-marker-alt" color="black" />}
+              />
+            }
           />
         </View>
         {renderScrollableList(filteredExperiences, "Experiences")}
