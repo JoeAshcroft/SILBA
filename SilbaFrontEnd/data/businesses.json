@@ -1,6 +1,5 @@
 
-{
-  "restaurants": [
+{ "businesses": [
     {
       "business_name": "Where The Light Gets In",
       "location": { "latitude": 53.411006, "longitude": -2.1561017 },
@@ -38,8 +37,7 @@
       "business_rating": 4.8,
       "review_count": 5
     }
-  ],
-  "shops": [
+  ,
     {
       "business_name": "Unitom",
       "location": { "latitude": 53.4829, "longitude": -2.2339 },
@@ -76,8 +74,7 @@
       "business_rating": 4.6,
       "review_count": 5
     }
-  ],
-  "experiences": [
+,
     {
       "business_name": "Clay Studio",
       "location": { "latitude": 53.4655, "longitude": -2.2483 },
