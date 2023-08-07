@@ -6,8 +6,8 @@ export default ReviewsList = ({business}) => {
   const filteredReviews = reviews.filter((review) => {
     return review.business_id === business.business_id;
   });
-console.log(reviews)
-  console.log(filteredReviews)
+// console.log(reviews)
+//   console.log(filteredReviews)
 
   return (
     <View>
