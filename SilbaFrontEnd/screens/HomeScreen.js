@@ -1,14 +1,8 @@
 import React from "react";
-import {
-  SafeAreaView,
-  View,
-  StyleSheet,
-  Text,
-  ScrollView,
-} from "react-native";
+import { SafeAreaView, View, StyleSheet, Text, ScrollView } from "react-native";
 import BusinessCard from "../components/BusinessCard";
 import data from "../data/businesses.json";
-import { Searchbar } from "react-native-paper";
+import { Input } from "native-base";
 import { useState } from "react";
 
 const HomeScreen = () => {
@@ -45,7 +39,11 @@ const HomeScreen = () => {
       <ScrollView>
         <View style={styles.inputContainer}>
           <Text style={styles.topTitle}>Featured Businesses Near You</Text>
-          <Searchbar
+          <Input
+            variant="rounded"
+            w="80%"
+            textAlign="center"
+            marginBottom={4}
             placeholder="enter your location"
             onChangeText={searchFilterFunction}
             value={searchQuery}
