@@ -28,6 +28,7 @@ function TopTabsGroup() {
       screenOptions={{
         tabBarLabelStyle: {
           textTransform: "capitalize",
+          fontSize: 10,
         },
       }}
     >
