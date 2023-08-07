@@ -28,6 +28,7 @@ export default ProfileScreen = () => {
       <ProfileStack.Screen
         name="ProfileScreen"
         component={ProfileMainScreen}
+        options={{ headerShown: false }}
       />
       <ProfileStack.Screen
         name="ProfileDetailsScreen"
