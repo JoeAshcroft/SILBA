@@ -1,6 +1,12 @@
 import React from "react";
 import { Text, SafeAreaView, StyleSheet, View } from "react-native";
 import { Avatar, Button } from "react-native-paper";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+import ProfileOrdersScreen from "./ProfileStack/ProfileOrdersScreen"
+import ProfileDetailsScreen from "./ProfileStack/ProfileOrdersScreen"
+import ProfileReviewsScreen from "./ProfileStack/ProfileReviewsScreen"
+import { useNavigation } from "@react-navigation/native";
 
 const userData = [
   {
@@ -13,7 +19,42 @@ const userData = [
   },
 ];
 
-export default function ProfileScreen() {
+const ProfileStack = createNativeStackNavigator()
+
+export default ProfileScreen = () => {
+
+  return (
+    <ProfileStack.Navigator>
+      <ProfileStack.Screen
+        name="ProfileScreen"
+        component={ProfileMainScreen}
+      />
+      <ProfileStack.Screen
+        name="ProfileDetailsScreen"
+        component={ProfileDetailsScreen}
+        options={{ presentation: "modal", headerShown: false }}
+      />
+
+      <ProfileStack.Screen
+        name="ProfileOrdersScreen"
+        component={ProfileOrdersScreen}
+        options={{ presentation: "modal", headerShown: false }}
+      />
+
+<ProfileStack.Screen
+        name="ProfileReviewsScreen"
+        component={ProfileReviewsScreen}
+        options={{ presentation: "modal", headerShown: false }}
+      />
+    </ProfileStack.Navigator>
+  );
+  }
+
+
+
+const ProfileMainScreen = () => {
+  const navigation = useNavigation()
+  
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.profilePage}>
@@ -34,6 +75,7 @@ export default function ProfileScreen() {
           style={styles.button}
           contentStyle={styles.buttonContent}
           labelStyle={styles.buttonLabel}
+          onPress={() => navigation.navigate("ProfileDetailsScreen")}
         >
           My details
         </Button>
@@ -43,6 +85,7 @@ export default function ProfileScreen() {
           style={styles.button}
           contentStyle={styles.buttonContent}
           labelStyle={styles.buttonLabel}
+          onPress={() => navigation.navigate("ProfileOrdersScreen")}
         >
           My orders
         </Button>
@@ -52,6 +95,7 @@ export default function ProfileScreen() {
           style={styles.button}
           contentStyle={styles.buttonContent}
           labelStyle={styles.buttonLabel}
+          onPress={() => navigation.navigate("ProfileReviewsScreen")}
         >
           My reviews
         </Button>
@@ -70,6 +114,8 @@ export default function ProfileScreen() {
     </SafeAreaView>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
