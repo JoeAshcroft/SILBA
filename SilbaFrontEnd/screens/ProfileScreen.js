@@ -1,14 +1,6 @@
-import { Text, SafeAreaView, StyleSheet } from "react-native";
-import {
-  Avatar,
-  Center,
-  View,
-  Heading,
-  Button,
-  VStack,
-  Icon,
-} from "native-base";
-import { Ionicons } from "@expo/vector-icons";
+import React from "react";
+import { Text, SafeAreaView, StyleSheet, View } from "react-native";
+import { Avatar, Button } from "react-native-paper";
 
 const userData = [
   {
@@ -23,66 +15,120 @@ const userData = [
 
 export default function ProfileScreen() {
   return (
-    <SafeAreaView>
-      <Center>
-        {userData.map((user) => {
-          return (
-            <View key={user.user_id}>
-              <VStack space={5}>
-                <Center>
-                  <Heading size="xl">{user.username}</Heading>
-                  <Avatar
-                    bg="green.500"
-                    size="2xl"
-                    source={{ uri: user.avatar_url }}
-                  ></Avatar>
-                  <Text style={styles.profileText}>{user.fullName}</Text>
-                  <Text style={styles.profileText}>{user.email}</Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.profilePage}>
+        <Avatar.Image
+          size={80}
+          source={require("../assets/avatar.png")}
+          style={styles.avatar}
+        />
+        <Text style={styles.fullName}>{userData[0].fullName}</Text>
+        <Text style={styles.username}>@{userData[0].username}</Text>
+        <Text style={styles.email}>{userData[0].email}</Text>
+      </View>
 
-                  <VStack space={3}>
-                    <Button
-                      style={styles.button}
-                      leftIcon={<Icon as={Ionicons} name="create" size="sm" />}
-                    >
-                      Edit Details
-                    </Button>
-                    <Button
-                      leftIcon={<Icon as={Ionicons} name="star" size="sm" />}
-                    >
-                      My Reviews
-                    </Button>
-                    <Button
-                      leftIcon={<Icon as={Ionicons} name="basket" size="sm" />}
-                    >
-                      My Orders
-                    </Button>
-                    <Button
-                      style={styles.bottom_button}
-                      leftIcon={
-                        <Icon as={Ionicons} name="log-out-outline" size="sm" />
-                      }
-                    >
-                      Log Out
-                    </Button>
-                  </VStack>
-                </Center>
-              </VStack>
-            </View>
-          );
-        })}
-      </Center>
+      <View style={styles.buttonsContainer}>
+        <Button
+          icon="account"
+          mode="contained"
+          style={styles.button}
+          contentStyle={styles.buttonContent}
+          labelStyle={styles.buttonLabel}
+        >
+          My details
+        </Button>
+        <Button
+          icon="receipt"
+          mode="contained"
+          style={styles.button}
+          contentStyle={styles.buttonContent}
+          labelStyle={styles.buttonLabel}
+        >
+          My orders
+        </Button>
+        <Button
+          icon="star"
+          mode="contained"
+          style={styles.button}
+          contentStyle={styles.buttonContent}
+          labelStyle={styles.buttonLabel}
+        >
+          My reviews
+        </Button>
+      </View>
+
+      <View style={styles.logoutContainer}>
+        <Button
+          icon="door"
+          style={styles.logoutButton}
+          contentStyle={styles.logoutButtonContent}
+          labelStyle={styles.logoutButtonText}
+        >
+          Log out
+        </Button>
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  profileText: {
-    fontSize: 30,
+  container: {
+    flex: 1,
+    marginTop: 20,
+    alignItems: "center",
+    backgroundColor: "#f0f0f0",
+  },
+  profilePage: {
+    alignItems: "center",
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+    marginBottom: 20,
+  },
+  avatar: {
+    marginBottom: 20,
+  },
+  fullName: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
+  username: {
+    fontSize: 16,
+    color: "#777",
+    marginBottom: 10,
+  },
+  email: {
+    fontSize: 16,
+  },
+  buttonsContainer: {
+    alignItems: "center",
+    marginBottom: 20,
+    width: "100%",
   },
   button: {
-    width: 330,
+    marginBottom: 10,
+    backgroundColor: "#ccc", 
+    width: "60%", 
   },
-  bottom_button: {
-    width: 330,
+  buttonContent: {
+    width: "100%",
+  },
+  buttonLabel: {
+    color: "black",
+  },
+  logoutContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
+    marginBottom: 20,
+  },
+  logoutButton: {
+   
+  },
+  logoutButtonContent: {
+    width: "100%",
+  },
+  logoutButtonText: {
+    color: "black", 
   },
 });
