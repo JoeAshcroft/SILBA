@@ -2,8 +2,9 @@ import React from "react";
 import { SafeAreaView, View, StyleSheet, Text, ScrollView } from "react-native";
 import BusinessCard from "../components/BusinessCard";
 import data from "../data/businesses.json";
-import { Input } from "native-base";
+import { Input, Icon } from "native-base";
 import { useState } from "react";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 const HomeScreen = () => {
   const restaurants = data.restaurants;
@@ -42,8 +43,18 @@ const HomeScreen = () => {
           <Input
             variant="rounded"
             w="80%"
-            textAlign="center"
+            textAlign="left"
             marginBottom={4}
+            fontSize="14"
+            InputLeftElement={
+              <Icon
+                m="2"
+                ml="3"
+                size="6"
+                color="gray.400"
+                as={<FontAwesome5 name="map-marker-alt" color="black" />}
+              />
+            }
             placeholder="enter your location"
             onChangeText={searchFilterFunction}
             value={searchQuery}
