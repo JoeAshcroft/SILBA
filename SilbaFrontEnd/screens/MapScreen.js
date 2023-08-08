@@ -3,20 +3,31 @@ import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import React, { useEffect, useState } from "react";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
-import data from "../data/businesses.json";
 import { IconButton } from "native-base";
+import { getBusinesses } from "../api/api";
 
 export default function MapScreen() {
+  const [businesses, setBusinesses] = useState([]);
   const [location, setLocation] = useState({
     latitude: 53.483959,
     longitude: -2.244644,
   });
-  const [region, setRegion] = useState({
-    latitude: location.latitude,
-    longitude: location.longitude,
-    latitudeDelta: 0.01,
-    longitudeDelta: 0.01,
-  });
+
+  useEffect(() => {
+    getBusinesses().then((res) => {
+      const businessArr = res.business.map((business) => {
+        if (business.category === "restaurant") {
+          business.pinColor = "red";
+        } else if (business.category === "shop") {
+          business.pinColor = "blue";
+        } else if (business.category === "experience") {
+          business.pinColor = "green";
+        }
+        return business;
+      });
+      setBusinesses(businessArr);
+    });
+  }, []);
 
   useEffect(() => {
     const getPermission = async () => {
@@ -37,12 +48,6 @@ export default function MapScreen() {
     }
     let currentLocation = await Location.getCurrentPositionAsync({});
     setLocation(currentLocation.coords);
-    setRegion({
-      latitude: location.latitude,
-      longitude: location.longitude,
-      latitudeDelta: 0.01,
-      longitudeDelta: 0.01,
-    });
   };
 
   const returnCamera = async () => {
@@ -80,29 +85,15 @@ export default function MapScreen() {
             style={{ height: 35, width: 35 }}
           />
         </Marker>
-
-        {data.restaurants.map((marker) => (
+        {businesses.map((marker) => (
           <Marker
             key={marker.business_id}
-            coordinate={marker.location}
+            coordinate={{
+              latitude: marker.location.coordinates[0],
+              longitude: marker.location.coordinates[1],
+            }}
             title={marker.business_name}
-            pinColor={"red"}
-          />
-        ))}
-        {data.experiences.map((marker) => (
-          <Marker
-            key={marker.business_id}
-            coordinate={marker.location}
-            title={marker.business_name}
-            pinColor={"green"}
-          />
-        ))}
-        {data.shops.map((marker) => (
-          <Marker
-            key={marker.business_id}
-            coordinate={marker.location}
-            title={marker.business_name}
-            pinColor={"blue"}
+            pinColor={marker.pinColor}
           />
         ))}
       </MapView>
