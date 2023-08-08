@@ -3,9 +3,9 @@ import { Text, SafeAreaView, StyleSheet, View } from "react-native";
 import { Avatar, Button } from "react-native-paper";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import ProfileOrdersScreen from "./ProfileStack/ProfileOrdersScreen"
-import ProfileDetailsScreen from "./ProfileStack/ProfileOrdersScreen"
-import ProfileReviewsScreen from "./ProfileStack/ProfileReviewsScreen"
+import ProfileOrdersScreen from "./ProfileStack/ProfileOrdersScreen";
+import ProfileDetailsScreen from "./ProfileStack/ProfileDetailsScreen";
+import ProfileReviewsScreen from "./ProfileStack/ProfileReviewsScreen";
 import { useNavigation } from "@react-navigation/native";
 
 const userData = [
@@ -19,10 +19,9 @@ const userData = [
   },
 ];
 
-const ProfileStack = createNativeStackNavigator()
+const ProfileStack = createNativeStackNavigator();
 
 export default ProfileScreen = () => {
-
   return (
     <ProfileStack.Navigator>
       <ProfileStack.Screen
@@ -42,20 +41,18 @@ export default ProfileScreen = () => {
         options={{ presentation: "modal", headerShown: false }}
       />
 
-<ProfileStack.Screen
+      <ProfileStack.Screen
         name="ProfileReviewsScreen"
         component={ProfileReviewsScreen}
         options={{ presentation: "modal", headerShown: false }}
       />
     </ProfileStack.Navigator>
   );
-  }
-
-
+};
 
 const ProfileMainScreen = () => {
-  const navigation = useNavigation()
-  
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.profilePage}>
@@ -114,9 +111,7 @@ const ProfileMainScreen = () => {
       </View>
     </SafeAreaView>
   );
-}
-
-
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -155,8 +150,8 @@ const styles = StyleSheet.create({
   },
   button: {
     marginBottom: 10,
-    backgroundColor: "#ccc", 
-    width: "60%", 
+    backgroundColor: "#ccc",
+    width: "60%",
   },
   buttonContent: {
     width: "100%",
@@ -169,13 +164,11 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     marginBottom: 20,
   },
-  logoutButton: {
-   
-  },
+  logoutButton: {},
   logoutButtonContent: {
     width: "100%",
   },
   logoutButtonText: {
-    color: "black", 
+    color: "black",
   },
 });
