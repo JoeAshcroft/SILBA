@@ -11,3 +11,5 @@ export const getBusinesses = async () => {
     const res = await api.get('/business')
     return res.data
 }
+
+

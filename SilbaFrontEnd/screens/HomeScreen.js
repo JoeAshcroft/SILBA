@@ -8,12 +8,14 @@ import { useEffect } from "react";
 const HomeScreen = () => {
 
 const [businesses, setBusinesses] = useState([])
+const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     getBusinesses()
     .then(({business}) => {
       setBusinesses(business)
-      console.log(businesses)
+      setLoading(false)
     }
     )
     .catch(err => {
