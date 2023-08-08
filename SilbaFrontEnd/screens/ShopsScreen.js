@@ -1,15 +1,25 @@
 import React from "react";
 import { SafeAreaView, View, StyleSheet, Text, ScrollView } from "react-native";
 import BusinessCard from "../components/BusinessCard";
-import data from "../data/businesses.json";
+import {businesses} from "../data/businesses.json";
 import { Input, Icon } from "native-base";
 import { useState } from "react";
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useEffect } from "react";
 
 export default function ShopsScreen() {
-  const shops = data.shops;
+  const [shops, setShops] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredShops, setFilteredShops] = useState(shops);
+  const [filteredShops, setFilteredShops] = useState([]);
+
+
+  useEffect(() => {
+    const shopsData = businesses.filter(
+      (item) => item.category === "shops"
+    );
+
+    setShops(shopsData);
+  setFilteredShops(shopsData);}, [])
 
   const searchFilterFunction = (search) => {
     setSearchQuery(search);
