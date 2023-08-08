@@ -93,7 +93,7 @@ const ProfileMainScreen = () => {
           style={styles.button}
           contentStyle={styles.buttonContent}
           labelStyle={styles.buttonLabel}
-          onPress={() => navigation.navigate("ProfileReviewsScreen")}
+          onPress={() => navigation.navigate("ProfileReviewsScreen", { user:userData[0] })}
         >
           My reviews
         </Button>
