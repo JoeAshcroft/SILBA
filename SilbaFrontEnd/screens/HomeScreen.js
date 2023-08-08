@@ -1,39 +1,58 @@
 import React, { useState } from "react";
 import { SafeAreaView, View, StyleSheet, Text, ScrollView } from "react-native";
 import BusinessCard from "../components/BusinessCard";
-import {businesses} from "../data/businesses.json";
 import { Input, Icon } from "native-base";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { getBusinesses } from "../api/api";
+import { useEffect } from "react";
 const HomeScreen = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [restaurants, setRestaurants] = useState(businesses.filter(item => item.category === "restaurant"));
-  const [shops, setShops] = useState(businesses.filter(item => item.category === "shop"));
-  const [experiences, setExperiences] = useState(businesses.filter(item => item.category === "experience"));
 
-  const searchFilterFunction = (search) => {
-    setSearchQuery(search);
-    filterBusinesses(search);
-  };
+const [businesses, setBusinesses] = useState([])
+const [loading, setLoading] = useState(false)
 
-  const filterBusinesses = (search) => {
-    const filterByAddress = (item) =>
-      item.address.toLowerCase().includes(search.toLowerCase());
+  useEffect(() => {
+    setLoading(true)
+    getBusinesses()
+    .then(({business}) => {
+      setBusinesses(business)
+      setLoading(false)
+    }
+    )
+    .catch(err => {
+      console.log(err)
+    })
+  }, [])
 
-    const filteredRestaurants = businesses.filter(
-      (item) => item.category === "restaurant" && filterByAddress(item)
-    );
-    setRestaurants(filteredRestaurants);
 
-    const filteredShops = businesses.filter(
-      (item) => item.category === "shop" && filterByAddress(item)
-    );
-    setShops(filteredShops);
+  // const [searchQuery, setSearchQuery] = useState("");
+  // const [restaurants, setRestaurants] = useState(businesses.filter(item => item.category === "restaurant"));
+  // const [shops, setShops] = useState(businesses.filter(item => item.category === "shop"));
+  // const [experiences, setExperiences] = useState(businesses.filter(item => item.category === "experience"));
 
-    const filteredExperiences = businesses.filter(
-      (item) => item.category === "experience" && filterByAddress(item)
-    );
-    setExperiences(filteredExperiences);
-  };
+  // const searchFilterFunction = (search) => {
+  //   setSearchQuery(search);
+  //   filterBusinesses(search);
+  // };
+
+  // const filterBusinesses = (search) => {
+  //   const filterByAddress = (item) =>
+  //     item.address.toLowerCase().includes(search.toLowerCase());
+
+  //   const filteredRestaurants = businesses.filter(
+  //     (item) => item.category === "restaurant" && filterByAddress(item)
+  //   );
+  //   setRestaurants(filteredRestaurants);
+
+  //   const filteredShops = businesses.filter(
+  //     (item) => item.category === "shop" && filterByAddress(item)
+  //   );
+  //   setShops(filteredShops);
+
+  //   const filteredExperiences = businesses.filter(
+  //     (item) => item.category === "experience" && filterByAddress(item)
+  //   );
+  //   setExperiences(filteredExperiences);
+  // };
 
 
  
@@ -58,13 +77,13 @@ const HomeScreen = () => {
               />
             }
             placeholder="enter your location"
-            onChangeText={searchFilterFunction}
-            value={searchQuery}
+            // onChangeText={searchFilterFunction}
+            // value={searchQuery}
           />
         </View>
-        {renderScrollableList(restaurants, "Restaurants")}
-        {renderScrollableList(shops, "Shops")}
-        {renderScrollableList(experiences, "Experiences")}
+        {renderScrollableList(businesses, "Restaurants")}
+        {renderScrollableList(businesses, "Shops")}
+        {renderScrollableList(businesses, "Experiences")}
       </ScrollView>
     </SafeAreaView>
   );
