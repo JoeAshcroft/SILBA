@@ -5,6 +5,7 @@ import { Input, Icon } from "native-base";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { getBusinesses } from "../api/api";
 import { useEffect } from "react";
+import { ActivityIndicator} from 'react-native-paper';
 const HomeScreen = () => {
 
 const [businesses, setBusinesses] = useState([])
@@ -22,6 +23,20 @@ const [loading, setLoading] = useState(false)
       console.log(err)
     })
   }, [])
+
+const restaurants = businesses.filter((business) => {
+  return business.category === "restaurant"
+})
+
+const shops = businesses.filter((business) => {
+  return business.category === "shop"
+})
+
+const experiences = businesses.filter((business) => {
+  return business.category === "experience"
+})
+
+
 
 
   // const [searchQuery, setSearchQuery] = useState("");
@@ -58,7 +73,10 @@ const [loading, setLoading] = useState(false)
  
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+
+    {loading ? <View><ActivityIndicator/></View> : 
+    
+    <ScrollView>
         <View style={styles.inputContainer}>
           <Text style={styles.topTitle}>Featured Businesses Near You</Text>
           <Input
@@ -81,10 +99,12 @@ const [loading, setLoading] = useState(false)
             // value={searchQuery}
           />
         </View>
-        {renderScrollableList(businesses, "Restaurants")}
-        {renderScrollableList(businesses, "Shops")}
-        {renderScrollableList(businesses, "Experiences")}
+        {renderScrollableList(restaurants, "Restaurants")}
+        {renderScrollableList(shops, "Shops")}
+        {renderScrollableList(experiences, "Experiences")}
       </ScrollView>
+    } 
+      
     </SafeAreaView>
   );
 };
