@@ -1,50 +1,71 @@
 import { View, Text, Image, StyleSheet, Dimensions, ScrollView, Pressable } from "react-native";
 import React from "react";
 import { useNavigation } from '@react-navigation/native'
-import {marketplaceitems} from "../data/marketplaceitems.json"
 import { Ionicons } from "@expo/vector-icons";
+import {useState, useEffect} from "react";
+import {getMarketplaceItems} from "../api/api"
+import { ActivityIndicator } from "react-native-paper";
 
-const market = marketplaceitems
 
 export default MarketCard = () => {
+  const [marketplaceItems, setMarketplaceItems] = useState([])
+  const [loading, setLoading] = useState(false)
 
   const { navigate } = useNavigation()
 
+  useEffect(() => {
+    setLoading(true)
+    getMarketplaceItems()
+    .then(({item}) => {
+      setMarketplaceItems(item)
+      setLoading(false)
+    })
+    .catch((err) => {
+      setLoading(true)
+    })
+  }, [])
+
+
+
   return (
-    <View style={styles.container}>
-      {market.map((item, index) => {
-        return (
-          <Pressable key={item.itemId} 
-          onPress={() => {
-      navigate("ItemDetailsScreen", {item})
-    }} >
-          <View style={styles.card} key={index}>
+<View>
+    {loading ? (<View><ActivityIndicator/></View>) : (<View style={styles.container}>
+    {marketplaceItems.map((item, index) => {
+      return (
+        <Pressable key={item.itemId} 
+        onPress={() => {
+    navigate("ItemDetailsScreen", {item})
+  }} >
+        <View style={styles.card} key={index}>
+        
+          <View style={styles.imageContainer}>
+              <Image style={styles.image} source={{ uri: item.image }} />
+          </View>
+          <View style={styles.itemNameContainer}>
+          <Text style={styles.itemName}>{item.itemname}</Text>
           
-            <View style={styles.imageContainer}>
-                <Image style={styles.image} source={{ uri: item.itemImage }} />
-            </View>
-            <View style={styles.itemNameContainer}>
-            <Text style={styles.itemName}>{item.itemName}</Text>
-            
-          </View>
-            <View style={styles.nameDescriptionContainer}>
-            <Text style={styles.businessName}>{item.sellerBusinessName}</Text>
-            <Text style={styles.description}>{item.itemDescription}</Text>
-           </View>
-            
-            <View style={styles.priceRatingContainer}>
-            <Text style={styles.itemPrice}>£{item.itemPrice}</Text>
-            <Text style={styles.itemRating}>{item.itemRating}/5</Text>
-            </View>
-
-           
+        </View>
+          <View style={styles.nameDescriptionContainer}>
+          <Text style={styles.businessName}>{item.sellerBusinessName}</Text>
+          <Text style={styles.description}>{item.itemDescription}</Text>
+         </View>
+          
+          <View style={styles.priceRatingContainer}>
+          <Text style={styles.itemPrice}>£{item.itemPrice}</Text>
+          <Text style={styles.itemRating}>{item.itemRating}/5</Text>
           </View>
 
-          </Pressable>
-        );
-      })}
-    </View>
+         
+        </View>
 
+        </Pressable>
+      );
+    })}
+  </View>) 
+  }
+
+    
+</View>
   );
 }
 

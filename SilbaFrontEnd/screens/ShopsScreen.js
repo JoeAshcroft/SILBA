@@ -6,20 +6,31 @@ import { Input, Icon } from "native-base";
 import { useState } from "react";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useEffect } from "react";
+import { getBusinesses } from "../api/api";
+import { ActivityIndicator } from "react-native-paper";
 
 export default function ShopsScreen() {
   const [shops, setShops] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredShops, setFilteredShops] = useState([]);
-
+  const [loading, setLoading] =  useState(loading)
 
   useEffect(() => {
-    const shopsData = businesses.filter(
-      (item) => item.category === "shops"
-    );
-
-    setShops(shopsData);
-  setFilteredShops(shopsData);}, [])
+  setLoading(true)
+  getBusinesses()
+.then(({business}) => {
+  const shopsData = business.filter(
+    (business) => business.category === "shop"
+  );
+  setShops(shopsData)
+  setFilteredShops(shopsData)
+  setLoading(false)
+  
+})
+.catch(err => {
+  setLoading(true)
+})
+}, [])
 
   const searchFilterFunction = (search) => {
     setSearchQuery(search);
@@ -58,7 +69,8 @@ export default function ShopsScreen() {
             }
           />
         </View>
-        {renderScrollableList(filteredShops, "Shops")}
+        {loading ? <View><ActivityIndicator/></View> : <View>{renderScrollableList(filteredShops, "Shops")}</View>}
+        
       </ScrollView>
     </SafeAreaView>
   );

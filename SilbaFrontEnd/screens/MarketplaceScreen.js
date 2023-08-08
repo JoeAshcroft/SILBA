@@ -1,9 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import MarketCard from '../components/MarketCard';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { IconButton } from "react-native-paper";
 
 export default function MarketplaceScreen() {
