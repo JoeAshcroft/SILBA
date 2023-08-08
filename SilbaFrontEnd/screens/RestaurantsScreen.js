@@ -54,7 +54,7 @@ export default function RestaurantsScreen() {
               variant="rounded"
               w="80%"
               placeholder="enter your location"
-              textAlign="center"
+              textAlign="left"
               marginBottom={4}
               onChangeText={searchFilterFunction}
               value={searchQuery}
@@ -69,8 +69,16 @@ export default function RestaurantsScreen() {
               }
             />
           </View>
-          
-          {loading ? <View><ActivityIndicator/></View> : <View>{renderScrollableList(filteredRestaurants, "Restaurants")}</View>}
+
+          {loading ? (
+            <View>
+              <ActivityIndicator />
+            </View>
+          ) : (
+            <View>
+              {renderScrollableList(filteredRestaurants, "Restaurants")}
+            </View>
+          )}
         </ScrollView>
       )}
     </SafeAreaView>

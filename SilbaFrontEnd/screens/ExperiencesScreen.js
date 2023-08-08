@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { SafeAreaView, View, StyleSheet, Text, ScrollView } from "react-native";
 import BusinessCard from "../components/BusinessCard";
-import {businesses} from "../data/businesses.json";
+import { businesses } from "../data/businesses.json";
 import { Input, Icon } from "native-base";
 import { useState } from "react";
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5 } from "@expo/vector-icons";
 import { getBusinesses } from "../api/api";
 import { ActivityIndicator } from "react-native-paper";
 
@@ -12,27 +12,23 @@ export default function ExperiencesScreen() {
   const [experiences, setExperiences] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredExperiences, setFilteredExperiences] = useState([]);
-  const [loading, setLoading] = useState(false)
-
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     getBusinesses()
-    .then(({business}) => {
-      const restaurantsData = business.filter(
-        (business) => business.category === "experience"
-      );
-    setExperiences(restaurantsData)
-    setFilteredExperiences(restaurantsData)
-    setLoading(false)
-    
-    })
-    .catch(err => {
-      setLoading(true)
-    })
-
-  }, [])
-
+      .then(({ business }) => {
+        const restaurantsData = business.filter(
+          (business) => business.category === "experience"
+        );
+        setExperiences(restaurantsData);
+        setFilteredExperiences(restaurantsData);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(true);
+      });
+  }, []);
 
   const searchFilterFunction = (search) => {
     setSearchQuery(search);
@@ -44,8 +40,6 @@ export default function ExperiencesScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-
-    
       <ScrollView>
         <View style={styles.inputContainer}>
           <Text style={styles.topTitle}>Experiences Near You</Text>
@@ -53,7 +47,7 @@ export default function ExperiencesScreen() {
             variant="rounded"
             w="80%"
             placeholder="enter your location"
-            textAlign="center"
+            textAlign="left"
             marginBottom={4}
             onChangeText={searchFilterFunction}
             value={searchQuery}
@@ -68,9 +62,16 @@ export default function ExperiencesScreen() {
             }
           />
         </View>
-        
-        {loading ? <View><ActivityIndicator/></View> : <View>{renderScrollableList(filteredExperiences, "Experiences")}</View>}
-        
+
+        {loading ? (
+          <View>
+            <ActivityIndicator />
+          </View>
+        ) : (
+          <View>
+            {renderScrollableList(filteredExperiences, "Experiences")}
+          </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );

@@ -1,10 +1,10 @@
 import React from "react";
 import { SafeAreaView, View, StyleSheet, Text, ScrollView } from "react-native";
 import BusinessCard from "../components/BusinessCard";
-import {businesses} from "../data/businesses.json";
+import { businesses } from "../data/businesses.json";
 import { Input, Icon } from "native-base";
 import { useState } from "react";
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5 } from "@expo/vector-icons";
 import { useEffect } from "react";
 import { getBusinesses } from "../api/api";
 import { ActivityIndicator } from "react-native-paper";
@@ -13,24 +13,23 @@ export default function ShopsScreen() {
   const [shops, setShops] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredShops, setFilteredShops] = useState([]);
-  const [loading, setLoading] =  useState(loading)
+  const [loading, setLoading] = useState(loading);
 
   useEffect(() => {
-  setLoading(true)
-  getBusinesses()
-.then(({business}) => {
-  const shopsData = business.filter(
-    (business) => business.category === "shop"
-  );
-  setShops(shopsData)
-  setFilteredShops(shopsData)
-  setLoading(false)
-  
-})
-.catch(err => {
-  setLoading(true)
-})
-}, [])
+    setLoading(true);
+    getBusinesses()
+      .then(({ business }) => {
+        const shopsData = business.filter(
+          (business) => business.category === "shop"
+        );
+        setShops(shopsData);
+        setFilteredShops(shopsData);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(true);
+      });
+  }, []);
 
   const searchFilterFunction = (search) => {
     setSearchQuery(search);
@@ -49,7 +48,7 @@ export default function ShopsScreen() {
             variant="rounded"
             w="80%"
             placeholder="enter your location"
-            textAlign="center"
+            textAlign="left"
             m="2"
             ml="3"
             size="6"
@@ -69,8 +68,13 @@ export default function ShopsScreen() {
             }
           />
         </View>
-        {loading ? <View><ActivityIndicator/></View> : <View>{renderScrollableList(filteredShops, "Shops")}</View>}
-        
+        {loading ? (
+          <View>
+            <ActivityIndicator />
+          </View>
+        ) : (
+          <View>{renderScrollableList(filteredShops, "Shops")}</View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
