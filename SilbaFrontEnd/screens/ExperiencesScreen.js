@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SafeAreaView, View, StyleSheet, Text, ScrollView } from "react-native";
 import BusinessCard from "../components/BusinessCard";
-import data from "../data/businesses.json";
+import {businesses} from "../data/businesses.json";
 import { Input, Icon } from "native-base";
 import { useState } from "react";
 import { FontAwesome5 } from '@expo/vector-icons';
 
 export default function ExperiencesScreen() {
-  const experiences = data.experiences;
+  const [experiences, setExperiences] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredExperiences, setFilteredExperiences] = useState(experiences);
+  const [filteredExperiences, setFilteredExperiences] = useState([]);
+
+
+  useEffect(() => {
+    const experiencesData = businesses.filter(
+      (business) => business.category === "experience"
+    )
+    setExperiences(experiencesData);
+    setFilteredExperiences(experiencesData)
+
+  }, [])
+
 
   const searchFilterFunction = (search) => {
     setSearchQuery(search);

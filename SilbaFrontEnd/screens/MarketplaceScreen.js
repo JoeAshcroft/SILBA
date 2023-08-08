@@ -9,7 +9,6 @@ import { IconButton } from "react-native-paper";
 export default function MarketplaceScreen() {
   const navigation = useNavigation();
 
-  // Set the header right button
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (

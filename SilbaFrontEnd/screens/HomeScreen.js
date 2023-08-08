@@ -1,40 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView, View, StyleSheet, Text, ScrollView } from "react-native";
 import BusinessCard from "../components/BusinessCard";
-import data from "../data/businesses.json";
+import {businesses} from "../data/businesses.json";
 import { Input, Icon } from "native-base";
-import { useState } from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
-
 const HomeScreen = () => {
-  const restaurants = data.restaurants;
-  const shops = data.shops;
-  const experiences = data.experiences;
-
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredRestaurants, setFilteredRestaurants] = useState(restaurants);
-  const [filteredShops, setFilteredShops] = useState(shops);
-  const [filteredExperiences, setFilteredExperiences] = useState(experiences);
+  const [restaurants, setRestaurants] = useState(businesses.filter(item => item.category === "restaurant"));
+  const [shops, setShops] = useState(businesses.filter(item => item.category === "shop"));
+  const [experiences, setExperiences] = useState(businesses.filter(item => item.category === "experience"));
 
   const searchFilterFunction = (search) => {
     setSearchQuery(search);
-
-    const filteredRestaurants = restaurants.filter((item) =>
-      item.address.toLowerCase().includes(search.toLowerCase())
-    );
-    setFilteredRestaurants(filteredRestaurants);
-
-    const filteredShops = shops.filter((item) =>
-      item.address.toLowerCase().includes(search.toLowerCase())
-    );
-    setFilteredShops(filteredShops);
-
-    const filteredExperiences = experiences.filter((item) =>
-      item.address.toLowerCase().includes(search.toLowerCase())
-    );
-    setFilteredExperiences(filteredExperiences);
+    filterBusinesses(search);
   };
 
+  const filterBusinesses = (search) => {
+    const filterByAddress = (item) =>
+      item.address.toLowerCase().includes(search.toLowerCase());
+
+    const filteredRestaurants = businesses.filter(
+      (item) => item.category === "restaurant" && filterByAddress(item)
+    );
+    setRestaurants(filteredRestaurants);
+
+    const filteredShops = businesses.filter(
+      (item) => item.category === "shop" && filterByAddress(item)
+    );
+    setShops(filteredShops);
+
+    const filteredExperiences = businesses.filter(
+      (item) => item.category === "experience" && filterByAddress(item)
+    );
+    setExperiences(filteredExperiences);
+  };
+
+
+ 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -45,7 +47,7 @@ const HomeScreen = () => {
             w="80%"
             textAlign="left"
             marginBottom={4}
-            fontSize="14"
+            fontSize={14}
             InputLeftElement={
               <Icon
                 m="2"
@@ -60,13 +62,14 @@ const HomeScreen = () => {
             value={searchQuery}
           />
         </View>
-        {renderScrollableList(filteredRestaurants, "Restaurants")}
-        {renderScrollableList(filteredShops, "Shops")}
-        {renderScrollableList(filteredExperiences, "Experiences")}
+        {renderScrollableList(restaurants, "Restaurants")}
+        {renderScrollableList(shops, "Shops")}
+        {renderScrollableList(experiences, "Experiences")}
       </ScrollView>
     </SafeAreaView>
   );
 };
+
 
 const renderScrollableList = (businessList, title) => (
   <View>
@@ -96,7 +99,7 @@ const styles = StyleSheet.create({
   },
   topTitle: {
     fontSize: 20,
-    fontWeight: "regular",
+    fontWeight: "normal", // Use "normal" instead of "regular"
     textAlign: "center",
     margin: 10,
   },
@@ -105,4 +108,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
+
 export default HomeScreen;
