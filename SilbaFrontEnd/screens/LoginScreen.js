@@ -12,6 +12,7 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import { Formik } from "formik";
 import { useEffect, useState } from "react";
+import { postSignUp } from "../api/api";
 
 export default LoginScreen = () => {
   const [login, setLogin] = useState(true);
@@ -31,14 +32,16 @@ export default LoginScreen = () => {
   };
 
   const handleSignup = (formObj) => {
-    const { username, email, password } = formObj;
-    // useEffect(() => {
-    //   userSingupAPiFunc(props)
-    //     .then((data) => {})
-    //     .catch((err) => {
-    setError(true);
-    // });
-    // },[])
+    const { username, fullName, password, email } = formObj;
+    useEffect(() => {
+      postSignUp({ username, fullName, password, email })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          setError(true);
+        });
+    }, []);
   };
 
   const Login = () => {
@@ -107,7 +110,12 @@ export default LoginScreen = () => {
       <View style={{ width: "100%" }}>
         <Text>Sign-up</Text>
         <Formik
-          initialValues={{ email: "", password: "", username: "" }}
+          initialValues={{
+            email: "",
+            password: "",
+            username: "",
+            fullName: "",
+          }}
           onSubmit={(values) => handleSignup(values)}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -129,6 +137,24 @@ export default LoginScreen = () => {
                 onChangeText={handleChange("username")}
                 onBlur={handleBlur("username")}
                 value={values.username}
+              />
+              <Input
+                w={{
+                  base: "75%",
+                  md: "25%",
+                }}
+                InputLeftElement={
+                  <Icon
+                    as={<MaterialIcons name="person" />}
+                    size={5}
+                    ml="2"
+                    color="muted.400"
+                  />
+                }
+                placeholder="Full Name"
+                onChangeText={handleChange("fullName")}
+                onBlur={handleBlur("fullName")}
+                value={values.fullName}
               />
               <Input
                 w={{
@@ -200,8 +226,8 @@ export default LoginScreen = () => {
 
   return (
     <NativeBaseProvider>
-      { error ? <ErrorSnackbar /> : null }
-      { login ? <Login /> : <Signup /> }
+      {error ? <ErrorSnackbar /> : null}
+      {login ? <Login /> : <Signup />}
       <Button onPress={() => setLogin(!login)} title="switch" />
     </NativeBaseProvider>
   );
