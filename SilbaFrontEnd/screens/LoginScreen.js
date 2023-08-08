@@ -31,18 +31,43 @@ export default LoginScreen = () => {
     // },[])
   };
 
+
   const handleSignup = (formObj) => {
-    const { username, fullName, password, email } = formObj;
-    useEffect(() => {
-      postSignUp({ username, fullName, password, email })
-        .then((data) => {
-          console.log(data);
-        })
-        .catch((err) => {
-          setError(true);
-        });
-    }, []);
+    setError(false);
+    setSignupErr(null);
+    setFormValues(formObj);
   };
+
+  const [formValues, setFormValues] = useState(null);
+
+  useEffect(() => {
+    if (formValues) {
+      const { username, fullName, password, email } = formValues;
+
+      const userData = {
+        username,
+        fullName,
+        password,
+        email,
+      };
+
+      postSignUp(userData)
+        .then((response) => {
+          if (response.success) {
+            setSignupErr(null);
+            
+// navigate to login screen here
+
+          } else {
+            setSignupErr("An error occurred during signup.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error during signup:", error);
+          setSignupErr("An error occurred during signup.");
+        });
+    }
+  }, [formValues]);
 
   const Login = () => {
     return (

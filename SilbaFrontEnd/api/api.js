@@ -35,16 +35,9 @@ export const getUserById = async (id) => {
 
 // post signup user
 
-export const postSignUp = (username, fullName, password, email) => {
-  return api
-    .post("/auth/register", body)
-    .then((data) => {
-      console.log(res.data);
-      return res.data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+export const postSignUp = async (body) => {
+  const res = await api.post("/auth/register", body);
+  return res.data;
 };
 
 // patch user
