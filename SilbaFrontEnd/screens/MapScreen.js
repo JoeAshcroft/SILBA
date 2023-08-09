@@ -7,7 +7,7 @@ import {
   Platform,
 } from "react-native";
 import MapView, { Callout, Marker } from "react-native-maps";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 import * as Location from "expo-location";
 import React, { useEffect, useState } from "react";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
@@ -21,7 +21,7 @@ export default function MapScreen() {
     longitude: -2.244644,
   });
 
-  const { navigate } = useNavigation()
+  const { navigate } = useNavigation();
 
   useEffect(() => {
     getBusinesses().then((res) => {
@@ -106,28 +106,31 @@ export default function MapScreen() {
             title={business.business_name}
             pinColor={business.pinColor}
           >
-            <Callout onPress={() => {
-                  navigate("BusinessDetailsScreen", { business });
-                }}>
-                <View style={styles.card}>
-                  {Platform.OS === "ios" ? (
+            <Callout
+              onPress={() => {
+                navigate("BusinessDetailsScreen", { business });
+              }}
+            >
+              <View style={styles.card}>
+                {Platform.OS === "ios" ? (
+                  <Image
+                    source={{ uri: business.images[0] }}
+                    style={styles.image}
+                  />
+                ) : (
+                  <Text style={styles.textAndroid}>
                     <Image
                       source={{ uri: business.images[0] }}
-                      style={styles.image}
+                      style={styles.imageAndroid}
                     />
-                  ) : (
-                    <Text style={styles.textAndroid}>
-                      <Image
-                        source={{ uri: business.images[0] }}
-                        style={styles.imageAndroid}
-                      />
-                    </Text>
-                  )}
-                  <Text style={styles.businessName}>
-                    {business.business_name}
                   </Text>
-                  <Text style={styles.description}>{business.description}</Text>
-                </View>
+                )}
+                <Text style={styles.businessName}>
+                  {business.business_name}
+                </Text>
+                <Text style={styles.description}>{business.description}</Text>
+                <Text style={styles.showMore}>Show more...</Text>
+              </View>
             </Callout>
           </Marker>
         ))}
@@ -192,7 +195,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     marginHorizontal: 10,
     marginVertical: 10,
-    borderRadius: 0,
+    borderRadius: 10,
     elevation: 5,
     alignItems: "center",
     padding: 10,
@@ -210,6 +213,11 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 14,
+  },
+  showMore: {
+    fontSize: 14,
+    textDecorationLine: "underline",
+    color: "#808080",
   },
   textAndroid: {
     height: 300,
