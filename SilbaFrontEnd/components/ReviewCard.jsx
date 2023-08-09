@@ -8,13 +8,20 @@ export default ReviewsCard = ({ review }) => {
       <Text style={styles.review}>{review.review}</Text>
 
       <View style={styles.voteContainer}>
-        
         <TouchableOpacity>
-          <Ionicons style={styles.thumbButton} name="thumbs-up" size={20}></Ionicons>
+          <Ionicons
+            style={styles.thumbButton}
+            name="thumbs-up"
+            size={20}
+          ></Ionicons>
         </TouchableOpacity>
         <Text style={styles.reviewVotes}> {review.review_votes}</Text>
         <TouchableOpacity>
-          <Ionicons style={styles.thumbButton} name="thumbs-down" size={20}></Ionicons>
+          <Ionicons
+            style={styles.thumbButton}
+            name="thumbs-down"
+            size={20}
+          ></Ionicons>
         </TouchableOpacity>
       </View>
     </View>
@@ -41,18 +48,16 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
   },
   voteContainer: {
-
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center", // Center the items horizontally
     padding: 7,
   },
   thumbButton: {
-   paddingLeft: 14,
-   paddingRight: 12,
+    paddingLeft: 14,
+    paddingRight: 12,
   },
   reviewVotes: {
     fontSize: 15,
-  }
-
+  },
 });
