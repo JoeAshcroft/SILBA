@@ -7,20 +7,20 @@ import ProfileOrdersScreen from "./ProfileStack/ProfileOrdersScreen";
 import ProfileDetailsScreen from "./ProfileStack/ProfileDetailsScreen";
 import ProfileReviewsScreen from "./ProfileStack/ProfileReviewsScreen";
 import { useNavigation } from "@react-navigation/native";
+import { useAuth } from "../Utils/AuthContext";
 
-const userData = [
-  {
-    fullName: "Joe Bloggs",
-    username: "foodlover123",
-    email: "joebloggs@fakemail.com",
-    avatar_url:
-      "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80",
-    user_id: 1,
-  },
-];
+// const userData = [
+//   {
+//     fullName: "Joe Bloggs",
+//     username: "foodlover123",
+//     email: "joebloggs@fakemail.com",
+//     avatar_url:
+//       "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80",
+//     user_id: 1,
+//   },
+// ];
 
 const ProfileStack = createNativeStackNavigator();
-
 export default ProfileScreen = () => {
   return (
     <ProfileStack.Navigator>
@@ -52,18 +52,20 @@ export default ProfileScreen = () => {
 
 const ProfileMainScreen = () => {
   const navigation = useNavigation();
+  const { user } = useAuth();
+  const { data } = user;
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.profilePage}>
         <Avatar.Image
           size={80}
-          source={require("../assets/avatar.png")}
+          source={{ uri: data.avatarUrl }}
           style={styles.avatar}
         />
-        <Text style={styles.fullName}>{userData[0].fullName}</Text>
-        <Text style={styles.username}>@{userData[0].username}</Text>
-        <Text style={styles.email}>{userData[0].email}</Text>
+        <Text style={styles.fullName}>{data.fullName}</Text>
+        <Text style={styles.username}>@{data.username}</Text>
+        <Text style={styles.email}>{data.email}</Text>
       </View>
 
       <View style={styles.buttonsContainer}>
@@ -93,7 +95,9 @@ const ProfileMainScreen = () => {
           style={styles.button}
           contentStyle={styles.buttonContent}
           labelStyle={styles.buttonLabel}
-          onPress={() => navigation.navigate("ProfileReviewsScreen", { user:userData[0] })}
+          onPress={() =>
+            navigation.navigate("ProfileReviewsScreen", { user: data })
+          }
         >
           My reviews
         </Button>

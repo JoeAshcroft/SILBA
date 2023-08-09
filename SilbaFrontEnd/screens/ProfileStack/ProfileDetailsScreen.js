@@ -1,25 +1,28 @@
 import { Text, View, StyleSheet, SafeAreaView, TextInput } from "react-native";
 import { useState } from "react";
 import { Avatar, Button } from "react-native-paper";
+import { useAuth } from "../../Utils/AuthContext";
 
-const userData = [
-  {
-    fullName: "Joe Bloggs",
-    username: "foodlover123",
-    email: "joebloggs@fakemail.com",
-    avatar_url:
-      "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80",
-    user_id: 1,
-  },
-];
+// const userData = [
+//   {
+//     fullName: "Joe Bloggs",
+//     username: "foodlover123",
+//     email: "joebloggs@fakemail.com",
+//     avatar_url:
+//       "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80",
+//     user_id: 1,
+//   },
+// ];
 
 export default ProfileDetailsScreen = () => {
   const [newEmail, setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [updateStatus, setUpdateStatus] = useState("");
+  const { user } = useAuth();
+  const { data } = user;
 
   const updateDetails = () => {
-    const updatedUserDetails = [...userData];
+    const updatedUserDetails = [...data];
     updatedUserDetails[0] = {
       ...updatedUserDetails,
       email: newEmail || updatedUserDetails[0].email,
@@ -32,12 +35,12 @@ export default ProfileDetailsScreen = () => {
       <View style={styles.profilePage}>
         <Avatar.Image
           size={80}
-          source={{ uri: userData[0].avatar_url }}
+          source={{ uri: data.avatarUrl }}
           style={styles.avatar}
         />
-        <Text style={styles.fullName}>{userData[0].fullName}</Text>
-        <Text style={styles.username}>@{userData[0].username}</Text>
-        <Text style={styles.email}>{userData[0].email}</Text>
+        <Text style={styles.fullName}>{data.fullName}</Text>
+        <Text style={styles.username}>@{data.username}</Text>
+        <Text style={styles.email}>{data.email}</Text>
       </View>
       <TextInput
         style={styles.input}
