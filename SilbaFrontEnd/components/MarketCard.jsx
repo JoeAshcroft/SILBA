@@ -1,7 +1,6 @@
 import { View, Text, Image, StyleSheet, Dimensions, ScrollView, Pressable } from "react-native";
 import React from "react";
 import { useNavigation } from '@react-navigation/native'
-import { Ionicons } from "@expo/vector-icons";
 import {useState, useEffect} from "react";
 import {getMarketplaceItems} from "../api/api"
 import { ActivityIndicator } from "react-native-paper";
@@ -16,8 +15,8 @@ export default MarketCard = () => {
   useEffect(() => {
     setLoading(true)
     getMarketplaceItems()
-    .then(({item}) => {
-      setMarketplaceItems(item)
+    .then(({items}) => {
+      setMarketplaceItems(items)
       setLoading(false)
     })
     .catch((err) => {
@@ -25,6 +24,7 @@ export default MarketCard = () => {
     })
   }, [])
 
+  console.log(marketplaceItems)
 
 
   return (
@@ -39,14 +39,15 @@ export default MarketCard = () => {
         <View style={styles.card} key={index}>
         
           <View style={styles.imageContainer}>
-              <Image style={styles.image} source={{ uri: item.image }} />
+              <Image style={styles.image} source={{ uri: item.itemImage }} />
           </View>
           <View style={styles.itemNameContainer}>
-          <Text style={styles.itemName}>{item.itemname}</Text>
+          <Text style={styles.itemName}>{item.itemName}</Text>
+          
           
         </View>
           <View style={styles.nameDescriptionContainer}>
-          <Text style={styles.businessName}>{item.sellerBusinessName}</Text>
+          <Text></Text>
           <Text style={styles.description}>{item.itemDescription}</Text>
          </View>
           

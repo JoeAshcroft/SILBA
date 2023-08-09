@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
 import { items } from "../data/userBasket.json";
 import BasketItemCard from '../components/BasketItemCard';
@@ -6,10 +6,21 @@ import { Button } from "native-base";
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CheckoutScreen from './CheckoutScreen';
+import { getBasketByUserId } from '../api/api';
+import { useEffect } from 'react';
 
 const BasketStack = createNativeStackNavigator();
 
 export default BasketScreen = () => {
+
+  // const [basket, setBasket] = useState([])
+
+  // useEffect(() => {
+  //   getBasketByUserId("64d2c7088cc8c74120f856ef")
+  //   .then(({basket}) => {
+  //     setBasket(basket)
+  //   })
+  // })
   
   return (
     <BasketStack.Navigator>

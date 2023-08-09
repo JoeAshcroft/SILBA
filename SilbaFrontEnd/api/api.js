@@ -5,7 +5,6 @@ const api = axios.create({
 })
 
 
-
 // BUSINESS REQUESTS 
 export const getBusinesses = async () => {
     const res = await api.get('/business')
