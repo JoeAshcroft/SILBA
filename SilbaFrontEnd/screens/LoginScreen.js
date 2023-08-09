@@ -12,25 +12,37 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import { Formik } from "formik";
 import { useEffect, useState } from "react";
-import { postSignUp } from "../api/api";
+import { postLogin, postSignUp } from "../api/api";
+import { useAuth } from "../Utils/AuthContext";
 
 export default LoginScreen = () => {
   const [login, setLogin] = useState(true);
   const [show, setShow] = useState(false);
   const [error, setError] = useState(false);
   const [signupErr, setSignupErr] = useState(null);
+  const { user, setUser } = useAuth();
 
   const handleLogin = (formObj) => {
+    console.log(formObj);
     const { email, password } = formObj;
-    //   useEffect(() => {
-    //   userLoginAPiFunc(props)
-    //     .then((data) => {})
-    //     .catch((err) => {
-    setError(true);
-    //   });
-    // },[])
-  };
+    console.log(formObj, "formObj");
 
+    const loginData = {
+      email,
+      password,
+    };
+    console.log()
+    postLogin(loginData)
+      .then((data) => {
+        console.log(data, "data");
+        if (data.success) {
+          setUser(data);
+        }
+      })
+      .catch((err) => {
+        setError(true);
+      });
+  };
 
   const handleSignup = (formObj) => {
     setError(false);
@@ -55,9 +67,8 @@ export default LoginScreen = () => {
         .then((response) => {
           if (response.success) {
             setSignupErr(null);
-            
-// navigate to login screen here
 
+            // navigate to login screen here??
           } else {
             setSignupErr("An error occurred during signup.");
           }

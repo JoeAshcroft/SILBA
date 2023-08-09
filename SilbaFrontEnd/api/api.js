@@ -40,6 +40,15 @@ export const postSignUp = async (body) => {
   return res.data;
 };
 
+// post user login
+
+export const postLogin = async (body) => {
+  const res = await api.post("/auth/login", body);
+  console.log(body, "api body");
+  console.log(res.data);
+  return res.data;
+};
+
 // patch user
 
 //BASKET REQUESTS
