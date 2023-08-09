@@ -45,8 +45,7 @@ export const postSignUp = async (body) => {
 
 export const postLogin = async (body) => {
   const res = await api.post("/auth/login", body);
-  console.log(body, "api body");
-  console.log(res.data);
+
   return res.data;
 };
 

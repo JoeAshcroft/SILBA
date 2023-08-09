@@ -14,6 +14,8 @@ import { Formik } from "formik";
 import { useEffect, useState } from "react";
 import { postLogin, postSignUp } from "../api/api";
 import { useAuth } from "../Utils/AuthContext";
+import { useNavigation } from "@react-navigation/native";
+import ProfileScreen from "./ProfileScreen";
 
 export default LoginScreen = () => {
   const [login, setLogin] = useState(true);
@@ -22,9 +24,13 @@ export default LoginScreen = () => {
   const [signupErr, setSignupErr] = useState(null);
   const { user, setUser } = useAuth();
 
+  useEffect(() => {
+    if (user) {
+    }
+  }, [user]);
+
   const handleLogin = (formObj) => {
     const { email, password } = formObj;
-    console.log(formObj, "formObj");
 
     const loginData = {
       email,
@@ -33,13 +39,15 @@ export default LoginScreen = () => {
 
     postLogin(loginData)
       .then((data) => {
-        console.log(data, "data");
+
+
         if (data.success) {
-          setUser(data);
+          // console.log(data, "data")
+          setUser( data );
+          
         }
       })
       .catch((err) => {
-        console.log(err);
         setError(true);
       });
   };
