@@ -1,5 +1,12 @@
-import { View, StyleSheet, Image } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import {
+  View,
+  StyleSheet,
+  Image,
+  Dimensions,
+  Text,
+  Platform,
+} from "react-native";
+import MapView, { Callout, Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import React, { useEffect, useState } from "react";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
@@ -94,7 +101,27 @@ export default function MapScreen() {
             }}
             title={marker.business_name}
             pinColor={marker.pinColor}
-          />
+          >
+            <Callout>
+              <View style={styles.card}>
+                {Platform.OS === "ios" ? (
+                  <Image
+                    source={{ uri: marker.images[0] }}
+                    style={styles.image}
+                  />
+                ) : (
+                  <Text style={styles.textAndroid}>
+                    <Image
+                      source={{ uri: marker.images[0] }}
+                      style={styles.imageAndroid}
+                    />
+                  </Text>
+                )}
+                <Text style={styles.businessName}>{marker.business_name}</Text>
+                <Text style={styles.description}>{marker.description}</Text>
+              </View>
+            </Callout>
+          </Marker>
         ))}
       </MapView>
       <View style={styles.buttonContainer}>
@@ -151,5 +178,41 @@ const styles = StyleSheet.create({
     borderColor: "#2181e1",
     backgroundColor: "#42bdff",
     elevation: 5,
+  },
+  card: {
+    width: Dimensions.get("window").width - 40,
+    backgroundColor: "#fff",
+    marginHorizontal: 10,
+    marginVertical: 10,
+    borderRadius: 0,
+    elevation: 5,
+    alignItems: "center",
+    padding: 10,
+  },
+  image: {
+    width: Dimensions.get("window").width - 60,
+    height: 200,
+    borderRadius: 0,
+    marginBottom: 10,
+  },
+  businessName: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
+  description: {
+    fontSize: 14,
+  },
+  textAndroid: {
+    height: 300,
+    flex: 1,
+    marginTop: -100,
+    width: 330,
+  },
+  imageAndroid: {
+    width: Dimensions.get("window").width - 60,
+    height: 200,
+    borderRadius: 0,
+    marginBottom: 10,
   },
 });
