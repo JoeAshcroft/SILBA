@@ -23,7 +23,6 @@ export default LoginScreen = () => {
   const { user, setUser } = useAuth();
 
   const handleLogin = (formObj) => {
-    console.log(formObj);
     const { email, password } = formObj;
     console.log(formObj, "formObj");
 
@@ -31,7 +30,7 @@ export default LoginScreen = () => {
       email,
       password,
     };
-    console.log()
+
     postLogin(loginData)
       .then((data) => {
         console.log(data, "data");
@@ -40,6 +39,7 @@ export default LoginScreen = () => {
         }
       })
       .catch((err) => {
+        console.log(err);
         setError(true);
       });
   };
