@@ -79,6 +79,7 @@ export default function MapScreen() {
         ref={(map) => {
           this.map = map;
         }}
+        toolbarEnabled={false}
       >
         <Marker
           key={"user"}
