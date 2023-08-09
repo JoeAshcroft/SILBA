@@ -8,21 +8,19 @@ import {
 import { Formik } from "formik";
 import { Button, Stack, Alert } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
-import { newDate } from "../utils/utils";
 import { postReviews } from "../api/api"
 
 export default AddReview = ({businessID}) => {
     const [error, setError] = useState(false)
+    const userID = "64d39ab4ab5abbdd3d9fcead"
 
     const handleReviewPost = ({username, reviewBody, businessID}) => {
-        const reviewData = { review: reviewBody, business: businessID, user: username }
+        const reviewData = { review: reviewBody, businessId: businessID, username: username, userId: userID }
         postReviews(reviewData)
         .then((res)=>{
             setError(false)
-            console.log(res.data)
         })
         .catch((err)=>{
-            console.log(err)
             setError(true)
         })
     }
@@ -34,7 +32,6 @@ export default AddReview = ({businessID}) => {
         initialValues={{
           username: "johndoe",
           reviewBody: "",
-          userID: "64d39ab4ab5abbdd3d9fcead",
           businessID: businessID,
         }}
         onSubmit={(reviewObj) => handleReviewPost(reviewObj)}
@@ -78,15 +75,14 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   textInput: {
-    backgroundColor: "#EDEDED", // Grey background
+    backgroundColor: "#EDEDED",
     borderRadius: 100,
     height: 40,
     width: "80%",
-    // flex: 1, // Take up available space
-    paddingHorizontal: 20, // Horizontal padding
-    paddingVertical: 10, // Vertical padding
+    paddingHorizontal: 20,
+    paddingVertical: 10,
     marginBottom: 10,
     marginTop: 10,
-    marginRight: 10, // Add some spacing between TextInput and Button
+    marginRight: 10,
   },
 });
