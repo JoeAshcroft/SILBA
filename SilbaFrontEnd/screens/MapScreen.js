@@ -7,6 +7,7 @@ import {
   Platform,
 } from "react-native";
 import MapView, { Callout, Marker } from "react-native-maps";
+import { useNavigation } from '@react-navigation/native';
 import * as Location from "expo-location";
 import React, { useEffect, useState } from "react";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
@@ -19,6 +20,8 @@ export default function MapScreen() {
     latitude: 53.483959,
     longitude: -2.244644,
   });
+
+  const { navigate } = useNavigation()
 
   useEffect(() => {
     getBusinesses().then((res) => {
@@ -93,34 +96,38 @@ export default function MapScreen() {
             style={{ height: 35, width: 35 }}
           />
         </Marker>
-        {businesses.map((marker) => (
+        {businesses.map((business) => (
           <Marker
-            key={marker.business_id}
+            key={business.business_id}
             coordinate={{
-              latitude: marker.location.coordinates[0],
-              longitude: marker.location.coordinates[1],
+              latitude: business.location.coordinates[0],
+              longitude: business.location.coordinates[1],
             }}
-            title={marker.business_name}
-            pinColor={marker.pinColor}
+            title={business.business_name}
+            pinColor={business.pinColor}
           >
-            <Callout>
-              <View style={styles.card}>
-                {Platform.OS === "ios" ? (
-                  <Image
-                    source={{ uri: marker.images[0] }}
-                    style={styles.image}
-                  />
-                ) : (
-                  <Text style={styles.textAndroid}>
+            <Callout onPress={() => {
+                  navigate("BusinessDetailsScreen", { business });
+                }}>
+                <View style={styles.card}>
+                  {Platform.OS === "ios" ? (
                     <Image
-                      source={{ uri: marker.images[0] }}
-                      style={styles.imageAndroid}
+                      source={{ uri: business.images[0] }}
+                      style={styles.image}
                     />
+                  ) : (
+                    <Text style={styles.textAndroid}>
+                      <Image
+                        source={{ uri: business.images[0] }}
+                        style={styles.imageAndroid}
+                      />
+                    </Text>
+                  )}
+                  <Text style={styles.businessName}>
+                    {business.business_name}
                   </Text>
-                )}
-                <Text style={styles.businessName}>{marker.business_name}</Text>
-                <Text style={styles.description}>{marker.description}</Text>
-              </View>
+                  <Text style={styles.description}>{business.description}</Text>
+                </View>
             </Callout>
           </Marker>
         ))}
