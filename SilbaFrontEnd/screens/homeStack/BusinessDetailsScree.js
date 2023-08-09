@@ -5,6 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useLayoutEffect } from 'react';
 import { Ionicons } from "@expo/vector-icons";
 import ReviewsList from '../../components/ReviewsList';
+import AddReview from '../../components/AddReview';
 
 
 export default BusinessDetailsScreen = () => {
@@ -37,9 +38,8 @@ export default BusinessDetailsScreen = () => {
 
           <View>
             <Text style={styles.reviewsTitle}>reviews</Text>
-            <TouchableOpacity>
-            <Text style={styles.addReview}>add review</Text>
-          </TouchableOpacity>
+            
+            <AddReview />
             
             <ReviewsList business={business}/>
           </View>
