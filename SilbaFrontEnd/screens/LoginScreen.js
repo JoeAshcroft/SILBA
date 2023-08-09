@@ -39,12 +39,8 @@ export default LoginScreen = () => {
 
     postLogin(loginData)
       .then((data) => {
-
-
         if (data.success) {
-          // console.log(data, "data")
-          setUser( data );
-          
+          setUser(data);
         }
       })
       .catch((err) => {

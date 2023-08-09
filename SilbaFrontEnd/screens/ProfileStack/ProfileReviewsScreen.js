@@ -1,19 +1,25 @@
-import { useRoute } from "@react-navigation/native";
 import { View } from "react-native";
-import ReviewCard from "../../components/ReviewCard.jsx"
-import reviewData from "../../data/reviews.json";
+import ReviewCard from "../../components/ReviewCard.jsx";
+import { useAuth } from "../../Utils/AuthContext";
+import { getReviews } from "../../api/api.js";
+import { useEffect, useState } from "react";
 
 export default ProfileReviewsScreen = () => {
-  const route = useRoute();
-  const { user } = route.params
+  const { user } = useAuth();
+  const [userReviews, setUserReviews] = useState([]);
 
-  const reviews = reviewData.reviews.filter((review)=> {
-    return review.username === user.username
-  })
-
+  useEffect(() => {
+    getReviews().then((data) => {
+      const filteredReviews = data.reviews.filter((review) => {
+        return review.username === user.data.username;
+      });
+      setUserReviews(filteredReviews);
+    });
+  }, [user.data.username]);
+  console.log(userReviews);
   return (
     <View>
-      {reviews.map((review) => (
+      {userReviews.map((review) => (
         <ReviewCard key={review.review_id} review={review} />
       ))}
     </View>
