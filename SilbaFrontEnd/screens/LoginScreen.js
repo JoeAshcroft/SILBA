@@ -12,6 +12,7 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import { Formik } from "formik";
 import { useEffect, useState } from "react";
+import { postSignUp } from "../api/api";
 
 export default LoginScreen = () => {
   const [login, setLogin] = useState(true);
@@ -30,16 +31,43 @@ export default LoginScreen = () => {
     // },[])
   };
 
+
   const handleSignup = (formObj) => {
-    const { username, email, password } = formObj;
-    // useEffect(() => {
-    //   userSingupAPiFunc(props)
-    //     .then((data) => {})
-    //     .catch((err) => {
-    setError(true);
-    // });
-    // },[])
+    setError(false);
+    setSignupErr(null);
+    setFormValues(formObj);
   };
+
+  const [formValues, setFormValues] = useState(null);
+
+  useEffect(() => {
+    if (formValues) {
+      const { username, fullName, password, email } = formValues;
+
+      const userData = {
+        username,
+        fullName,
+        password,
+        email,
+      };
+
+      postSignUp(userData)
+        .then((response) => {
+          if (response.success) {
+            setSignupErr(null);
+            
+// navigate to login screen here
+
+          } else {
+            setSignupErr("An error occurred during signup.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error during signup:", error);
+          setSignupErr("An error occurred during signup.");
+        });
+    }
+  }, [formValues]);
 
   const Login = () => {
     return (
@@ -107,7 +135,12 @@ export default LoginScreen = () => {
       <View style={{ width: "100%" }}>
         <Text>Sign-up</Text>
         <Formik
-          initialValues={{ email: "", password: "", username: "" }}
+          initialValues={{
+            email: "",
+            password: "",
+            username: "",
+            fullName: "",
+          }}
           onSubmit={(values) => handleSignup(values)}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -129,6 +162,24 @@ export default LoginScreen = () => {
                 onChangeText={handleChange("username")}
                 onBlur={handleBlur("username")}
                 value={values.username}
+              />
+              <Input
+                w={{
+                  base: "75%",
+                  md: "25%",
+                }}
+                InputLeftElement={
+                  <Icon
+                    as={<MaterialIcons name="person" />}
+                    size={5}
+                    ml="2"
+                    color="muted.400"
+                  />
+                }
+                placeholder="Full Name"
+                onChangeText={handleChange("fullName")}
+                onBlur={handleBlur("fullName")}
+                value={values.fullName}
               />
               <Input
                 w={{
@@ -200,8 +251,8 @@ export default LoginScreen = () => {
 
   return (
     <NativeBaseProvider>
-      { error ? <ErrorSnackbar /> : null }
-      { login ? <Login /> : <Signup /> }
+      {error ? <ErrorSnackbar /> : null}
+      {login ? <Login /> : <Signup />}
       <Button onPress={() => setLogin(!login)} title="switch" />
     </NativeBaseProvider>
   );
