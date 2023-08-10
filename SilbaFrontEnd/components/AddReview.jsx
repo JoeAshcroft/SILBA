@@ -4,20 +4,21 @@ import { Formik } from "formik";
 import { Button, Stack, Alert } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import { postReviews } from "../api/api";
+import { useAuth } from "../Utils/AuthContext";
 import ReviewCard from "./ReviewCard";
 
 export default AddReview = ({ businessID }) => {
   const [status, setStatus] = useState(false);
   const [optimistic, setOptimistic] = useState(false);
   const [optimisticData, setOptimisticData] = useState({});
-  const userID = "64d39ab4ab5abbdd3d9fcead";
+  const { user } = useAuth();
 
-  const handleReviewPost = ({ username, reviewBody, businessID }) => {
+  const handleReviewPost = ({ reviewBody }) => {
     const reviewData = {
       review: reviewBody,
       businessId: businessID,
-      username: username,
-      userId: userID,
+      username: user.data.username,
+      userId: user.data._id,
       review_votes: 0,
     };
     setOptimisticData(reviewData);
@@ -47,9 +48,7 @@ export default AddReview = ({ businessID }) => {
       ) : (
         <Formik
           initialValues={{
-            username: "johndoe",
             reviewBody: "",
-            businessID: businessID,
           }}
           onSubmit={(reviewObj) => handleReviewPost(reviewObj)}
         >
