@@ -35,6 +35,7 @@ const BasketMainScreen = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
+  
 
   let userId = null;
 
@@ -110,6 +111,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: 10,
+    backgroundColor: 'white',
   },
   basketContent: {
     flex: 1,
@@ -130,9 +132,17 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   checkoutButton: {
+    color: 'black',
     width: 200,
     alignSelf: 'center',
     borderRadius: 30,
     marginVertical: 20,
-  },
+    borderRadius: 100,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 0,
+    width: 200,
+    height: 40,
+    backgroundColor: "black",
+    },
 });

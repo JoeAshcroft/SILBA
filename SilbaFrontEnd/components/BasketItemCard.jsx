@@ -13,7 +13,7 @@ export default function BasketItemCard({ item, onDelete, userId}) {
 
       const body = {
         itemId: item._id,
-        quantity: item.quantity + addQuantity + 1, // Increment the quantity
+        quantity: item.quantity + addQuantity + 1, 
       };
 
       patchBasket(userId, body)
@@ -29,7 +29,7 @@ export default function BasketItemCard({ item, onDelete, userId}) {
 
       const body = {
         itemId: item._id,
-        quantity: item.quantity + addQuantity - 1, // Decrement the quantity
+        quantity: item.quantity + addQuantity - 1, 
       };
 
       patchBasket(userId, body)
