@@ -19,13 +19,14 @@ export const LoginSignup = () => {
   const [error, setError] = useState(false);
   const [signupErr, setSignupErr] = useState(null);
 
-  const handleLogin = (formObj) => {
+  const handleLogin = (formObj, navigation) => {
     const { email, password } = formObj;
+    navigation.navigate("Home")
     //   useEffect(() => {
     //   userLoginAPiFunc(props)
     //     .then((data) => {})
     //     .catch((err) => {
-    setError(true);
+    // setError(true);
     //   });
     // },[])
   };
@@ -36,12 +37,12 @@ export const LoginSignup = () => {
     //   userSingupAPiFunc(props)
     //     .then((data) => {})
     //     .catch((err) => {
-    setError(true);
+    // setError(true);
     // });
     // },[])
   };
 
-  const Login = () => {
+  const Login = ({navigation}) => {
     return (
       <View style={{ width: "100%" }}>
         <Text>Login</Text>

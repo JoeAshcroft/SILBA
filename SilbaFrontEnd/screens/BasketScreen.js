@@ -33,7 +33,7 @@ const BasketMainScreen = () => {
   const { basket, updateBasket } = useBasket();
   const [deleted, setDeleted] = useState(false);
   const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
   const { user } = useAuth();
   
 
@@ -51,20 +51,20 @@ const BasketMainScreen = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [basket]);
 
   const handleItemDelete = (itemId) => {
-    setLoading(true);
-    deleteFromBasket(userId, { basketId: itemId })
+    setDeleteLoading(true);
+    deleteFromBasket(userId, {basketId: itemId })
       .then((res) => {
         const updatedBasket = basket.filter((item) => item._id !== itemId);
         updateBasket(updatedBasket);
-        setLoading(false);
+        setDeleteLoading(false);
         setDeleted(true);
       })
       .catch((err) => {
         console.log(err);
-        setLoading(false);
+        setDeleteLoading(true);
         setError(true);
       });
   };
@@ -88,6 +88,7 @@ const BasketMainScreen = () => {
                 item={item}
                 onDelete={() => handleItemDelete(item._id)}
                 deleted={deleted}
+                deleteLoading={deleteLoading}
                 userId={userId}
               />
             ))}

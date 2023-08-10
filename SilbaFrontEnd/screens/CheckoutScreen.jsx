@@ -17,12 +17,12 @@ const CheckoutScreen = () => {
         <Text style={styles.total}>Your Order</Text>
         <View style={styles.itemsContainer}>
           {basket.map((item) => (
-            <View key={item.itemId} style={styles.item}>
-              <Text style={styles.itemName}>
-                {item.quantity} x {item.itemName}
-              </Text>
-              <Text style={styles.itemPrice}>£{item.itemPrice.toFixed(2)}</Text>
-            </View>
+            <View key={item._id} style={styles.item}>
+  <Text style={styles.itemName}>
+    {item.quantity} x {item.itemName}
+  </Text>
+  <Text style={styles.itemPrice}>£{item.itemPrice.toFixed(2)}</Text>
+</View>
           ))}
         </View>
         <Text style={styles.receivedBy}>

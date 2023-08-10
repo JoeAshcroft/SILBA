@@ -32,7 +32,7 @@ export default MarketCard = () => {
     {loading ? (<View><ActivityIndicator/></View>) : (<View style={styles.container}>
     {marketplaceItems.map((item, index) => {
       return (
-        <Pressable key={item.itemId} 
+        <Pressable key={item._id} 
         onPress={() => {
     navigate("ItemDetailsScreen", {item})
   }} >
