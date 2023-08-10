@@ -62,17 +62,17 @@ export const postToBasket = async (id, body) => {
 };
 
 export const deleteFromBasket = async (id, body) => {
-  const res = await api.delete(`/basket/${id}`, body)
-
+  const res = await api.delete(`/basket/${id}`, {body})
+  return res.data
 };
 
 export const patchBasket = async (id, body) => {
-  const res = await api.delete(`/basket/${id}`, body)
+  const res = await api.patch(`/basket/${id}`, body)
 }
 
 //ORDERS REQUESTS
 export const getOrdersByUserId = async (id) => {
-  const res = await api.get(`/users/order/${id}`);
+  const res = await api.get(`/order/${id}`);
   return res.data;
 };
 

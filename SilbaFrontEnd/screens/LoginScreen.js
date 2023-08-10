@@ -23,6 +23,7 @@ export default LoginScreen = () => {
   const [error, setError] = useState(false);
   const [signupErr, setSignupErr] = useState(null);
   const { user, setUser } = useAuth();
+  const navigation = useNavigation();
 
   useEffect(() => {
     if (user) {
@@ -31,16 +32,17 @@ export default LoginScreen = () => {
 
   const handleLogin = (formObj) => {
     const { email, password } = formObj;
-
+  
     const loginData = {
       email,
       password,
     };
-
+  
     postLogin(loginData)
       .then((data) => {
         if (data.success) {
           setUser(data);
+          navigation.navigate("Home");
         }
       })
       .catch((err) => {
@@ -71,8 +73,7 @@ export default LoginScreen = () => {
         .then((response) => {
           if (response.success) {
             setSignupErr(null);
-
-            // navigate to login screen here??
+            navigation.navigate("Login");
           } else {
             setSignupErr("An error occurred during signup.");
           }
@@ -268,7 +269,7 @@ export default LoginScreen = () => {
     <NativeBaseProvider>
       {error ? <ErrorSnackbar /> : null}
       {login ? <Login /> : <Signup />}
-      <Button onPress={() => setLogin(!login)} title="Create Account" />
+      {login ? <Button onPress={() => setLogin(!login)} title="Create Account" /> :  <Button onPress={() => setLogin(!login)} title="Back to login" />}
     </NativeBaseProvider>
   );
 };
