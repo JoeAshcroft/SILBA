@@ -126,10 +126,6 @@ const DrawerNav = () => {
     <Drawer.Navigator>
       <Drawer.Screen name="silba" component={HomeStackGroup} />
       <Drawer.Screen name="Profile" component={ProfileScreen} />
-      <Drawer.Screen name="Basket" component={BasketScreen} />
-      <Drawer.Screen name="Restaurants" component={RestaurantsScreen} />
-      <Drawer.Screen name="Shops" component={ShopsScreen} />
-      <Drawer.Screen name="Experiences" component={ExperiencesScreen} />
       <Drawer.Screen name="Login" component={LoginScreen} />
     </Drawer.Navigator>
   );

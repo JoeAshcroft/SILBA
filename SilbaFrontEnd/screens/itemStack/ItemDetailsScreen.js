@@ -5,12 +5,18 @@ import { Button } from "native-base";
 import { IconButton, Snackbar } from "react-native-paper";
 import { patchBasket, postToBasket } from "../../api/api";
 import { useBasket } from "../../context/basketContext";
+import { useAuth } from "../../Utils/AuthContext";
 
 export default ItemDetailsScreen = () => {
   const route = useRoute();
   const { item } = route.params;
+  const {user } = useAuth()
 
-  const userId = "64d39a9246d322649f3dda8c"
+  let userId = null;
+
+  if (user !== null) {
+    userId = user.data._id; 
+  }
 
   const [buttonPressed, setButtonPressed] = useState(false);
   const [buttonText, setButtonText] = useState("Add to basket");
@@ -61,7 +67,7 @@ export default ItemDetailsScreen = () => {
           icon="minus"
           onPress={handleDecrement}
         /> */}
-        <Text style={styles.quantityText}>{quantity}</Text>
+        {/* <Text style={styles.quantityText}>{quantity}</Text> */}
         {/* <IconButton
           style={styles.quantityButtons}
           icon="plus"

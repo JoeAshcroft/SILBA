@@ -9,17 +9,6 @@ import ProfileReviewsScreen from "./ProfileStack/ProfileReviewsScreen";
 import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../Utils/AuthContext";
 
-// const userData = [
-//   {
-//     fullName: "Joe Bloggs",
-//     username: "foodlover123",
-//     email: "joebloggs@fakemail.com",
-//     avatar_url:
-//       "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80",
-//     user_id: 1,
-//   },
-// ];
-
 const ProfileStack = createNativeStackNavigator();
 export default ProfileScreen = () => {
   return (
@@ -53,7 +42,12 @@ export default ProfileScreen = () => {
 const ProfileMainScreen = () => {
   const navigation = useNavigation();
   const { user, setUser } = useAuth();
-  const { data } = user;
+
+ 
+  if (user !== null) {
+    const { data } = user; 
+  }
+ 
 
   const handleLogout = () => {
     setUser(null);
@@ -61,7 +55,11 @@ const ProfileMainScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.profilePage}>
+
+    {user === null ? 
+    
+      <Text style={styles.loginMessage}>Please Log In</Text>
+ : ( <><View style={styles.profilePage}>
         <Avatar.Image
           size={80}
           source={{ uri: data.avatarUrl }}
@@ -117,7 +115,9 @@ const ProfileMainScreen = () => {
         >
           Log out
         </Button>
-      </View>
+      </View> </>) }
+
+      
     </SafeAreaView>
   );
 };
@@ -179,5 +179,11 @@ const styles = StyleSheet.create({
   },
   logoutButtonText: {
     color: "black",
+  },
+  loginMessage: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 20,
+    color: "#555", 
   },
 });
