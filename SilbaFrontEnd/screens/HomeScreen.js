@@ -5,110 +5,71 @@ import { Input, Icon } from "native-base";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { getBusinesses } from "../api/api";
 import { useEffect } from "react";
-import { ActivityIndicator} from 'react-native-paper';
+import { ActivityIndicator } from "react-native-paper";
 const HomeScreen = () => {
-
-const [businesses, setBusinesses] = useState([])
-const [loading, setLoading] = useState(false)
+  const [businesses, setBusinesses] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     getBusinesses()
-    .then(({business}) => {
-      setBusinesses(business)
-      setLoading(false)
-    }
-    )
-    .catch(err => {
-      console.log(err)
-    })
-  }, [])
+      .then(({ business }) => {
+        setBusinesses(business);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-const restaurants = businesses.filter((business) => {
-  return business.category === "restaurant"
-})
+  const restaurants = businesses.filter((business) => {
+    return business.category === "restaurant";
+  });
 
-const shops = businesses.filter((business) => {
-  return business.category === "shop"
-})
+  const shops = businesses.filter((business) => {
+    return business.category === "shop";
+  });
 
-const experiences = businesses.filter((business) => {
-  return business.category === "experience"
-})
+  const experiences = businesses.filter((business) => {
+    return business.category === "experience";
+  });
 
-
-
-
-  // const [searchQuery, setSearchQuery] = useState("");
-  // const [restaurants, setRestaurants] = useState(businesses.filter(item => item.category === "restaurant"));
-  // const [shops, setShops] = useState(businesses.filter(item => item.category === "shop"));
-  // const [experiences, setExperiences] = useState(businesses.filter(item => item.category === "experience"));
-
-  // const searchFilterFunction = (search) => {
-  //   setSearchQuery(search);
-  //   filterBusinesses(search);
-  // };
-
-  // const filterBusinesses = (search) => {
-  //   const filterByAddress = (item) =>
-  //     item.address.toLowerCase().includes(search.toLowerCase());
-
-  //   const filteredRestaurants = businesses.filter(
-  //     (item) => item.category === "restaurant" && filterByAddress(item)
-  //   );
-  //   setRestaurants(filteredRestaurants);
-
-  //   const filteredShops = businesses.filter(
-  //     (item) => item.category === "shop" && filterByAddress(item)
-  //   );
-  //   setShops(filteredShops);
-
-  //   const filteredExperiences = businesses.filter(
-  //     (item) => item.category === "experience" && filterByAddress(item)
-  //   );
-  //   setExperiences(filteredExperiences);
-  // };
-
-
- 
   return (
     <SafeAreaView style={styles.container}>
-
-    {loading ? <View><ActivityIndicator/></View> : 
-    
-    <ScrollView>
-        <View style={styles.inputContainer}>
-          <Text style={styles.topTitle}>Featured Businesses Near You</Text>
-          <Input
-            variant="rounded"
-            w="80%"
-            textAlign="left"
-            marginBottom={4}
-            fontSize={14}
-            InputLeftElement={
-              <Icon
-                m="2"
-                ml="3"
-                size="6"
-                color="gray.400"
-                as={<FontAwesome5 name="map-marker-alt" color="black" />}
-              />
-            }
-            placeholder="enter your location"
-            // onChangeText={searchFilterFunction}
-            // value={searchQuery}
-          />
+      {loading ? (
+        <View>
+          <ActivityIndicator />
         </View>
-        {renderScrollableList(restaurants, "Restaurants")}
-        {renderScrollableList(shops, "Shops")}
-        {renderScrollableList(experiences, "Experiences")}
-      </ScrollView>
-    } 
-      
+      ) : (
+        <ScrollView>
+          <View style={styles.inputContainer}>
+            <Text style={styles.topTitle}>Featured Businesses Near You</Text>
+            <Input
+              variant="rounded"
+              w="80%"
+              textAlign="left"
+              marginBottom={4}
+              fontSize={14}
+              InputLeftElement={
+                <Icon
+                  m="2"
+                  ml="3"
+                  size="6"
+                  color="gray.400"
+                  as={<FontAwesome5 name="map-marker-alt" color="black" />}
+                />
+              }
+              placeholder="enter your location"
+            />
+          </View>
+          {renderScrollableList(restaurants, "Restaurants")}
+          {renderScrollableList(shops, "Shops")}
+          {renderScrollableList(experiences, "Experiences")}
+        </ScrollView>
+      )}
     </SafeAreaView>
   );
 };
-
 
 const renderScrollableList = (businessList, title) => (
   <View>
@@ -117,7 +78,7 @@ const renderScrollableList = (businessList, title) => (
     </View>
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       {businessList.map((business) => (
-        <BusinessCard key={business.business_id} business={business} />
+        <BusinessCard key={business._id} business={business} />
       ))}
     </ScrollView>
   </View>
@@ -138,7 +99,7 @@ const styles = StyleSheet.create({
   },
   topTitle: {
     fontSize: 20,
-    fontWeight: "normal", // Use "normal" instead of "regular"
+    fontWeight: "normal",
     textAlign: "center",
     margin: 10,
   },

@@ -112,7 +112,8 @@ export const getReviewsByBusinessId = async (id) => {
   return res.data;
 };
 
-export const postReviews = async (id, body) => {
-  const res = await api.post(`/reviews/${id}`);
+export const postReviews = async (body) => {
+  const res = await api.post(`/reviews/`, body);
+  return res.data;
 };
 // get reviews by user id
