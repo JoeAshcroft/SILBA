@@ -6,20 +6,14 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { getBusinesses } from "../api/api";
 import { useEffect } from "react";
 import { ActivityIndicator } from "react-native-paper";
+
 const HomeScreen = () => {
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(false);
-
   const [searchQuery, setSearchQuery] = useState("");
-  const [restaurants, setRestaurants] = useState(
-    businesses.filter((item) => item.category === "restaurant")
-  );
-  const [shops, setShops] = useState(
-    businesses.filter((item) => item.category === "shop")
-  );
-  const [experiences, setExperiences] = useState(
-    businesses.filter((item) => item.category === "experience")
-  );
+  const [restaurants, setRestaurants] = useState([]);
+  const [shops, setShops] = useState([]);
+  const [experiences, setExperiences] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -27,6 +21,7 @@ const HomeScreen = () => {
       .then(({ business }) => {
         setBusinesses(business);
         setLoading(false);
+        setSearchQuery("manchester");
       })
       .catch((err) => {
         console.log(err);
@@ -34,41 +29,32 @@ const HomeScreen = () => {
   }, []);
 
   const searchFilterFunction = (search) => {
+    console.log(search);
     setSearchQuery(search);
     filterBusinesses(search);
   };
 
   const filterBusinesses = (search) => {
-    const filterByAddress = (item) =>
-      item.address.toLowerCase().includes(search.toLowerCase());
+    const filterByAddress = (business) =>
+      business.address.toLowerCase().includes(search.toLowerCase());
 
     const filteredRestaurants = businesses.filter(
-      (item) => item.category === "restaurant" && filterByAddress(item)
+      (business) =>
+        business.category === "restaurant" && filterByAddress(business)
     );
     setRestaurants(filteredRestaurants);
 
     const filteredShops = businesses.filter(
-      (item) => item.category === "shop" && filterByAddress(item)
+      (business) => business.category === "shop" && filterByAddress(business)
     );
     setShops(filteredShops);
 
     const filteredExperiences = businesses.filter(
-      (item) => item.category === "experience" && filterByAddress(item)
+      (business) =>
+        business.category === "experience" && filterByAddress(business)
     );
     setExperiences(filteredExperiences);
   };
-
-  // const restaurants = businesses.filter((business) => {
-  //   return business.category === "restaurant";
-  // });
-
-  // const shops = businesses.filter((business) => {
-  //   return business.category === "shop";
-  // });
-
-  // const experiences = businesses.filter((business) => {
-  //   return business.category === "experience";
-  // });
 
   return (
     <SafeAreaView style={styles.container}>
@@ -86,15 +72,15 @@ const HomeScreen = () => {
               textAlign="left"
               marginBottom={4}
               fontSize={14}
+              value={searchQuery}
+              onChangeText={searchFilterFunction}
               InputLeftElement={
                 <Icon
                   m="2"
                   ml="3"
                   size="6"
-                  color="gray.400"
                   as={<FontAwesome5 name="map-marker-alt" color="black" />}
-                  value={searchQuery}
-                  onChangeText={searchFilterFunction}
+                  color="gray.400"
                 />
               }
               placeholder="enter your location"
