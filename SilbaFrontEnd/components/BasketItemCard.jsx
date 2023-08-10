@@ -1,43 +1,43 @@
 import React, { useState } from "react";
 import { Image, StyleSheet, View, Text } from "react-native";
-import { IconButton } from "react-native-paper";
-import { deleteFromBasket, patchBasket, postToBasket } from "../api/api";
+import { IconButton, ActivityIndicator } from "react-native-paper";
+import { patchBasket } from "../api/api"; 
 
-export default function BasketItemCard({ item, onDelete, userId}) {
+export default function BasketItemCard({ item, onDelete, userId, deleteLoading }) {
   const [addQuantity, setAddQuantity] = useState(0);
 
   const handleIncrement = () => {
-    console.log(item.quantity);
     if (item.quantity + addQuantity < item.stockCount) {
       setAddQuantity((prevQuantity) => prevQuantity + 1);
 
+      const newQuantity = item.quantity + 1
+   
       const body = {
         itemId: item._id,
-        quantity: item.quantity + addQuantity + 1, 
+        quantity: newQuantity.toString(),
       };
-
+  
       patchBasket(userId, body)
-        .then((res) => console.log("added"))
+        .then((res) => console.log(res))
         .catch((err) => console.log(err));
     }
   };
 
   const handleDecrement = () => {
-    console.log(item.quantity);
     if (item.quantity + addQuantity > 1) {
       setAddQuantity((prevQuantity) => prevQuantity - 1);
-
+      
+      const newQuantity = item.quantity - 1; // Calculate the new quantity
       const body = {
         itemId: item._id,
-        quantity: item.quantity + addQuantity - 1, 
+        quantity: newQuantity.toString(),
       };
-
+  
       patchBasket(userId, body)
-        .then((res) => console.log("decremented"))
+        .then((res) => console.log(item.quantity))
         .catch((err) => console.log(err));
     }
   };
-
 
   return (
     <View style={styles.card}>
@@ -48,24 +48,30 @@ export default function BasketItemCard({ item, onDelete, userId}) {
       <Text style={styles.itemName}>{item.itemName}</Text>
 
       <View style={styles.priceAndBin}>
+        {item.quantity === 1 ? (
+          deleteLoading ? (
+            <ActivityIndicator animating={true} color={"black"} />
+          ) : (
+            <IconButton
+              icon="trash-can"
+              size={15}
+              onPress={onDelete}
+            />
+          )
+        ) : (
+          <IconButton
+            icon="minus"
+            size={20}
+            style={styles.bin}
+            onPress={handleDecrement}
+            disabled={item.quantity === 1} 
+          />
+        )}
 
-      {item.quantity === 1 ? <IconButton
-          icon="trash-can"
-          size={15}
-          onPress={onDelete}
-         
-        /> : <IconButton
-          icon="minus"
-          size={20}
-          style={styles.bin}
-          onPress={handleDecrement}
-          disabled={item.quantity + addQuantity === 1}
-        />}
-        
         <Text style={styles.itemQuantity}>
           {item.quantity + addQuantity}
         </Text>
-        
+
         <IconButton
           icon="plus"
           size={20}
@@ -74,7 +80,6 @@ export default function BasketItemCard({ item, onDelete, userId}) {
         />
       </View>
       <Text style={styles.itemPrice}>£{item.itemPrice}</Text>
-    
     </View>
   );
 }
@@ -97,16 +102,13 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     width: 200,
-
     borderRadius: 10,
   },
-
   itemName: {
     fontSize: 12,
     fontWeight: "bold",
     marginVertical: 1,
   },
-
   itemPrice: {
     fontSize: 16,
   },

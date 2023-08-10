@@ -41,6 +41,7 @@ export default ItemDetailsScreen = () => {
         })
         .catch((err) => {
           setError(true);
+          console.log(err)
         });
     }
   };
@@ -75,9 +76,6 @@ export default ItemDetailsScreen = () => {
           <Text style={styles.buttonText}>{buttonText}</Text>
         </Button>
 
-        <Snackbar visible={itemAdded} onDismiss={() => setItemAdded(false)}>
-          Item added to basket.
-        </Snackbar>
 
         <Snackbar visible={error} onDismiss={() => setError(false)}>
           There was an error adding item to basket. Please try again.
@@ -146,14 +144,13 @@ const styles = StyleSheet.create({
     marginTop: 0,
   },
   button: {
-    color: 'white',
     borderRadius: 100,
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 0,
     width: 200,
     height: 40,
-    backgroundColor: "grey"
+    backgroundColor: "#d8d8d8",
   
   },
   buttonPressed: {
