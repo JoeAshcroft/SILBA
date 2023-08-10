@@ -86,8 +86,8 @@ export default LoginScreen = () => {
 
   const Login = () => {
     return (
-      <View style={{ width: "100%" }}>
-        <Text>Login</Text>
+      <View style={{ width: "100%", paddingTop:20 }}>
+       
         <Formik
           initialValues={{ email: "", password: "" }}
           onSubmit={(values) => handleLogin(values)}
@@ -148,7 +148,7 @@ export default LoginScreen = () => {
   const Signup = () => {
     return (
       <View style={{ width: "100%" }}>
-        <Text>Sign-up</Text>
+        <Text style={{fontSize:20, textAlign:'center', padding:20}} >Create an account</Text>
         <Formik
           initialValues={{
             email: "",
@@ -268,7 +268,7 @@ export default LoginScreen = () => {
     <NativeBaseProvider>
       {error ? <ErrorSnackbar /> : null}
       {login ? <Login /> : <Signup />}
-      <Button onPress={() => setLogin(!login)} title="switch" />
+      <Button onPress={() => setLogin(!login)} title="Create Account" />
     </NativeBaseProvider>
   );
 };

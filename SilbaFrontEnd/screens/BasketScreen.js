@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
 import BasketItemCard from '../components/BasketItemCard';
 import { Button } from "native-base";
@@ -6,15 +6,13 @@ import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CheckoutScreen from './CheckoutScreen';
 import { deleteFromBasket, getBasketByUserId } from '../api/api';
-import { useEffect } from 'react';
 import { useBasket } from '../context/basketContext';
 import { Snackbar } from 'react-native-paper';
+import { useAuth } from '../Utils/AuthContext';
 
 const BasketStack = createNativeStackNavigator();
 
 export default BasketScreen = () => {
- 
-
   return (
     <BasketStack.Navigator>
       <BasketStack.Screen
@@ -33,39 +31,42 @@ export default BasketScreen = () => {
 
 const BasketMainScreen = () => {
   const { basket, updateBasket } = useBasket();
-  const [deleted, setDeleted] = useState(false)
-  const [error, setError] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [deleted, setDeleted] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
 
-  const userId = "64d39a9246d322649f3dda8c"
+  let userId = null;
+
+  if (user !== null) {
+    userId = user.data._id; 
+  }
 
   useEffect(() => {
     getBasketByUserId(userId)
-    .then(({basket}) => {
-  
-      updateBasket(basket)
-      
-    }).catch((err) => {
-
-    })
-  },[])
-
- 
-
-  const handleItemDelete = (itemId) => {
-    setLoading(true)
-    deleteFromBasket(userId, { basketId: itemId })
-      .then(() => {
-        const updatedBasket = basket.filter((item) => item._id !== itemId);
-        updateBasket(updatedBasket);
-        setLoading(false)
-        setDeleted(true)
-        
+      .then(({basket}) => {
+        updateBasket(basket);
       })
       .catch((err) => {
-        setLoading(false)
-        setError(true)})}
+        console.log(err);
+      });
+  }, []);
 
+  const handleItemDelete = (itemId) => {
+    setLoading(true);
+    deleteFromBasket(userId, { basketId: itemId })
+      .then((res) => {
+        const updatedBasket = basket.filter((item) => item._id !== itemId);
+        updateBasket(updatedBasket);
+        setLoading(false);
+        setDeleted(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+        setError(true);
+      });
+  };
 
   const navigation = useNavigation();
 
@@ -74,76 +75,64 @@ const BasketMainScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.basketContainer}>
-      <ScrollView>
-      {basket.map((item) => (
-  <BasketItemCard key={item._id}
-   item={item}
-   onDelete={() => handleItemDelete(item._id)} 
-  deleted={deleted}
-  userId={userId}
-   />
-       ))}
-     
-      </ScrollView>
-      <Button onPress={() => {handleCheckout(basket)}}>Checkout</Button>
+    <SafeAreaView style={styles.container}>
+      {user === null ? (
+        <Text style={styles.loginMessage}>Please log in</Text>
+      ) : basket.length > 0 ? (
+        <View style={styles.basketContent}>
+          <ScrollView>
+            {basket.map((item) => (
+              <BasketItemCard
+                key={item._id}
+                item={item}
+                onDelete={() => handleItemDelete(item._id)}
+                deleted={deleted}
+                userId={userId}
+              />
+            ))}
+          </ScrollView>
+          <Button onPress={() => handleCheckout(basket)} style={styles.checkoutButton}>
+            Checkout
+          </Button>
+        </View>
+      ) : (
+        <Text style={styles.emptyBasketMessage}>Basket Empty</Text>
+      )}
 
-<View>
-
-      {/* <Snackbar
-        visible={deleted}
-        onDismiss={() => setDeleted(false)}>
-        Item deleted
-      </Snackbar> */}
-
-      <Snackbar
-        visible={error}
-        onDismiss={() => setError(false)}>
-        There was an error deleting from basket. Please try again.
+      <Snackbar visible={error} onDismiss={() => setError(false)}>
+        There was an error deleting from the basket. Please try again.
       </Snackbar>
-      </View>
-
     </SafeAreaView>
-
-   
-
-
   );
-}
-
-
+};
 
 const styles = StyleSheet.create({
-  basketContainer: {
+  container: {
     flex: 1,
     paddingVertical: 10,
   },
-  titleContainer: {
-    paddingHorizontal: 10,
-    marginTop: 0,
-    textAlign: "center"
+  basketContent: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  title: {
-    fontSize: 20,
+  loginMessage: {
+    fontSize: 18,
     fontWeight: 'bold',
-    textAlign: "center"
+    marginBottom: 20,
+    color: "#555",
+    textAlign: "center",
   },
-  DorC: {
-    fontSize: 14,
-    color: 'gray',
-    textAlign: "center"
-  },
-  totalCost: {
+  emptyBasketMessage: {
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 20,
   },
-  button: {
+  checkoutButton: {
     width: 200,
     alignSelf: 'center',
     borderRadius: 30,
-    marginBottom: 20,
-  }
+    marginVertical: 20,
+  },
 });

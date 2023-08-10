@@ -4,10 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import MarketCard from '../components/MarketCard';
 import { IconButton } from "react-native-paper";
 
+
 export default function MarketplaceScreen() {
   const navigation = useNavigation();
-
   
+
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
