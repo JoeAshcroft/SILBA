@@ -101,4 +101,5 @@ const styles = StyleSheet.create({
   logoutButtonText: {
     color: "black",
   },
+  businessName: {},
 });
