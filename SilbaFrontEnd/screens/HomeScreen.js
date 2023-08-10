@@ -1,19 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView, View, StyleSheet, Text, ScrollView } from "react-native";
 import BusinessCard from "../components/BusinessCard";
 import { Input, Icon } from "native-base";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { getBusinesses } from "../api/api";
-import { useEffect } from "react";
 import { ActivityIndicator } from "react-native-paper";
 
 const HomeScreen = () => {
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [restaurants, setRestaurants] = useState([]);
-  const [shops, setShops] = useState([]);
-  const [experiences, setExperiences] = useState([]);
+  const [filteredBusinesses, setFilteredBusinesses] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -21,39 +18,23 @@ const HomeScreen = () => {
       .then(({ business }) => {
         setBusinesses(business);
         setLoading(false);
-        setSearchQuery("manchester");
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  const searchFilterFunction = (search) => {
-    console.log(search);
-    setSearchQuery(search);
-    filterBusinesses(search);
-  };
+  useEffect(() => {
+    filterBusinesses(searchQuery);
+  }, [searchQuery, businesses]); // Include 'businesses' as a dependency here
 
   const filterBusinesses = (search) => {
     const filterByAddress = (business) =>
       business.address.toLowerCase().includes(search.toLowerCase());
 
-    const filteredRestaurants = businesses.filter(
-      (business) =>
-        business.category === "restaurant" && filterByAddress(business)
-    );
-    setRestaurants(filteredRestaurants);
+    const filtered = businesses.filter((business) => filterByAddress(business));
 
-    const filteredShops = businesses.filter(
-      (business) => business.category === "shop" && filterByAddress(business)
-    );
-    setShops(filteredShops);
-
-    const filteredExperiences = businesses.filter(
-      (business) =>
-        business.category === "experience" && filterByAddress(business)
-    );
-    setExperiences(filteredExperiences);
+    setFilteredBusinesses(filtered);
   };
 
   return (
@@ -73,40 +54,45 @@ const HomeScreen = () => {
               marginBottom={4}
               fontSize={14}
               value={searchQuery}
-              onChangeText={searchFilterFunction}
-              InputLeftElement={
-                <Icon
-                  m="2"
-                  ml="3"
-                  size="6"
-                  as={<FontAwesome5 name="map-marker-alt" color="black" />}
-                  color="gray.400"
-                />
-              }
+              onChangeText={setSearchQuery}
               placeholder="enter your location"
             />
           </View>
-          {renderScrollableList(restaurants, "Restaurants")}
-          {renderScrollableList(shops, "Shops")}
-          {renderScrollableList(experiences, "Experiences")}
+          {renderScrollableList(
+            filteredBusinesses,
+            "Restaurants",
+            "restaurant"
+          )}
+          {renderScrollableList(filteredBusinesses, "Shops", "shop")}
+          {renderScrollableList(
+            filteredBusinesses,
+            "Experiences",
+            "experience"
+          )}
         </ScrollView>
       )}
     </SafeAreaView>
   );
 };
 
-const renderScrollableList = (businessList, title) => (
-  <View>
-    <View style={styles.titleContainer}>
-      <Text style={styles.title}>{title}</Text>
+const renderScrollableList = (businessList, title, category) => {
+  const filteredList = businessList.filter(
+    (business) => business.category === category
+  );
+
+  return (
+    <View>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>{title}</Text>
+      </View>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {filteredList.map((business) => (
+          <BusinessCard key={business._id} business={business} />
+        ))}
+      </ScrollView>
     </View>
-    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-      {businessList.map((business) => (
-        <BusinessCard key={business._id} business={business} />
-      ))}
-    </ScrollView>
-  </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
