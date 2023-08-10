@@ -10,6 +10,17 @@ const HomeScreen = () => {
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [restaurants, setRestaurants] = useState(
+    businesses.filter((item) => item.category === "restaurant")
+  );
+  const [shops, setShops] = useState(
+    businesses.filter((item) => item.category === "shop")
+  );
+  const [experiences, setExperiences] = useState(
+    businesses.filter((item) => item.category === "experience")
+  );
+
   useEffect(() => {
     setLoading(true);
     getBusinesses()
@@ -22,17 +33,42 @@ const HomeScreen = () => {
       });
   }, []);
 
-  const restaurants = businesses.filter((business) => {
-    return business.category === "restaurant";
-  });
+  const searchFilterFunction = (search) => {
+    setSearchQuery(search);
+    filterBusinesses(search);
+  };
 
-  const shops = businesses.filter((business) => {
-    return business.category === "shop";
-  });
+  const filterBusinesses = (search) => {
+    const filterByAddress = (item) =>
+      item.address.toLowerCase().includes(search.toLowerCase());
 
-  const experiences = businesses.filter((business) => {
-    return business.category === "experience";
-  });
+    const filteredRestaurants = businesses.filter(
+      (item) => item.category === "restaurant" && filterByAddress(item)
+    );
+    setRestaurants(filteredRestaurants);
+
+    const filteredShops = businesses.filter(
+      (item) => item.category === "shop" && filterByAddress(item)
+    );
+    setShops(filteredShops);
+
+    const filteredExperiences = businesses.filter(
+      (item) => item.category === "experience" && filterByAddress(item)
+    );
+    setExperiences(filteredExperiences);
+  };
+
+  // const restaurants = businesses.filter((business) => {
+  //   return business.category === "restaurant";
+  // });
+
+  // const shops = businesses.filter((business) => {
+  //   return business.category === "shop";
+  // });
+
+  // const experiences = businesses.filter((business) => {
+  //   return business.category === "experience";
+  // });
 
   return (
     <SafeAreaView style={styles.container}>
@@ -57,6 +93,8 @@ const HomeScreen = () => {
                   size="6"
                   color="gray.400"
                   as={<FontAwesome5 name="map-marker-alt" color="black" />}
+                  value={searchQuery}
+                  onChangeText={searchFilterFunction}
                 />
               }
               placeholder="enter your location"
