@@ -4,6 +4,7 @@ import { useAuth } from "../../Utils/AuthContext";
 import { getReviews } from "../../api/api.js";
 import { useEffect, useState } from "react";
 import { Avatar } from "react-native-paper";
+import { ScrollView } from "native-base";
 
 export default ProfileReviewsScreen = () => {
   const { user } = useAuth();
@@ -12,7 +13,6 @@ export default ProfileReviewsScreen = () => {
   useEffect(() => {
     getReviews().then((data) => {
       const filteredReviews = data.reviews.filter((review) => {
-        console.log(user.data.username);
         return review.username === user.data.username;
       });
       setUserReviews(filteredReviews);
@@ -31,11 +31,14 @@ export default ProfileReviewsScreen = () => {
         <Text style={styles.username}>@{user.data.username}</Text>
         <Text style={styles.email}>{user.data.email}</Text>
       </View>
-      <View>
+      <ScrollView>
         {userReviews.map((review) => (
-          <ReviewCard key={review.review_id} review={review} />
+          <View style={styles.reviewsContainer}>
+            <Text>{review.businessName}</Text>
+            <ReviewCard key={review.review_id} review={review} />
+          </View>
         ))}
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -98,4 +101,5 @@ const styles = StyleSheet.create({
   logoutButtonText: {
     color: "black",
   },
+  businessName: {},
 });
