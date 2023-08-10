@@ -1,27 +1,20 @@
 import React, { useState } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
-import { items } from "../data/userBasket.json";
 import BasketItemCard from '../components/BasketItemCard';
 import { Button } from "native-base";
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CheckoutScreen from './CheckoutScreen';
-import { getBasketByUserId } from '../api/api';
+import { deleteFromBasket, getBasketByUserId } from '../api/api';
 import { useEffect } from 'react';
+import { useBasket } from '../context/basketContext';
+import { Snackbar } from 'react-native-paper';
 
 const BasketStack = createNativeStackNavigator();
 
 export default BasketScreen = () => {
+ 
 
-  // const [basket, setBasket] = useState([])
-
-  // useEffect(() => {
-  //   getBasketByUserId("64d2c7088cc8c74120f856ef")
-  //   .then(({basket}) => {
-  //     setBasket(basket)
-  //   })
-  // })
-  
   return (
     <BasketStack.Navigator>
       <BasketStack.Screen
@@ -39,62 +32,86 @@ export default BasketScreen = () => {
 };
 
 const BasketMainScreen = () => {
-  const sellerItemsMap = groupItemsBySeller(items);
+  const { basket, updateBasket } = useBasket();
+  const [deleted, setDeleted] = useState(false)
+  const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const userId = "64d39a9246d322649f3dda8c"
+
+  useEffect(() => {
+    getBasketByUserId(userId)
+    .then(({basket}) => {
+  
+      updateBasket(basket)
+      
+    }).catch((err) => {
+
+    })
+  },[])
+
+ 
+
+  const handleItemDelete = (itemId) => {
+    setLoading(true)
+    deleteFromBasket(userId, { basketId: itemId })
+      .then(() => {
+        const updatedBasket = basket.filter((item) => item._id !== itemId);
+        updateBasket(updatedBasket);
+        setLoading(false)
+        setDeleted(true)
+        
+      })
+      .catch((err) => {
+        setLoading(false)
+        setError(true)})}
+
+
   const navigation = useNavigation();
-  const handleCheckout = (items, totalCost) => {
-    navigation.navigate('Checkout', {items, totalCost});
+
+  const handleCheckout = (basket) => {
+    navigation.navigate('Checkout', {basket});
   };
 
   return (
     <SafeAreaView style={styles.basketContainer}>
       <ScrollView>
-        {Object.entries(sellerItemsMap).map(([seller, { items, totalCost }]) => (
-          <View key={seller}>
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>Sold by {seller}</Text>
-              <Text style={styles.DorC}>Purchase method: {items[0].deliveryOrCollection}</Text>
-            </View>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              {items.map((item) => (
-                <BasketItemCard key={item.itemId} item={item} />
-              ))}
-            </ScrollView>
-            <Text style={styles.totalCost}>Total £{totalCost.toFixed(2)}</Text>
-            <Button style={styles.button} onPress={()=>{handleCheckout(items, totalCost)}}>Checkout</Button>
-          </View>
-        ))}
+      {basket.map((item) => (
+  <BasketItemCard key={item._id}
+   item={item}
+   onDelete={() => handleItemDelete(item._id)} 
+  deleted={deleted}
+  userId={userId}
+   />
+       ))}
+     
       </ScrollView>
+      <Button onPress={() => {handleCheckout(basket)}}>Checkout</Button>
+
+<View>
+
+      {/* <Snackbar
+        visible={deleted}
+        onDismiss={() => setDeleted(false)}>
+        Item deleted
+      </Snackbar> */}
+
+      <Snackbar
+        visible={error}
+        onDismiss={() => setError(false)}>
+        There was an error deleting from basket. Please try again.
+      </Snackbar>
+      </View>
+
     </SafeAreaView>
+
+   
+
+
   );
 }
 
-const groupItemsBySeller = (items) => {
-  const sellerItemsMap = {};
-  items.forEach((item) => {
-    const { sellerBusinessName } = item;
-    if (!sellerItemsMap[sellerBusinessName]) {
-      sellerItemsMap[sellerBusinessName] = {
-        items: [{ ...item, quantity: 1 }], 
-        totalCost: item.itemPrice,
-      };
-    } else {
-      const existingItem = sellerItemsMap[sellerBusinessName].items.find(
-        (i) => i.itemId === item.itemId
-      );
 
-      if (existingItem) {
-     
-        existingItem.quantity += 1;
-        sellerItemsMap[sellerBusinessName].totalCost += item.itemPrice;
-      } else {
-    
-        sellerItemsMap[sellerBusinessName].items.push({ ...item, quantity: 1 });
-        sellerItemsMap[sellerBusinessName].totalCost += item.itemPrice;
-      }
-    }
-  });
-  return sellerItemsMap;
-};
 
 const styles = StyleSheet.create({
   basketContainer: {

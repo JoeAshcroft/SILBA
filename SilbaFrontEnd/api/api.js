@@ -53,17 +53,22 @@ export const postLogin = async (body) => {
 
 //BASKET REQUESTS
 export const getBasketByUserId = async (id) => {
-  const res = await api.get(`/users/basket/${id}`);
+  const res = await api.get(`/basket/${id}`);
   return res.data;
 };
 
 export const postToBasket = async (id, body) => {
-  const res = await api.post(`/users/basket/${id}`, body);
+  const res = await api.post(`/basket/${id}`, body);
 };
 
-export const deleteFromBasket = async (id) => {
-  // does this delete all of the basket? or just the basket items?
+export const deleteFromBasket = async (id, body) => {
+  const res = await api.delete(`/basket/${id}`, body)
+
 };
+
+export const patchBasket = async (id, body) => {
+  const res = await api.delete(`/basket/${id}`, body)
+}
 
 //ORDERS REQUESTS
 export const getOrdersByUserId = async (id) => {
@@ -82,9 +87,7 @@ export const deleteOrder = async (id) => {
 
 // MARKETPLACE ITEMS REQUESTS
 export const getMarketplaceItems = async () => {
-  console.log("api");
   const res = await api.get("/items");
-  console.log(res.data, "<=== api");
   return res.data;
 };
 

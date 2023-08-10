@@ -2,32 +2,39 @@ import React, { useState } from "react";
 import { useRoute } from "@react-navigation/native";
 import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { Button } from "native-base";
-import { IconButton } from "react-native-paper";
+import { IconButton, Snackbar } from "react-native-paper";
+import { patchBasket, postToBasket } from "../../api/api";
+import { useBasket } from "../../context/basketContext";
 
 export default ItemDetailsScreen = () => {
   const route = useRoute();
   const { item } = route.params;
 
+  const userId = "64d39a9246d322649f3dda8c"
+
   const [buttonPressed, setButtonPressed] = useState(false);
   const [buttonText, setButtonText] = useState("Add to basket");
   const [quantity, setQuantity] = useState(1);
+  const [itemAdded, setItemAdded] = useState(false)
+  const [error, setError] = useState(false)
+  const { basket, updateBasket } = useBasket();
+
 
   const handlePress = () => {
     setButtonPressed(true);
     setButtonText("Added to basket");
+
+    const body = {itemId: item._id}
+
+    postToBasket(userId, body)
+    .then((res) => {
+      setItemAdded(true)
+    })
+    .catch((err) => {
+      setError(true)
+    })
   };
 
-  const handleIncrement = () => {
-    if (quantity < item.quantity) {
-      setQuantity((prevQuantity) => prevQuantity + 1);
-    }
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity((prevQuantity) => prevQuantity - 1);
-    }
-  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -49,17 +56,17 @@ export default ItemDetailsScreen = () => {
       )}
       <Text style={styles.price}>£{item.itemPrice}</Text>
       <View style={styles.quantitySelectContainer}>
-        <IconButton
+        {/* <IconButton
           style={styles.quantityButtons}
           icon="minus"
           onPress={handleDecrement}
-        />
+        /> */}
         <Text style={styles.quantityText}>{quantity}</Text>
-        <IconButton
+        {/* <IconButton
           style={styles.quantityButtons}
           icon="plus"
           onPress={handleIncrement}
-        />
+        /> */}
       </View>
 
       <View style={styles.buttonContainer}>
@@ -70,6 +77,18 @@ export default ItemDetailsScreen = () => {
         >
           <Text style={styles.buttonText}>{buttonText}</Text>
         </Button>
+
+        <Snackbar
+        visible={itemAdded}
+        onDismiss={() => setItemAdded(false)}>
+        Item added to basket.
+      </Snackbar>
+
+      <Snackbar
+        visible={error}
+        onDismiss={() => setError(false)}>
+        There was an error adding item to basket. Please try again.
+      </Snackbar>
       </View>
     </SafeAreaView>
   );

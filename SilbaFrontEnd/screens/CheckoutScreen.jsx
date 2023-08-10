@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useRoute } from "@react-navigation/native";
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
+import { useBasket } from "../context/basketContext";
 
 const CheckoutScreen = () => {
   const route = useRoute();
-  const { items, totalCost } = route.params;
+  const { basket, updateBasket } = useBasket();
   const [isCardNumberSecure, setCardNumberSecure] = useState(true);
   const [isExpiryDateSecure, setExpiryDateSecure] = useState(true);
   const [isCvcSecure, setCvcSecure] = useState(true);
@@ -15,23 +16,25 @@ const CheckoutScreen = () => {
       <ScrollView>
         <Text style={styles.total}>Your Order</Text>
         <View style={styles.itemsContainer}>
-          {items.map((item) => (
+          {basket.map((item) => (
             <View key={item.itemId} style={styles.item}>
-              <Text style={styles.itemName}>1x {item.itemName}</Text>
+              <Text style={styles.itemName}>
+                {item.quantity} x {item.itemName}
+              </Text>
               <Text style={styles.itemPrice}>£{item.itemPrice.toFixed(2)}</Text>
             </View>
           ))}
         </View>
         <Text style={styles.receivedBy}>
-          Received by: {items[0].deliveryOrCollection}
+          Received by: {basket[0].deliveryOrCollection}
         </Text>
-        {items[0].deliveryOrCollection === "Collection" ? (
+        {basket[0].deliveryOrCollection === "Collection" ? (
           <Text style={styles.collectionText}>
-            Please collect from: {items[0].sellerBusinessName},{" "}
-            {items[0].addressForCollection} within 24 hours
+            Please collect from: {basket[0].sellerBusinessName},{" "}
+            {basket[0].addressForCollection} within 24 hours
           </Text>
         ) : null}
-        <Text style={styles.total}>Total: £{totalCost.toFixed(2)}</Text>
+        {/* <Text style={styles.total}>Total: £{totalCost.toFixed(2)}</Text> */}
 
         <View style={styles.paymentDetailsContainer}>
           <Text style={styles.paymentDetails}>Payment Details</Text>
@@ -40,46 +43,45 @@ const CheckoutScreen = () => {
             label="Full Name"
             placeholder="Type something"
           />
-          
 
-<TextInput
-  mode="outlined"
-  label="Card number"
-  placeholder="Type something"
-  secureTextEntry={isCardNumberSecure}
-  right={
-    <TextInput.Icon
-      icon={isCardNumberSecure ? "eye-off-outline" : "eye-outline"}
-      onPress={() => setCardNumberSecure(!isCardNumberSecure)}
-    />
-  }
-/>
+          <TextInput
+            mode="outlined"
+            label="Card number"
+            placeholder="Type something"
+            secureTextEntry={isCardNumberSecure}
+            right={
+              <TextInput.Icon
+                icon={isCardNumberSecure ? "eye-off-outline" : "eye-outline"}
+                onPress={() => setCardNumberSecure(!isCardNumberSecure)}
+              />
+            }
+          />
 
-<TextInput
-  mode="outlined"
-  label="Expiry date"
-  placeholder="Type something"
-  secureTextEntry={isExpiryDateSecure}
-  right={
-    <TextInput.Icon
-      icon={isExpiryDateSecure ? "eye-off-outline" : "eye-outline"}
-      onPress={() => setExpiryDateSecure(!isExpiryDateSecure)}
-    />
-  }
-/>
+          <TextInput
+            mode="outlined"
+            label="Expiry date"
+            placeholder="Type something"
+            secureTextEntry={isExpiryDateSecure}
+            right={
+              <TextInput.Icon
+                icon={isExpiryDateSecure ? "eye-off-outline" : "eye-outline"}
+                onPress={() => setExpiryDateSecure(!isExpiryDateSecure)}
+              />
+            }
+          />
 
-<TextInput
-  mode="outlined"
-  label="CVC"
-  placeholder="Type something"
-  secureTextEntry={isCvcSecure}
-  right={
-    <TextInput.Icon
-    icon={isCvcSecure ? "eye-off-outline" : "eye-outline"}
-      onPress={() => setCvcSecure(!isCvcSecure)}
-    />
-  }
-/>
+          <TextInput
+            mode="outlined"
+            label="CVC"
+            placeholder="Type something"
+            secureTextEntry={isCvcSecure}
+            right={
+              <TextInput.Icon
+                icon={isCvcSecure ? "eye-off-outline" : "eye-outline"}
+                onPress={() => setCvcSecure(!isCvcSecure)}
+              />
+            }
+          />
 
           <Text style={styles.paymentDetails}>
             Billing Address (same as card)
@@ -106,7 +108,7 @@ const CheckoutScreen = () => {
           />
         </View>
 
-        {items[0].deliveryOrCollection === "Delivery" ? (
+        {basket[0].deliveryOrCollection === "Delivery" ? (
           <View>
             <Text style={styles.paymentDetails}>Delivery Address</Text>
 
@@ -142,15 +144,15 @@ const CheckoutScreen = () => {
           </View>
         ) : null}
 
-
-        <Button style={styles.button} icon="lock" mode="contained" onPress={() => console.log('Pressed')}>
-    Pay Securely 
-  </Button>
-
-
+        <Button
+          style={styles.button}
+          icon="lock"
+          mode="contained"
+          onPress={() => console.log("Pressed")}
+        >
+          Pay Securely
+        </Button>
       </ScrollView>
-
-
     </SafeAreaView>
   );
 };
@@ -200,7 +202,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 10,
     marginBottom: 15,
-  }
+  },
 });
 
 export default CheckoutScreen;

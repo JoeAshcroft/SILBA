@@ -24,7 +24,7 @@ export default MarketCard = () => {
     })
   }, [])
 
-  console.log(marketplaceItems)
+
 
 
   return (
