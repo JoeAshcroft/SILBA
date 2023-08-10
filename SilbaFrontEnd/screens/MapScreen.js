@@ -98,7 +98,7 @@ export default function MapScreen() {
         </Marker>
         {businesses.map((business) => (
           <Marker
-            key={business.business_id}
+            key={business._id}
             coordinate={{
               latitude: business.location.coordinates[0],
               longitude: business.location.coordinates[1],
