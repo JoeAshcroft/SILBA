@@ -39,7 +39,7 @@ export default BusinessDetailsScreen = () => {
           <View>
             <Text style={styles.reviewsTitle}>reviews</Text>
             
-            <AddReview />
+            <AddReview businessID={business._id} />
             
             <ReviewsList business={business}/>
           </View>

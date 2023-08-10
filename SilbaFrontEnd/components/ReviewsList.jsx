@@ -1,18 +1,25 @@
 import { View } from "react-native";
-import {reviews} from "../data/reviews";
 import ReviewCard from "./ReviewCard";
+import { getReviewsByBusinessId } from "../api/api";
+import { useEffect, useState } from "react";
 
-export default ReviewsList = ({business}) => {
-  const filteredReviews = reviews.filter((review) => {
-    return review.business_id === business.business_id;
-  });
-// console.log(reviews)
-//   console.log(filteredReviews)
+export default ReviewsList = ({ business }) => {
+  const [reviewData, setReviewData] = useState([]);
+
+  useEffect(() => {
+    getReviewsByBusinessId(business._id)
+      .then((res) => {
+        setReviewData(res.reviews);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <View>
-      {filteredReviews.map((review) => (
-        <ReviewCard key={review.review_id} review={review} />
+      {reviewData.map((review) => (
+        <ReviewCard key={review._id} review={review} />
       ))}
     </View>
   );
