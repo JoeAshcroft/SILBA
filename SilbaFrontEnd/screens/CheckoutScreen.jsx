@@ -143,15 +143,16 @@ const CheckoutScreen = () => {
             />
           </View>
         ) : null}
-
-        <Button
-          style={styles.button}
-          icon="lock"
-          mode="contained"
-          onPress={() => console.log("Pressed")}
-        >
-          Pay Securely
-        </Button>
+        <View style={styles.buttonView}>
+          <Button
+            style={styles.button}
+            icon="lock"
+            mode="contained"
+            onPress={() => console.log("Pressed")}
+          >
+            Pay Securely
+          </Button>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -199,9 +200,21 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginTop: 5,
   },
+  buttonView: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+    marginBottom: 30,
+  },
   button: {
-    marginTop: 10,
-    marginBottom: 15,
+    borderRadius: 100,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 0,
+    width: 200,
+    height: 40,
+    backgroundColor: "black",
   },
 });
 

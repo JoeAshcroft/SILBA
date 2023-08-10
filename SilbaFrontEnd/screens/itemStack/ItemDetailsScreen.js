@@ -10,37 +10,40 @@ import { useAuth } from "../../Utils/AuthContext";
 export default ItemDetailsScreen = () => {
   const route = useRoute();
   const { item } = route.params;
-  const {user } = useAuth()
+  const { user } = useAuth();
 
   let userId = null;
 
   if (user !== null) {
-    userId = user.data._id; 
+    userId = user.data._id;
   }
 
   const [buttonPressed, setButtonPressed] = useState(false);
   const [buttonText, setButtonText] = useState("Add to basket");
   const [quantity, setQuantity] = useState(1);
-  const [itemAdded, setItemAdded] = useState(false)
-  const [error, setError] = useState(false)
+  const [itemAdded, setItemAdded] = useState(false);
+  const [error, setError] = useState(false);
   const { basket, updateBasket } = useBasket();
-
+  const [loggedOut, setLoggedOut] = useState(false);
 
   const handlePress = () => {
-    setButtonPressed(true);
-    setButtonText("Added to basket");
+    if (userId === null) {
+      setLoggedOut(true);
+    } else {
+      setButtonPressed(true);
+      setButtonText("Added to basket");
 
-    const body = {itemId: item._id}
+      const body = { itemId: item._id };
 
-    postToBasket(userId, body)
-    .then((res) => {
-      setItemAdded(true)
-    })
-    .catch((err) => {
-      setError(true)
-    })
+      postToBasket(userId, body)
+        .then((res) => {
+          setItemAdded(true);
+        })
+        .catch((err) => {
+          setError(true);
+        });
+    }
   };
-
 
   return (
     <SafeAreaView style={styles.container}>
@@ -48,7 +51,7 @@ export default ItemDetailsScreen = () => {
       <Text style={styles.itemName}>{item.itemName}</Text>
       <Text style={styles.itemDescription}>{item.itemDescription}</Text>
       <Text style={styles.rating}>Rating: {item.itemRating}/5</Text>
-      
+
       <Text style={styles.sellerInfo}>
         Sold by: {item.sellerBusinessName} / @{item.sellerUsername}
       </Text>
@@ -61,19 +64,7 @@ export default ItemDetailsScreen = () => {
         </Text>
       )}
       <Text style={styles.price}>£{item.itemPrice}</Text>
-      <View style={styles.quantitySelectContainer}>
-        {/* <IconButton
-          style={styles.quantityButtons}
-          icon="minus"
-          onPress={handleDecrement}
-        /> */}
-        {/* <Text style={styles.quantityText}>{quantity}</Text> */}
-        {/* <IconButton
-          style={styles.quantityButtons}
-          icon="plus"
-          onPress={handleIncrement}
-        /> */}
-      </View>
+   
 
       <View style={styles.buttonContainer}>
         <Button
@@ -84,17 +75,17 @@ export default ItemDetailsScreen = () => {
           <Text style={styles.buttonText}>{buttonText}</Text>
         </Button>
 
-        <Snackbar
-        visible={itemAdded}
-        onDismiss={() => setItemAdded(false)}>
-        Item added to basket.
-      </Snackbar>
+        <Snackbar visible={itemAdded} onDismiss={() => setItemAdded(false)}>
+          Item added to basket.
+        </Snackbar>
 
-      <Snackbar
-        visible={error}
-        onDismiss={() => setError(false)}>
-        There was an error adding item to basket. Please try again.
-      </Snackbar>
+        <Snackbar visible={error} onDismiss={() => setError(false)}>
+          There was an error adding item to basket. Please try again.
+        </Snackbar>
+
+        <Snackbar visible={loggedOut} onDismiss={() => setLoggedOut(false)}>
+          Please log in.
+        </Snackbar>
       </View>
     </SafeAreaView>
   );
@@ -155,13 +146,15 @@ const styles = StyleSheet.create({
     marginTop: 0,
   },
   button: {
+    color: 'white',
     borderRadius: 100,
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 0,
     width: 200,
     height: 40,
-    backgroundColor: "#EDEDED",
+    backgroundColor: "grey"
+  
   },
   buttonPressed: {
     backgroundColor: "white",
