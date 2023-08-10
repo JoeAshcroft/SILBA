@@ -92,7 +92,7 @@ const renderScrollableList = (businessList, title) => (
     </View>
     <ScrollView vertical showsVerticalScrollIndicator={false}>
       {businessList.map((business) => (
-        <BusinessCard key={business.business_id} business={business} />
+        <BusinessCard key={business._id} business={business} />
       ))}
     </ScrollView>
   </View>
