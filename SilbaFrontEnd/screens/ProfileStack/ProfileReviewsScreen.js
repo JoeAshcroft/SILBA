@@ -12,6 +12,7 @@ export default ProfileReviewsScreen = () => {
   useEffect(() => {
     getReviews().then((data) => {
       const filteredReviews = data.reviews.filter((review) => {
+        console.log(user.data.username);
         return review.username === user.data.username;
       });
       setUserReviews(filteredReviews);
