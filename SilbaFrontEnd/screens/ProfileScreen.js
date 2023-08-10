@@ -52,8 +52,12 @@ export default ProfileScreen = () => {
 
 const ProfileMainScreen = () => {
   const navigation = useNavigation();
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
   const { data } = user;
+
+  const handleLogout = () => {
+    setUser(null);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -109,6 +113,7 @@ const ProfileMainScreen = () => {
           style={styles.logoutButton}
           contentStyle={styles.logoutButtonContent}
           labelStyle={styles.logoutButtonText}
+          onPress={handleLogout}
         >
           Log out
         </Button>

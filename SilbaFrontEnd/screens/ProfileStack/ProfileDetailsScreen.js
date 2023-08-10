@@ -3,17 +3,6 @@ import { useState } from "react";
 import { Avatar, Button } from "react-native-paper";
 import { useAuth } from "../../Utils/AuthContext";
 
-// const userData = [
-//   {
-//     fullName: "Joe Bloggs",
-//     username: "foodlover123",
-//     email: "joebloggs@fakemail.com",
-//     avatar_url:
-//       "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80",
-//     user_id: 1,
-//   },
-// ];
-
 export default ProfileDetailsScreen = () => {
   const [newEmail, setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
