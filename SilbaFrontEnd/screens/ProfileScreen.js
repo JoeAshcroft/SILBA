@@ -43,81 +43,73 @@ const ProfileMainScreen = () => {
   const navigation = useNavigation();
   const { user, setUser } = useAuth();
 
- 
-  if (user !== null) {
-    const { data } = user; 
-  }
- 
-
   const handleLogout = () => {
     setUser(null);
   };
 
   return (
     <SafeAreaView style={styles.container}>
-
-    {user === null ? 
-    
-      <Text style={styles.loginMessage}>Please Log In</Text>
- : ( <><View style={styles.profilePage}>
-        <Avatar.Image
-          size={80}
-          source={{ uri: data.avatarUrl }}
-          style={styles.avatar}
-        />
-        <Text style={styles.fullName}>{data.fullName}</Text>
-        <Text style={styles.username}>@{data.username}</Text>
-        <Text style={styles.email}>{data.email}</Text>
-      </View>
-
-      <View style={styles.buttonsContainer}>
-        <Button
-          icon="account"
-          mode="contained"
-          style={styles.button}
-          contentStyle={styles.buttonContent}
-          labelStyle={styles.buttonLabel}
-          onPress={() => navigation.navigate("ProfileDetailsScreen")}
-        >
-          My details
-        </Button>
-        <Button
-          icon="receipt"
-          mode="contained"
-          style={styles.button}
-          contentStyle={styles.buttonContent}
-          labelStyle={styles.buttonLabel}
-          onPress={() => navigation.navigate("ProfileOrdersScreen")}
-        >
-          My orders
-        </Button>
-        <Button
-          icon="star"
-          mode="contained"
-          style={styles.button}
-          contentStyle={styles.buttonContent}
-          labelStyle={styles.buttonLabel}
-          onPress={() =>
-            navigation.navigate("ProfileReviewsScreen", { user: data })
-          }
-        >
-          My reviews
-        </Button>
-      </View>
-
-      <View style={styles.logoutContainer}>
-        <Button
-          icon="door"
-          style={styles.logoutButton}
-          contentStyle={styles.logoutButtonContent}
-          labelStyle={styles.logoutButtonText}
-          onPress={handleLogout}
-        >
-          Log out
-        </Button>
-      </View> </>) }
-
-      
+      {user === null ? (
+        <Text style={styles.loginMessage}>Please Log In</Text>
+      ) : (
+        <>
+          <View style={styles.profilePage}>
+            <Avatar.Image
+              size={80}
+              source={{ uri: user.data.avatarUrl }}
+              style={styles.avatar}
+            />
+            <Text style={styles.fullName}>{user.data.fullName}</Text>
+            <Text style={styles.username}>@{user.data.username}</Text>
+            <Text style={styles.email}>{user.data.email}</Text>
+          </View>
+          <View style={styles.buttonsContainer}>
+            <Button
+              icon="account"
+              mode="contained"
+              style={styles.button}
+              contentStyle={styles.buttonContent}
+              labelStyle={styles.buttonLabel}
+              onPress={() => navigation.navigate("ProfileDetailsScreen")}
+            >
+              My details
+            </Button>
+            <Button
+              icon="receipt"
+              mode="contained"
+              style={styles.button}
+              contentStyle={styles.buttonContent}
+              labelStyle={styles.buttonLabel}
+              onPress={() => navigation.navigate("ProfileOrdersScreen")}
+            >
+              My orders
+            </Button>
+            <Button
+              icon="star"
+              mode="contained"
+              style={styles.button}
+              contentStyle={styles.buttonContent}
+              labelStyle={styles.buttonLabel}
+              onPress={() =>
+                navigation.navigate("ProfileReviewsScreen", { user })
+              }
+            >
+              My reviews
+            </Button>
+          </View>
+          <View style={styles.logoutContainer}>
+            <Button
+              icon="door"
+              style={styles.logoutButton}
+              contentStyle={styles.logoutButtonContent}
+              labelStyle={styles.logoutButtonText}
+              onPress={handleLogout}
+            >
+              Log out
+            </Button>
+          </View>
+        </>
+      )}
     </SafeAreaView>
   );
 };
@@ -184,6 +176,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 20,
-    color: "#555", 
+    color: "#555",
   },
 });
