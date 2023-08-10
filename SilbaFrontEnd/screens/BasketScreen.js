@@ -16,9 +16,8 @@ export default BasketScreen = () => {
   return (
     <BasketStack.Navigator>
       <BasketStack.Screen
-        name="BasketMain"
+        name="Basket"
         component={BasketMainScreen}
-        options={{ headerShown: false }}
       />
       <BasketStack.Screen
         name="Checkout"
@@ -54,17 +53,20 @@ const BasketMainScreen = () => {
   }, [basket]);
 
   const handleItemDelete = (itemId) => {
+    console.log('Deleting item:', itemId);
+  
     setDeleteLoading(true);
-    deleteFromBasket(userId, {basketId: itemId })
+    deleteFromBasket(userId, { basketId: itemId })
       .then((res) => {
         const updatedBasket = basket.filter((item) => item._id !== itemId);
         updateBasket(updatedBasket);
         setDeleteLoading(false);
         setDeleted(true);
+        console.log("item deleted", res)
       })
       .catch((err) => {
         console.log(err);
-        setDeleteLoading(true);
+        setDeleteLoading(false); 
         setError(true);
       });
   };

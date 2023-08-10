@@ -4,40 +4,36 @@ import { IconButton, ActivityIndicator } from "react-native-paper";
 import { patchBasket } from "../api/api"; 
 
 export default function BasketItemCard({ item, onDelete, userId, deleteLoading }) {
-  const [addQuantity, setAddQuantity] = useState(0);
 
   const handleIncrement = () => {
-    if (item.quantity + addQuantity < item.stockCount) {
-      setAddQuantity((prevQuantity) => prevQuantity + 1);
+    console.log(item)
+    const body = {itemId: item._id,
+    quantity: "1"}
+    patchBasket(userId, body)
+    .then((res) => {
 
-      const newQuantity = item.quantity + 1
-   
-      const body = {
-        itemId: item._id,
-        quantity: newQuantity.toString(),
-      };
-  
-      patchBasket(userId, body)
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
-    }
-  };
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+
+  }
 
   const handleDecrement = () => {
-    if (item.quantity + addQuantity > 1) {
-      setAddQuantity((prevQuantity) => prevQuantity - 1);
-      
-      const newQuantity = item.quantity - 1; // Calculate the new quantity
-      const body = {
-        itemId: item._id,
-        quantity: newQuantity.toString(),
-      };
-  
-      patchBasket(userId, body)
-        .then((res) => console.log(item.quantity))
-        .catch((err) => console.log(err));
+    if (item.quantity > 1) {
+      const body = {itemId: item._id,
+        quantity: "-1"}
+        patchBasket(userId, body)
+        .then((res) => {
+    console.log(item.quantity)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
-  };
+    
+
+  }
 
   return (
     <View style={styles.card}>
@@ -69,7 +65,7 @@ export default function BasketItemCard({ item, onDelete, userId, deleteLoading }
         )}
 
         <Text style={styles.itemQuantity}>
-          {item.quantity + addQuantity}
+          {item.quantity}
         </Text>
 
         <IconButton
